@@ -1,6 +1,6 @@
-# Space Kitten
+# ILikeThisThing
 
-> Pithy project description
+> This is a thing. And I like it!
 
 ## Team
 
