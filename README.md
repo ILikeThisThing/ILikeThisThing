@@ -4,9 +4,9 @@
 
 ## Team
 
-  - __Product Owner__: space cat
-  - __Scrum Master__: space cat
-  - __Development Team Members__: space cat, space cat
+  - __Product Owner__: Natalie
+  - __Scrum Master__: Justin
+  - __Development Team Members__: Brad, Julia
 
 ## Table of Contents
 
