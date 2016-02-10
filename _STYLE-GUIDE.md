@@ -220,9 +220,9 @@ When writing any block of code that is logically subordinate to the line immedia
 * Put `else` and `else if` statements on the same line as the ending curly brace for the preceding `if` block
     ```javascript
     // good:
-    if(condition){
+    if (condition) {
       response();
-    }else{
+    } else {
       otherResponse();
     }
 
@@ -337,8 +337,6 @@ When writing any block of code that is logically subordinate to the line immedia
       , 'cat'
     ];
     ```
-
-* Avoid use of `switch` statements altogether. They are hard to outdent using the standard whitespace rules above, and are prone to error due to missing `break` statements. See [this article](http://ericleads.com/2012/12/switch-case-considered-harmful/) for more detail.
 
 * Prefer single quotes around JavaScript strings, rather than double quotes. Having a standard of any sort is preferable to a mix-and-match approach, and single quotes allow for easy embedding of HTML, which prefers double quotes around tag attributes.
 
