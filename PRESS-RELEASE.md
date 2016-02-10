@@ -17,49 +17,49 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+  > 
   ILikeThis
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  > 
   Find your next favorite book, game, or movie!
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  >
   You provide the name of a book, movie, or game that you like and tell us why you enjoy it. We'll give you suggestions for
   other books, movies, and games you may enjoy.
 
 ## Problem ##
-  > Describe the problem your product solves.
+  >
   WHAT DO I READWATCHLISTENWEHAVENOMUSICSOPLAY?!
   Existing resources fall short of the mark. Simply put, they return a high volume of bad search results. They also tend
   to limit users to a single medium.
   
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  >
   THIS ONE! (of several curated suggestions!)
   
   ILikeThis asks WHY you enjoy a particular title and returns nuanced, specific recommendations based on your answers. It
   even searches across mediums - search for a book, and you may find a new film that users like you also enjoyed!
   
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+  > 
   "..."
   (we don't have a real spokesperson.) (yes we do. just kidding.) (they're just on vacation.)  (forever.)
   (go to the next section now please.)
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  > 
   Type your favorite ___ into the search bar. Then it won't be your favorite anymore because we'll give you a BETTER ONE!
   HA! WE'RE BETTER THAN YOU!!!!! (no you're great. good job.)
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  > 
   "I stopped losing my hair in 48 hours!" - Philip Philliams, Dallas TX
   "It saved my marriage!"  - Mark, that guy under the bridge by Congress
   "IT GLOWS IN THE DARK TOO!!! (10/10)" - Roger Ebert, Ebert and Roeper
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  > 
   Go to it. And enjoy it. good. (bye.)
