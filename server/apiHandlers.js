@@ -39,25 +39,31 @@ exports.bookSearcher = function(bookName){
 
 
 exports.movieSearcher = function(movieName){
-	//TODO
+	//Queries the OMDB movies API (provided by IMDB) and returns a single JSON object
+	//NOTE: does not require an api key
+
+	var baseUrl = "http://www.omdbapi.com/";
+	var formattedName = movieName.split(' ').join('+');
+	var requestBody = {
+		uri: baseUrl+'?t='+formattedName+'&y='+'&plot=short&r=json',
+		json: true
+	}
+
+	return request
+		.get(requestBody)
+		.then(function(movie) {
+			if (movie.response='false'){
+				throw {
+					errorMessage: "IMDB could not find that movie!"
+				}
+			} else {
+				return movie;
+			}
+		});
+		.catch(function(err){
+			console.log('The movie API failed to GET: ', err);
+		});
 }
-
-
-
-//for books
-
-
-//for movies
-
-
-
-
-
-
-
-
-
-
 
 
 
