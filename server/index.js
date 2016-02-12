@@ -22,6 +22,27 @@ if(process.env.NODE_ENV !== 'test') {
   // This is for supporting browser history pushstate.
   // NOTE: Make sure this route is always LAST.
   //
+  routes.get('/api/works', function(req, res){
+    //look into request body and see what contents are
+    //response should have an array of objects inside of res.body.results
+  })
+
+  routes.post('/api/works', function(req, res){
+    //look in request body
+    //first check if that work already exists
+    //does a knex add to the db of the given work
+  })
+
+  routes.get('/api/tags', function(req, res){
+    //return res.body.results of all works that have the given tags
+  })
+
+  routes.post('/api/tags', function(req, res){
+    //check if tags already exist for given work
+    //if not add to the db
+  })
+
+
   routes.get('/*', function(req, res){
     res.sendFile( assetFolder + '/index.html' )
   })
