@@ -17,11 +17,7 @@ routes.get('/api/tags-example', function(req, res) {
 });
 
 if(process.env.NODE_ENV !== 'test') {
-  //
-  // The Catch-all Route
-  // This is for supporting browser history pushstate.
-  // NOTE: Make sure this route is always LAST.
-  //
+  
   routes.get('/api/works', function(req, res){
     //look into request body and see what contents are
     //response should have an array of objects inside of res.body.results
@@ -47,6 +43,9 @@ if(process.env.NODE_ENV !== 'test') {
   })
 
 
+  // The Catch-all Route
+  // This is for supporting browser history pushstate.
+  // NOTE: Make sure this route is always LAST.
   routes.get('/*', function(req, res){
     res.sendFile( assetFolder + '/index.html' )
   })
