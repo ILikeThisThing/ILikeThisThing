@@ -48,6 +48,8 @@ exports.bookSearcher = function(bookName){
 	return request
 		.get(requestBody)
 		.then(function(books) {
+			//TODO: grab a larger image than the provided thumbnails.
+					//how: change the "zoom" parameter on the "thumbnail" url to 0, not 1
 			return books.items[0].volumeInfo;
 		})
 		.catch(function(err){
