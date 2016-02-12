@@ -8,7 +8,7 @@ exports.up = function(knex, Promise) {
 			}),
 		
 			knex.schema.createTableIfNotExists('books', function(table){
-				table.increments('id').references('id').inTable('works');;
+				table.increments('id').references('id').inTable('works').unique();
 				table.string('title');
 				table.string('author');
 				table.json('data');
@@ -16,7 +16,7 @@ exports.up = function(knex, Promise) {
 			}),
 		
 			knex.schema.createTableIfNotExists('movies', function(table){
-				table.integer('id').references('id').inTable('works');
+				table.integer('id').references('id').inTable('works').unique();
 				table.string('title');
 				table.string('director');
 				table.json('data');
@@ -24,7 +24,7 @@ exports.up = function(knex, Promise) {
 			}),
 		
 			knex.schema.createTableIfNotExists('games', function(table){
-				table.increments('id').references('id').inTable('works');
+				table.increments('id').references('id').inTable('works').unique();
 				table.string('title');
 				table.string('studio');
 				table.json('data');

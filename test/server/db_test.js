@@ -31,7 +31,7 @@ describe('database API', function(){
 
     it('should return all works in db', function(){
         return request(app)
-                .get('/database')
+                .get('/api/works')
                 .expect(201)
                 .expect(function(response){
                   expect(response.body).to.not.be.null;
@@ -40,7 +40,7 @@ describe('database API', function(){
 
     it ('should return just the queried work from db', function(){
         return request(app)
-                .get('/database')
+                .get('/api/works')
                 .send({work: 'Evil Dead', type: 'movie', director: 'Sam Raimi'})
                 .expect(200)
                 .expect(function(response){
@@ -58,9 +58,9 @@ describe('database API', function(){
               })
     })
 
-    it ('should add new entry into database on user confirmation', function(){
+    it ('should add new entry into database after user confirmation', function(){
         return request(app)
-                .post('/database')
+                .post('/api/works')
                 .send({work: 'The Room', type: 'movie', director: 'Tommy Wiseau', data: 'lots of things'})
                 .expect(201)
                 .expect(function(response){
@@ -68,7 +68,7 @@ describe('database API', function(){
                   //search for created entry to confirm it was created
 
                   return request(app)
-                          .get('/database')
+                          .get('/api')
                           .expect(200)
                           .expect(function(response){
                             expect(response.body.length).to.equal(1)
@@ -84,7 +84,7 @@ describe('database API', function(){
 
     it ('should return all tag matching works', function(){
       return request(app)
-              .get('/database')
+              .get('/api/tags')
               .send({work: 'The Room', type: 'movie', director: 'Tommy Wiseau', data: 'lots of things', tags:["so bad it's good"]})
               .expect(200)
               .expect(function(response){
@@ -98,7 +98,7 @@ describe('database API', function(){
 
     it ('should update queried works tags', function(){
       return request(app)
-              .get('/database')
+              .post('/api/tags')
               .send({work: 'The Room', type: 'movie', director: 'Tommy Wiseau', data: 'lots of things', tags:["high-art"]})
               .expect(201)
               .expect(function(response){
@@ -106,7 +106,7 @@ describe('database API', function(){
                 //search for tag to confirm it was added
 
                 return request(app)
-                        .get('/database')
+                        .get('/api/tags')
                         .expect(200)
                         .send({tags: 'high-art'})
                         .expect(function(response){
