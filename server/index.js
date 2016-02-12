@@ -1,8 +1,8 @@
 var express = require('express');
 var Path = require('path');
 var routes = express.Router();
-var db  = require('./db');
-
+require('./db');
+var knex = require('knex')
 //
 //route to your index.html
 //
