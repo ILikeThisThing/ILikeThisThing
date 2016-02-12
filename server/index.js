@@ -35,6 +35,10 @@ if(process.env.NODE_ENV !== 'test') {
 
   routes.get('/api/tags', function(req, res){
     //return res.body.results of all works that have the given tags
+    var search = req.body //whatever this path ends up being to the tags themselves
+    knex('tagsjoin').where({  //a join table lookup???
+      tag: 
+    })
   })
 
   routes.post('/api/tags', function(req, res){
