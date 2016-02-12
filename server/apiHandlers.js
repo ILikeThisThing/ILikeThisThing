@@ -1,5 +1,5 @@
 var express = require('express');
-var request = require('request-promise') //makes sending GET requests in node easier - the promisified version to boot! (JW)
+var request = require('request-promise') //makes sending GET requests in node easier - this is the promisified version (JW)
 var Path = require('path');
 var routes = express.Router();
 
@@ -34,12 +34,30 @@ exports.gameSearcher = function(gameName){
 
 
 exports.bookSearcher = function(bookName){
-	//TODO
+	//Queries the Google Books API, returns a json object for the closest matching book
+	//NOTE: we have an API key, but this query does not require it
+
+	var formattedName = bookName.split(' ').join('+');
+	var baseUrl = 'https://www.googleapis.com/books/v1/volumes';
+	var bookSearchUrl = baseUrl + '?q=' + formattedName + '&format=json';
+	var requestBody = {
+		uri: bookSearchUrl,
+		json: true
+	}	
+
+	return request
+		.get(requestBody)
+		.then(function(books) {
+			return books.items[0].volumeInfo;
+		})
+		.catch(function(err){
+			console.log('The books API failed to GET: ', err);
+		})
 }
 
 
 exports.movieSearcher = function(movieName){
-	//Queries the OMDB movies API (provided by IMDB) and returns a single JSON object
+	//Queries the OMDB movies API (provided by IMDB) and returns a JSON object for the closest result
 	//NOTE: does not require an api key
 
 	var baseUrl = "http://www.omdbapi.com/";
@@ -59,17 +77,17 @@ exports.movieSearcher = function(movieName){
 			} else {
 				return movie;
 			}
-		});
+		})
 		.catch(function(err){
 			console.log('The movie API failed to GET: ', err);
-		});
+		})
 }
 
 
 
 
 
-//this is a rabbit.
+//here is a rabbit.
 
 //     ^oo1^                               
 //    ++o1^+o111111+^                      
