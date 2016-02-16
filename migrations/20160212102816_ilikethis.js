@@ -3,7 +3,7 @@ exports.up = function(knex, Promise) {
   return Promise.all([
 			knex.schema.createTableIfNotExists('Works', function(table){
 				table.increments('id').primary();
-				table.string('work');
+				table.string('title');
 				table.string('type');
 			}),
 		
