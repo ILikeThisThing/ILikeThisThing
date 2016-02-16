@@ -9,12 +9,6 @@ var db = ('./dbRequests.js');
 var assetFolder = Path.resolve(__dirname, '../client/');
 routes.use(express.static(assetFolder));
 
-//
-// Example endpoint (also tested in test/server/index_test.js)
-//
-routes.get('/api/tags-example', function(req, res) {
-  res.send(['node', 'express', 'angular'])
-});
 
 //if we are in development or production mode
 if(process.env.NODE_ENV !== 'test') {
@@ -34,7 +28,6 @@ if(process.env.NODE_ENV !== 'test') {
 
 //POST api/works --> gets called if the work doesn't exist in database already AFTER api lookup has been done
   routes.post('/api/works', function(req, res){
-    //look in request body
     //does a knex insert to the db of the given work
     db.addWork(req.body)
       .then(function(result){
