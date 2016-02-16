@@ -38,7 +38,7 @@ if(process.env.NODE_ENV !== 'test') {
     //does a knex insert to the db of the given work
     db.addWork(req.body)
       .then(function(result){
-
+        //return 201
       })
       .catch(function(err){
         console.error('error in POST to api/works ', err);
@@ -50,7 +50,7 @@ if(process.env.NODE_ENV !== 'test') {
   routes.get('/api/tags', function(req, res){
     db.findWorks(req.body)
       .then(function(result){
-
+        //put results into response body and send it along with a 200 header
       })
       .catch(function(err){
         console.error('error in GET to api/tags ', err);
@@ -64,7 +64,7 @@ if(process.env.NODE_ENV !== 'test') {
     db.findTags(req.body)
       .then(function(newTags){
         //then run function that adds the new tags
-        db.addTags(req.body, newTags) //title that tags should be added to and ONLY the new tags 
+        db.addTags(req.body, newTags) //title that tags should be added to and array of the new tags 
           .then(function(result){
             //return 201 
           })
@@ -78,7 +78,6 @@ if(process.env.NODE_ENV !== 'test') {
       })
 
   })
-
 
   // The Catch-all Route
   // This is for supporting browser history pushstate.
