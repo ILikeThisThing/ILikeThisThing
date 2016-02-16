@@ -9,12 +9,11 @@ var routes = express.Router();
 
 
 exports.gameSearcher = function(gameName){
-	//Queries the Giant Bomb games API.
-	//Returns an array of the top 5 search results, which are JSON objects
+	//Queries the Giant Bomb games API. Returns a JSON object for the closest matching game
 
 	var apiKey = process.env.GIANTBOMB_KEY //remember to set this!
 	var baseUrl = "http://www.giantbomb.com/api";
-	var gamesSearchUrl = baseUrl + '/search/?api_key=' + apikey + '&format=json';
+	var gamesSearchUrl = baseUrl + '/search/?api_key=' + apiKey + '&format=json';
 	var requestBody = {
 		uri: gamesSearchUrl+'&query='+encodeURI(gameName),
 		json: true
@@ -22,12 +21,15 @@ exports.gameSearcher = function(gameName){
 	return request
 		.get(requestBody)
 		.then(function(games) {
-			return games.results.slice(0,6);
+			console.log("this came back for games: ", games.results[0]);
+			return games.results[0];
 		})
 		.catch(function(err){
 			console.log('The games API failed to GET: ', err);
 		})
 }
+
+exports.gameSearcher("Wipeout 64");
 
 
 exports.bookSearcher = function(bookName){
@@ -53,8 +55,6 @@ exports.bookSearcher = function(bookName){
 			console.log('The books API failed to GET: ', err);
 		})
 }
-
-exports.bookSearcher("Harry Potter");
 
 
 exports.movieSearcher = function(movieName){
