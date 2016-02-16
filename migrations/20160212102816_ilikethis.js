@@ -1,13 +1,13 @@
 
 exports.up = function(knex, Promise) {
   return Promise.all([
-			knex.schema.createTableIfNotExists('works', function(table){
+			knex.schema.createTableIfNotExists('Works', function(table){
 				table.increments('id').primary();
 				table.string('work');
 				table.string('type');
 			}),
 		
-			knex.schema.createTableIfNotExists('books', function(table){
+			knex.schema.createTableIfNotExists('Books', function(table){
 				table.increments('id').references('id').inTable('works').unique();
 				table.string('title');
 				table.string('author');
@@ -15,7 +15,7 @@ exports.up = function(knex, Promise) {
 				table.timestamps('created-at');
 			}),
 		
-			knex.schema.createTableIfNotExists('movies', function(table){
+			knex.schema.createTableIfNotExists('Movies', function(table){
 				table.integer('id').references('id').inTable('works').unique();
 				table.string('title');
 				table.string('director');
@@ -23,7 +23,7 @@ exports.up = function(knex, Promise) {
 				table.timestamps('created-at');
 			}),
 		
-			knex.schema.createTableIfNotExists('games', function(table){
+			knex.schema.createTableIfNotExists('Games', function(table){
 				table.increments('id').references('id').inTable('works').unique();
 				table.string('title');
 				table.string('studio');
@@ -31,13 +31,13 @@ exports.up = function(knex, Promise) {
 				table.timestamps('created-at');
 			}),
 		
-			knex.schema.createTableIfNotExists('tags', function(table){
+			knex.schema.createTableIfNotExists('Tags', function(table){
 				table.increments('id');
 				table.string('tag');
 				table.timestamps('created-at');
 			}),
 		
-			knex.schema.createTableIfNotExists('jointags', function(table){
+			knex.schema.createTableIfNotExists('WorkTag', function(table){
 				table.integer('tag').references('id').inTable('tags');
 				table.integer('work').references('id').inTable('works')
 				table.timestamps('created-at');
@@ -47,11 +47,11 @@ exports.up = function(knex, Promise) {
 
 exports.down = function(knex, Promise) {
   return Promise.all([
-		knex.schema.dropTable('works'),
-		knex.schema.dropTable('books'),
-		knex.schema.dropTable('movies'),
-		knex.schema.dropTable('games'),
-		knex.schema.dropTable('tags'),
-		knex.schema.dropTable('jointags')
+		knex.schema.dropTable('Works'),
+		knex.schema.dropTable('Books'),
+		knex.schema.dropTable('Movies'),
+		knex.schema.dropTable('Games'),
+		knex.schema.dropTable('Tags'),
+		knex.schema.dropTable('WorkTag')
 	]) 
 };
