@@ -4,18 +4,15 @@ var Path = require('path');
 var routes = express.Router();
 
 
-//*** FOR DEV PURPOSES ONLY *** replace with environment variables once deployed (JW)
-var apiKeys = require('./apiKeys.js')
-	//currently, justin has these stored locally - file is gitignored.
-	//HOW TO DEAL WITH API KEYS FOR REAL: set them equal to environment variables in the terminal.
-	//later, when working with heroku: use herokuConfig (command line interface) to manually set env variables
+//HOW TO DEAL WITH API KEYS: set them equal to environment variables in the terminal.
+	//when working with heroku: use herokuConfig (command line interface) to manually set env variables
 
 
 exports.gameSearcher = function(gameName){
 	//Queries the Giant Bomb games API.
 	//Returns an array of the top 5 search results, which are JSON objects
 
-	var apikey = apiKeys.giantBombKey; //for dev/testing only.
+	var apiKey = process.env.GIANTBOMB_KEY //remember to set this!
 	var baseUrl = "http://www.giantbomb.com/api";
 	var gamesSearchUrl = baseUrl + '/search/?api_key=' + apikey + '&format=json';
 	var requestBody = {
@@ -56,6 +53,8 @@ exports.bookSearcher = function(bookName){
 			console.log('The books API failed to GET: ', err);
 		})
 }
+
+exports.bookSearcher("Harry Potter");
 
 
 exports.movieSearcher = function(movieName){
