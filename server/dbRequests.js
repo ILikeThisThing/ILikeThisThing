@@ -24,19 +24,19 @@ exports.addWork = function(work, apiRes){
   knex.insert({'title': work.title, 'type': work.type}).into('Works')
       .then(function(result){
         if (work.type === 'Books'){
-          knex.insert({'id': result[0].id, 'title': work.title, 'author': work.author, 'data': apiRes}).into('Books')
+          return knex.insert({'id': result[0].id, 'title': work.title, 'author': work.author, 'data': apiRes}).into('Books')
               .then(function(result){
                 return result[0];
               })
         }
         else if (work.type === 'Movies'){
-          knex.insert({'id': result[0].id, 'title': work.title, 'director': work.author, 'data': apiRes}).into('Movies')
+          return knex.insert({'id': result[0].id, 'title': work.title, 'director': work.author, 'data': apiRes}).into('Movies')
               .then(function(result){
                 return result[0];
               })
         }
         else if (work.type === 'Games'){
-          knex.insert({'id': result[0].id, 'title': work.title, 'studio': work.studio, 'data': apiRes}).into('Movies')
+          return knex.insert({'id': result[0].id, 'title': work.title, 'studio': work.studio, 'data': apiRes}).into('Movies')
               .then(function(result){
                 return result[0];
               })
