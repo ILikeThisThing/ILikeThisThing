@@ -1,9 +1,8 @@
 require('./db');
 var knex = require('knex');
 
-var dbRequest = module.exports
 
-dbRequest.lookupWork = function(req){
+exports.lookupWork = function(req){
 	var title = req.title //or whatever that path ends up being
 	    var type = req.type //same as above
 
@@ -20,11 +19,11 @@ dbRequest.lookupWork = function(req){
 	    //response should have an array of the searched for object in it.
 };
 
-dbRequest.addWork = function(req){
+exports.addWork = function(req){
 
 };
 
-dbRequest.findWorks = function(req){
+exports.findWorks = function(req){
 	var tagsArr = req.tags // => must be array
 
     //returns all tag ids for the passed in tags
@@ -38,17 +37,18 @@ dbRequest.findWorks = function(req){
           //put results into response body and send off
           //I think this will return all works that match at least one tag
         })
-        .catch(function(error){
+        .catch(function(err){
           //won't get no matching works unless we filter out the searched for thing
+          console.error('error in findWorks ', err)
         })
 };
 
-dbRequest.findTags = funciton(req){
+exports.findTags = function(req){
 	
 }
 
 
-dbRequest.addTags = function(req){
+exports.addTags = function(req){
 	var title = req.title; // => should be a string of a single work
     var tagNames = req.tags; // => must be an array
 
