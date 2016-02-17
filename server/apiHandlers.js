@@ -21,15 +21,12 @@ exports.gameSearcher = function(gameName){
 	return request
 		.get(requestBody)
 		.then(function(games) {
-			console.log("this came back for games: ", games.results[0]);
 			return games.results[0];
 		})
 		.catch(function(err){
 			console.log('The games API failed to GET: ', err);
 		})
 }
-
-exports.gameSearcher("Wipeout 64");
 
 
 exports.bookSearcher = function(bookName){
@@ -47,9 +44,18 @@ exports.bookSearcher = function(bookName){
 	return request
 		.get(requestBody)
 		.then(function(books) {
-			//TODO: grab a larger image than the provided thumbnails.
-					//how: change the "zoom" parameter on the "thumbnail" url to 0, not 1
-			return books.items[0].volumeInfo;
+			var bookObject = books.items[0].volumeInfo;
+
+			//Get a url for a larger image, as the ones that come back are too small
+			//howTo: change the 'zoom' parameter to 0 in the original thumbnail url
+			var imageURL = bookObject.imageLinks.thumbnail;
+			var splitURL = imageURL.split('zoom=1')
+			splitURL[0] = splitURL[0]+'zoom=0';
+			var largeImageURL = splitURL[0]+splitURL[1];
+			//pack the new url into bookObject
+			bookObject.largeImage = largeImageURL;
+
+			return bookObject;
 		})
 		.catch(function(err){
 			console.log('The books API failed to GET: ', err);
