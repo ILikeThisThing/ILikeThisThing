@@ -79,6 +79,9 @@ exports.findTags = function(req){
         .map(function(row){
           return row.tag; //=> should be returning a flat array of tagnames to filter against users passed in tags
         })
+        .then(function(tagNames){
+          return tagNames;
+        })
       })
       
 };
