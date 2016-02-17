@@ -16,18 +16,19 @@ exports.gameSearcher = function(gameName){
 	var gamesSearchUrl = baseUrl + '/search/?api_key=' + apiKey + '&format=json';
 	var requestBody = {
 		uri: gamesSearchUrl+'&query='+encodeURI(gameName),
-		json: true
+		json: true,
+		headers: { 'User-Agent': 'ILikeThis recommendation tool v0.01'}
 	}
 	return request
 		.get(requestBody)
 		.then(function(games) {
+			console.log(games.results[0]);
 			return games.results[0];
 		})
 		.catch(function(err){
 			console.error('The games API failed to GET: ', err);
 		})
 }
-
 
 exports.bookSearcher = function(bookName){
 	//Queries the Google Books API, returns a json object for the closest matching book
