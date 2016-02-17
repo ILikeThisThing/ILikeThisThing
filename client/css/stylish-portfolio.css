@@ -237,3 +237,21 @@ hr.small {
 footer {
     padding: 100px 0;
 }
+
+/*Project customizations*/
+
+#rgb {
+	color: #FF0; /*yellow*/
+	animation: rgb 6s infinite alternate;
+}
+@keyframes rgb {
+	/* 0% will fallback to the default background-color of #rgb*/
+	50% {color: #06F; /*blue*/ }
+	100% {color: #F00; /*red*/}
+}
+#likeSearch {
+  width: 300px;
+}
+#submitRecs {
+  background-color: teal;
+}

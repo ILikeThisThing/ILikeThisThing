@@ -10,17 +10,19 @@
     <title>I Like This - Cross-Media Recommendations</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/stylish-portfolio.css" rel="stylesheet">
 
     <!-- Animate CSS -->
-    <link href="css/animate.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="/css/master.css" media="screen" title="no title" charset="utf-8">
   </head>
 
   <body ng-app="myApp">
@@ -40,15 +42,15 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
             <ul class="nav navbar-nav">
-                <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                <!-- Hidden li included to remove active class from why link when scrolled up past why section -->
                 <li class="hidden">
                     <a href="#top"></a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#about">Why?</a>
+                    <a class="page-scroll" href="#why">Why?</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#download">Fill me out</a>
+                    <a class="page-scroll" href="#madlibs">Fill me out</a>
                 </li>
                 <li>
                     <a class="page-scroll" href="#contact">Results</a>
@@ -63,7 +65,7 @@
 <!-- Header -->
 <header id="top" class="header">
     <div class="text-vertical-center">
-        <h1 id="rgb" class="animated bounce">I Like This</h1>
+        <h1 id="rgb" class="animated flash">I Like This</h1>
         <h3 class="animated jello">Cross-Media Recommendations</h3>
         <br>
         <input type="search" name="name" id="likeSearch" value="What do you like?"></input>
@@ -76,12 +78,12 @@
         </select>
         <br>
         <br>
-        <a href="#about" class="btn btn-dark btn-lg">Why?</a>
+        <a href="#why" class="btn btn-dark btn-lg">Why?</a>
     </div>
 </header>
 
-<!-- About -->
-<section id="about" class="about">
+<!-- Why -->
+<section id="why" class="why">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -94,9 +96,8 @@
     <!-- /.container -->
 </section>
 
-<!-- Services -->
-<!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
-<section id="services" class="services bg-primary">
+<!-- madlibs -->
+<section id="madlibs" class="madlibs bg-primary">
     <div class="container">
         <div class="row text-center">
           <label for="plot">I like that the plot was...</label>
@@ -137,7 +138,7 @@
 
 <br>
 
-<section id="books" class="services bg-primary">
+<section id="books" class="madlibs bg-primary">
     <div class="container">
         <div class="row text-center">
           <p>
@@ -151,7 +152,7 @@
 
 <br>
 
-<section id="movies" class="services bg-primary">
+<section id="movies" class="madlibs bg-primary">
     <div class="container">
         <div class="row text-center">
           <p>
@@ -165,7 +166,7 @@
 
 <br>
 
-<section id="videogames" class="services bg-primary">
+<section id="videogames" class="madlibs bg-primary">
     <div class="container">
         <div class="row text-center">
           <p>
@@ -182,10 +183,7 @@
     <div class="col-lg-10 col-lg-offset-1 text-center">
         <h4><strong>I Like This Inc.</strong>
         </h4>
-        <!-- <p>3481 Melrose Place<br>Beverly Hills, CA 90210</p> -->
         <ul class="list-unstyled">
-            <!-- <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
-            <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:name@example.com">name@example.com</a> -->
             </li>
         </ul>
         <br>
@@ -207,10 +205,10 @@
 </div>
 
 <!-- jQuery -->
-<script src="js/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
 
 <!-- Custom Theme JavaScript -->
 <script>
