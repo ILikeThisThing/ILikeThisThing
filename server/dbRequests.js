@@ -69,7 +69,7 @@ exports.findTags = function(req){
 
   knex.select('id').from('Works').where('title', title)
       .then(function(result){
-        knex.select('tag_id').from('WorkTag').where('work_id', result[0].id)
+        return knex.select('tag_id').from('WorkTag').where('work_id', result[0].id)
             .map(function(row){
               return row.tag_id;
             })
@@ -83,6 +83,7 @@ exports.findTags = function(req){
               return tagNames;
             })
       })
+
       
 };
 
