@@ -14,6 +14,7 @@ exports.lookupWork = function(req){
 	          //if err.message.match() something indicating it wasn't found? or just always make query to api
 	          //make call to appropriate api and return that in response
 	          //also should make POST req to api/works to add it into the database
+            throw new Error('No such work found')
 	        })
 	    //response should have an array of the searched for object in it.
 };
@@ -69,16 +70,17 @@ exports.findTags = function(req){
   knex.select('id').from('Works').where('title', title)
       .then(function(result){
         knex.select('tag_id').from('WorkTag').where('work_id', result[0].id)
+            .map(function(row){
+          return row.tag_id;
+        })
+        .then(function(tags){
+          knex.select('tag').from('Tags').whereIn('tag', tags);
+        })
+        .map(function(row){
+          return row.tag; //=> should be returning a flat array of tagnames to filter against users passed in tags
+        })
       })
-      .map(function(row){
-        return row.tag_id;
-      })
-      .then(function(tags){
-        knex.select('tag').from('Tags').whereIn('tag', tags);
-      })
-      .map(function(row){
-        return row.tag; //=> should be returning a flat array of tagnames to filter against passed in tags
-      })
+      
 };
 
 
@@ -92,19 +94,14 @@ exports.addTags = function(req){
           return row[0].id
         })
         .then(function(workId){
-          //finds id for given tags
-          knex.select('id').from('Tags').where('tag', tagName)
-              .map(function(row){
-                return row.id;
-              })
-              .then(function(tagIds){
-                //tagIds is an array of the selected tags ids
-                console.log('tagIds after map promise ', tagIds);
-                //now we need to put tagIds and workId together into array of objects
-                return tagIds
-              })
+          //add to Tags -- then add to WorkTag
+          
+          tagNames.forEach(function(tagName){
+            knex.insert({'tag': tagName}).into('Tags')
+                .then(function(row){
+                  var id = row[0].id;
+                  knex.insert({'work_id': workId, 'tag_id': id}).into('WorkTag')
+                })
+          });
         })
-    
-    knex.insert(newTags).into('WorkTag')
-
 };
