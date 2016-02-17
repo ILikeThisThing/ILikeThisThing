@@ -12,7 +12,6 @@ exports.up = function(knex, Promise) {
 				table.string('title');
 				table.string('author');
 				table.json('data');
-				table.json('tags');
 				table.timestamps('created-at');
 			}),
 		
@@ -21,7 +20,6 @@ exports.up = function(knex, Promise) {
 				table.string('title');
 				table.string('director');
 				table.json('data');
-				table.json('tags');
 				table.timestamps('created-at');
 			}),
 		
@@ -30,7 +28,6 @@ exports.up = function(knex, Promise) {
 				table.string('title');
 				table.string('studio');
 				table.json('data');
-				table.json('tags');
 				table.timestamps('created-at');
 			}),
 		

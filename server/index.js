@@ -17,6 +17,7 @@ if(process.env.NODE_ENV !== 'test') {
   routes.get('/api/works', function(req, res){
     db.lookupWork(req.body)
       .then(function(result){
+        res.send(200, result);
         //puts result into response
       })
       .catch(function(error){
@@ -31,10 +32,11 @@ if(process.env.NODE_ENV !== 'test') {
     //does a knex insert to the db of the given work
     db.addWork(req.body)
       .then(function(result){
-        //return 201
+        res.send(201)
       })
       .catch(function(err){
         console.error('error in POST to api/works ', err);
+        res.send(500)
         //probably 500 server error or it didn't have everything it needed
       })
   })
@@ -43,7 +45,7 @@ if(process.env.NODE_ENV !== 'test') {
   routes.get('/api/tags', function(req, res){
     db.findWorks(req.body)
       .then(function(result){
-        //put results into response body and send it along with a 200 header
+        res.send(200, results)  // => this is an array of objects
       })
       .catch(function(err){
         console.error('error in GET to api/tags ', err);
@@ -59,14 +61,16 @@ if(process.env.NODE_ENV !== 'test') {
         //then run function that adds the new tags
         db.addTags(req.body, newTags) //title that tags should be added to and array of the new tags 
           .then(function(result){
-            //return 201 
+            res.send(201, result);
           })
           .catch(function(error){
             //some sort of error
+            res.send(500);
             console.error('error in POST to api/tags inside addTags ', err)
           })
       })
       .catch(function(error){
+        res.send(500)
         console.error('error in POST to api/tags inside findTags ', err)
       })
 
