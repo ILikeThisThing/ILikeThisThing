@@ -1,266 +1,262 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-    <title>I Like This - Cross-Media Recommendations</title>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <!-- Bootstrap Core CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  <title>I Like This - Cross-Media Recommendations</title>
 
-    <!-- Custom CSS -->
-    <link href="css/stylish-portfolio.css" rel="stylesheet">
+  <!-- Bootstrap Core CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Animate CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link href="css/stylish-portfolio.css" rel="stylesheet">
 
-    <!-- Custom Fonts -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+  <!-- Animate CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="/css/master.css" media="screen" title="no title" charset="utf-8">
-  </head>
+  <!-- Custom Fonts -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
-  <body ng-app="myApp">
+  <link rel="stylesheet" href="/css/master.css" media="screen" title="no title" charset="utf-8">
+</head>
 
-    <!-- Navigation -->
-<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+<body ng-app="myApp">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
     <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-                <i class="fa fa-bars"></i>
-            </button>
-            <a class="navbar-brand page-scroll" href="#top">
-                <i class="fa fa-play-circle"></i>  <span class="light"></span> Main
-            </a>
-        </div>
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+          <i class="fa fa-bars"></i>
+        </button>
+        <a class="navbar-brand page-scroll" href="#top">
+          <i class="fa fa-play-circle"></i> <span class="light"></span> Main
+        </a>
+      </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-            <ul class="nav navbar-nav">
-                <!-- Hidden li included to remove active class from why link when scrolled up past why section -->
-                <li class="hidden">
-                    <a href="#top"></a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#why">Why?</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#madlibs">Fill me out</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#contact">Results</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+        <ul class="nav navbar-nav">
+          <!-- Hidden li included to remove active class from why link when scrolled up past why section -->
+          <li class="hidden">
+            <a href="#top"></a>
+          </li>
+          <li>
+            <a class="page-scroll" href="#why">Why?</a>
+          </li>
+          <li>
+            <a class="page-scroll" href="#madlibs">Fill me out</a>
+          </li>
+          <li>
+            <a class="page-scroll" href="#contact">Results</a>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
     </div>
     <!-- /.container -->
-</nav>
+  </nav>
 
-<!-- Header -->
-<header id="top" class="header">
+  <!-- Header -->
+  <header id="top" class="header">
     <div class="text-vertical-center">
-        <h1 id="rgb" class="animated flash">I Like This</h1>
-        <h3 class="animated jello">Cross-Media Recommendations</h3>
-        <br>
-        <input type="search" name="name" id="likeSearch" value="What do you like?"></input>
-        <br>
-        <label for="mediaType">What type of media is this?</label>
-        <select class="mediaType" name="">
-          <option value="book">Book</option>
-          <option value="movie">Movie</option>
-          <option value="videogame">Video Game</option>
+      <h1 id="rgb" class="animated flash">I Like This</h1>
+      <h3 class="animated jello">Cross-Media Recommendations</h3>
+      <br>
+      <input type="search" name="name" id="likeSearch" value="What do you like?"></input>
+      <br>
+      <label for="mediaType">What type of media is this?</label>
+      <select class="mediaType" name="">
+        <option value="book">Book</option>
+        <option value="movie">Movie</option>
+        <option value="videogame">Video Game</option>
+      </select>
+      <br>
+      <br>
+      <a href="#why" class="btn btn-dark btn-lg">Why?</a>
+    </div>
+  </header>
+
+  <!-- Why -->
+  <section id="why" class="why">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2>Tell us more to improve your recommendations!</h2>
+          <p class="lead"></p>
+        </div>
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container -->
+  </section>
+
+  <!-- madlibs -->
+  <section id="madlibs" class="madlibs bg-primary">
+    <div class="container">
+      <div class="row text-center">
+        <label for="plot">I like that the plot was...</label>
+        <select class="plot" name="">
+          <option value="book">Tragic</option>
+          <option value="movie">Epic</option>
+          <option value="videogame">Dramatic</option>
         </select>
         <br>
+        <label for="character">This type of main character is appealing...</label>
+        <select class="character" name="">
+          <option value="book">Hero</option>
+          <option value="movie">Underdog</option>
+          <option value="videogame">Villain</option>
+        </select>
         <br>
-        <a href="#why" class="btn btn-dark btn-lg">Why?</a>
-    </div>
-</header>
+        <label for="setting">I enjoyed this setting...</label>
+        <select class="setting" name="">
+          <option value="book">School</option>
+          <option value="movie">Desert</option>
+          <option value="videogame">Space</option>
+        </select>
+        <br>
+        <label for="genre">This work genre is one I gravitate towards...</label>
+        <select class="genre" name="">
+          <option value="book">Horror</option>
+          <option value="movie">Sci-fi</option>
+          <option value="videogame">Fantasy</option>
+        </select>
+        <br>
+        <button id="submitRecs" type="submit" name="button">Show me recommendations, Pal!</button>
 
-<!-- Why -->
-<section id="why" class="why">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2>Tell us more to improve your recommendations!</h2>
-                <p class="lead"></p>
-            </div>
-        </div>
-        <!-- /.row -->
-    </div>
-    <!-- /.container -->
-</section>
-
-<!-- madlibs -->
-<section id="madlibs" class="madlibs bg-primary">
-    <div class="container">
-        <div class="row text-center">
-          <label for="plot">I like that the plot was...</label>
-          <select class="plot" name="">
-            <option value="book">Tragic</option>
-            <option value="movie">Epic</option>
-            <option value="videogame">Dramatic</option>
-          </select>
-          <br>
-          <label for="character">This type of main character is appealing...</label>
-          <select class="character" name="">
-            <option value="book">Hero</option>
-            <option value="movie">Underdog</option>
-            <option value="videogame">Villain</option>
-          </select>
-          <br>
-          <label for="setting">I enjoyed this setting...</label>
-          <select class="setting" name="">
-            <option value="book">School</option>
-            <option value="movie">Desert</option>
-            <option value="videogame">Space</option>
-          </select>
-          <br>
-          <label for="genre">This work genre is one I gravitate towards...</label>
-          <select class="genre" name="">
-            <option value="book">Horror</option>
-            <option value="movie">Sci-fi</option>
-            <option value="videogame">Fantasy</option>
-          </select>
-          <br>
-          <button id="submitRecs" type="submit" name="button">Show me recommendations, Pal!</button>
-
-        </div>
-        <!-- /.row -->
+      </div>
+      <!-- /.row -->
     </div>
     <!-- /.container -->
-</section>
+  </section>
 
-<br>
+  <br>
 
-<section id="books" class="madlibs bg-primary">
+  <section id="books" class="madlibs bg-primary">
     <div class="container">
-        <div class="row text-center">
-          <p>
-            This is a place for book results
-          </p>
-        </div>
-        <!-- /.row -->
+      <div class="row text-center">
+        <p>
+          This is a place for book results
+        </p>
+      </div>
+      <!-- /.row -->
     </div>
     <!-- /.container -->
-</section>
+  </section>
 
-<br>
+  <br>
 
-<section id="movies" class="madlibs bg-primary">
+  <section id="movies" class="madlibs bg-primary">
     <div class="container">
-        <div class="row text-center">
-          <p>
-            This is a place for movie results
-          </p>
-        </div>
-        <!-- /.row -->
+      <div class="row text-center">
+        <p>
+          This is a place for movie results
+        </p>
+      </div>
+      <!-- /.row -->
     </div>
     <!-- /.container -->
-</section>
+  </section>
 
-<br>
+  <br>
 
-<section id="videogames" class="madlibs bg-primary">
+  <section id="videogames" class="madlibs bg-primary">
     <div class="container">
-        <div class="row text-center">
-          <p>
-            This is a place for video game results
-          </p>
-        </div>
-        <!-- /.row -->
+      <div class="row text-center">
+        <p>
+          This is a place for video game results
+        </p>
+      </div>
+      <!-- /.row -->
     </div>
     <!-- /.container -->
-</section>
+  </section>
 
-<div class="container">
-<div class="row">
-    <div class="col-lg-10 col-lg-offset-1 text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 col-lg-offset-1 text-center">
         <h4><strong>I Like This Inc.</strong>
         </h4>
         <ul class="list-unstyled">
-            </li>
+          </li>
         </ul>
         <br>
         <ul class="list-inline">
-            <li>
-                <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
-            </li>
+          <li>
+            <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
+          </li>
+          <li>
+            <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
+          </li>
+          <li>
+            <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
+          </li>
         </ul>
         <hr class="small">
         <p class="text-muted">Copyright &copy; I Like Dis 2016</p>
+      </div>
     </div>
-</div>
-</div>
+  </div>
 
-<!-- jQuery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
+  <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
 
-<!-- Bootstrap Core JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
 
-<!-- Custom Theme JavaScript -->
-<script>
-// Closes the sidebar menu
-$("#menu-close").click(function(e) {
-    e.preventDefault();
-    $("#sidebar-wrapper").toggleClass("active");
-});
+  <!-- Custom Theme JavaScript -->
+  <script>
+    // Closes the sidebar menu
+    $("#menu-close").click(function(e) {
+      e.preventDefault();
+      $("#sidebar-wrapper").toggleClass("active");
+    });
 
-// Opens the sidebar menu
-$("#menu-toggle").click(function(e) {
-    e.preventDefault();
-    $("#sidebar-wrapper").toggleClass("active");
-});
+    // Opens the sidebar menu
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#sidebar-wrapper").toggleClass("active");
+    });
 
-// Scrolls to the selected menu item on the page
-$(function() {
-    $('a[href*=#]:not([href=#])').click(function() {
+    // Scrolls to the selected menu item on the page
+    $(function() {
+      $('a[href*=#]:not([href=#])').click(function() {
         if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
 
-            var target = $(this.hash);
-            target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-            if (target.length) {
-                $('html,body').animate({
-                    scrollTop: target.offset().top
-                }, 1000);
-                return false;
-            }
+          var target = $(this.hash);
+          target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+          if (target.length) {
+            $('html,body').animate({
+              scrollTop: target.offset().top
+            }, 1000);
+            return false;
+          }
         }
+      });
     });
-});
-</script>
+  </script>
 
+</body>
 
+<footer>
+  <script src="./lib/angular/angular.js"></script>
+  <script src="./lib/angular-animate/angular-animate.js"></script>
+  <script src="./lib/angular-cookies/angular-cookies.js"></script>
+  <script src="./lib/angular-resource/angular-resource.js"></script>
+  <script src="./lib/angular-touch/angular-touch.js"></script>
+  <script src="./lib/angular-sanitize/angular-sanitize.js"></script>
+  <script src="./lib/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="app.js"></script>
+  <script src="src/main.js"></script>
+  <script src="src/about.js"></script>
+  <link rel="stylesheet" type="text/css" href="index.css">
+</footer>
 
-    <!-- <div class="container">
-      <div ui-view></div>
-      </div>
-    </div> -->
-  </body>
-
-  <footer>
-    <script src="./lib/angular/angular.js"></script>
-    <script src="./lib/angular-animate/angular-animate.js"></script>
-    <script src="./lib/angular-cookies/angular-cookies.js"></script>
-    <script src="./lib/angular-resource/angular-resource.js"></script>
-    <script src="./lib/angular-touch/angular-touch.js"></script>
-    <script src="./lib/angular-sanitize/angular-sanitize.js"></script>
-    <script src="./lib/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="app.js"></script>
-    <script src="src/main.js"></script>
-    <script src="src/about.js"></script>
-    <link rel="stylesheet" type="text/css" href="index.css">
-  </footer>
 </html>
