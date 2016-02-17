@@ -71,17 +71,17 @@ exports.findTags = function(req){
       .then(function(result){
         knex.select('tag_id').from('WorkTag').where('work_id', result[0].id)
             .map(function(row){
-          return row.tag_id;
-        })
-        .then(function(tags){
-          knex.select('tag').from('Tags').whereIn('tag', tags);
-        })
-        .map(function(row){
-          return row.tag; //=> should be returning a flat array of tagnames to filter against users passed in tags
-        })
-        .then(function(tagNames){
-          return tagNames;
-        })
+              return row.tag_id;
+            })
+            .then(function(tags){
+              knex.select('tag').from('Tags').whereIn('tag', tags);
+            })
+            .map(function(row){
+              return row.tag; //=> should be returning a flat array of tagnames to filter against users passed in tags
+            })
+            .then(function(tagNames){
+              return tagNames;
+            })
       })
       
 };
