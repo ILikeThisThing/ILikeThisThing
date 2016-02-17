@@ -8,8 +8,7 @@ exports.lookupWork = function(req){
 
 	    knex.from(type).where('title', title) //maybe change this to a LIKE to account for case errors or something?
 	        .then(function(result){
-	          //add result to response body and return
-	          return result;
+	          return result[0];
 	        })
 	        .catch(function(err){
 	          //if err.message.match() something indicating it wasn't found? or just always make query to api
@@ -19,8 +18,29 @@ exports.lookupWork = function(req){
 	    //response should have an array of the searched for object in it.
 };
 
-exports.addWork = function(req){
-
+//called after an apirequest
+exports.addWork = function(work, apiRes){
+  knex.insert({'title': work.title, 'type': work.type}).into('Works')
+      .then(function(result){
+        if (work.type === 'Books'){
+          knex.insert({'id': result[0].id, 'title': work.title, 'author': work.author, 'data': apiRes}).into('Books')
+              .then(function(result){
+                return result[0];
+              })
+        }
+        else if (work.type === 'Movies'){
+          knex.insert({'id': result[0].id, 'title': work.title, 'director': work.author, 'data': apiRes}).into('Movies')
+              .then(function(result){
+                return result[0];
+              })
+        }
+        else if (work.type === 'Games'){
+          knex.insert({'id': result[0].id, 'title': work.title, 'studio': work.studio, 'data': apiRes}).into('Movies')
+              .then(function(result){
+                return result[0];
+              })
+          }
+      })
 };
 
 exports.findWorks = function(req){
@@ -34,8 +54,7 @@ exports.findWorks = function(req){
     //inner join of books, games, movies tables to return all colomns for each work_id
     knex.from(/* all work tables*/).whereIn('id', workLookup)
         .then(function(results){
-          //put results into response body and send off
-          //I think this will return all works that match at least one tag
+            return results;
         })
         .catch(function(err){
           //won't get no matching works unless we filter out the searched for thing
@@ -43,9 +62,24 @@ exports.findWorks = function(req){
         })
 };
 
+//checks to see what tags a given work already has
 exports.findTags = function(req){
-	
-}
+  //first find the works id
+
+  knex.select('id').from('Works').where('title', title)
+      .then(function(result){
+        knex.select('tag_id').from('WorkTag').where('work_id', result[0].id)
+      })
+      .map(function(row){
+        return row.tag_id;
+      })
+      .then(function(tags){
+        knex.select('tag').from('Tags').whereIn('tag', tags);
+      })
+      .map(function(row){
+        return row.tag; //=> should be returning a flat array of tagnames to filter against passed in tags
+      })
+};
 
 
 exports.addTags = function(req){
