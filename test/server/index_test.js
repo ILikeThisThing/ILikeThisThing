@@ -7,7 +7,7 @@ describe("The Server", function() {
   app.use('/', routes)
   app.testReady()
 
-  it("serves an example endpoint", function() {
+  xit("serves an example endpoint", function() {
 
     // Mocha will wait for returned promises to complete
     return request(app)
