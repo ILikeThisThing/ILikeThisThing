@@ -1,2 +1,3 @@
 /node_modules/*
 /server/apiKeys.js
+/bower_components/*
