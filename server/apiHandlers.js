@@ -4,20 +4,16 @@ var Path = require('path');
 var routes = express.Router();
 
 
-//*** FOR DEV PURPOSES ONLY *** replace with environment variables once deployed (JW)
-var apiKeys = require('./apiKeys.js')
-	//currently, justin has these stored locally - file is gitignored.
-	//HOW TO DEAL WITH API KEYS FOR REAL: set them equal to environment variables in the terminal.
-	//later, when working with heroku: use herokuConfig (command line interface) to manually set env variables
+//HOW TO DEAL WITH API KEYS: set them equal to environment variables in the terminal.
+	//when working with heroku: use herokuConfig (command line interface) to manually set env variables
 
 
 exports.gameSearcher = function(gameName){
-	//Queries the Giant Bomb games API.
-	//Returns an array of the top 5 search results, which are JSON objects
+	//Queries the Giant Bomb games API. Returns a JSON object for the closest matching game
 
-	var apikey = apiKeys.giantBombKey; //for dev/testing only.
+	var apiKey = process.env.GIANTBOMB_KEY //remember to set this!
 	var baseUrl = "http://www.giantbomb.com/api";
-	var gamesSearchUrl = baseUrl + '/search/?api_key=' + apikey + '&format=json';
+	var gamesSearchUrl = baseUrl + '/search/?api_key=' + apiKey + '&format=json';
 	var requestBody = {
 		uri: gamesSearchUrl+'&query='+encodeURI(gameName),
 		json: true
@@ -25,7 +21,7 @@ exports.gameSearcher = function(gameName){
 	return request
 		.get(requestBody)
 		.then(function(games) {
-			return games.results.slice(0,6);
+			return games.results[0];
 		})
 		.catch(function(err){
 			console.log('The games API failed to GET: ', err);
@@ -48,9 +44,18 @@ exports.bookSearcher = function(bookName){
 	return request
 		.get(requestBody)
 		.then(function(books) {
-			//TODO: grab a larger image than the provided thumbnails.
-					//how: change the "zoom" parameter on the "thumbnail" url to 0, not 1
-			return books.items[0].volumeInfo;
+			var bookObject = books.items[0].volumeInfo;
+
+			//Get a url for a larger image, as the ones that come back are too small
+			//howTo: change the 'zoom' parameter to 0 in the original thumbnail url
+			var imageURL = bookObject.imageLinks.thumbnail;
+			var splitURL = imageURL.split('zoom=1')
+			splitURL[0] = splitURL[0]+'zoom=0';
+			var largeImageURL = splitURL[0]+splitURL[1];
+			//pack the new url into bookObject
+			bookObject.largeImage = largeImageURL;
+
+			return bookObject;
 		})
 		.catch(function(err){
 			console.log('The books API failed to GET: ', err);
