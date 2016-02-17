@@ -3,8 +3,8 @@ var knex = require('knex');
 
 
 exports.lookupWork = function(req){
-	var title = req.title //or whatever that path ends up being
-	    var type = req.type //same as above
+	var title = req.title // => maybe we should make this all caps or something?
+	    var type = req.type // => needs to be in 'Books', 'Movies' etc format
 
 	    knex.from(type).where('title', title) //maybe change this to a LIKE to account for case errors or something?
 	        .then(function(result){
@@ -24,19 +24,19 @@ exports.addWork = function(work, apiRes){
   knex.insert({'title': work.title, 'type': work.type}).into('Works')
       .then(function(result){
         if (work.type === 'Books'){
-          return knex.insert({'id': result[0].id, 'title': work.title, 'author': work.author, 'data': apiRes}).into('Books')
+          return knex.insert({'id': result[0].id, 'title': work.title, 'author': apiRes.author, 'image': apiRes.largeImage, 'data': JSON.stringify(apiRes)}).into('Books')
               .then(function(result){
                 return result[0];
               })
         }
         else if (work.type === 'Movies'){
-          return knex.insert({'id': result[0].id, 'title': work.title, 'director': work.author, 'data': apiRes}).into('Movies')
+          return knex.insert({'id': result[0].id, 'title': work.title, 'director': apiRes.author, 'image': apiRes.image, 'data': JSON.stringify(apiRes)}).into('Movies')
               .then(function(result){
                 return result[0];
               })
         }
         else if (work.type === 'Games'){
-          return knex.insert({'id': result[0].id, 'title': work.title, 'studio': work.studio, 'data': apiRes}).into('Movies')
+          return knex.insert({'id': result[0].id, 'title': work.title, 'studio': apiRes.studio, 'image': apiRes.image, 'data': JSON.stringify(apiRes)}).into('Movies')
               .then(function(result){
                 return result[0];
               })

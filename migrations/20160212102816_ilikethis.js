@@ -11,6 +11,7 @@ exports.up = function(knex, Promise) {
 				table.increments('id').references('id').inTable('works').unique();
 				table.string('title');
 				table.string('author');
+				table.string('image');
 				table.json('data');
 				table.timestamps('created-at');
 			}),
@@ -19,6 +20,7 @@ exports.up = function(knex, Promise) {
 				table.integer('id').references('id').inTable('works').unique();
 				table.string('title');
 				table.string('director');
+				table.string('image');
 				table.json('data');
 				table.timestamps('created-at');
 			}),
@@ -27,6 +29,7 @@ exports.up = function(knex, Promise) {
 				table.increments('id').references('id').inTable('works').unique();
 				table.string('title');
 				table.string('studio');
+				table.string('image');
 				table.json('data');
 				table.timestamps('created-at');
 			}),
