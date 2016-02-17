@@ -24,7 +24,7 @@ exports.gameSearcher = function(gameName){
 			return games.results[0];
 		})
 		.catch(function(err){
-			console.log('The games API failed to GET: ', err);
+			console.error('The games API failed to GET: ', err);
 		})
 }
 
@@ -58,7 +58,7 @@ exports.bookSearcher = function(bookName){
 			return bookObject;
 		})
 		.catch(function(err){
-			console.log('The books API failed to GET: ', err);
+			console.error('The books API failed to GET: ', err);
 		})
 }
 
@@ -86,7 +86,7 @@ exports.movieSearcher = function(movieName){
 			}
 		})
 		.catch(function(err){
-			console.log('The movie API failed to GET: ', err);
+			console.error('The movie API failed to GET: ', err);
 		})
 }
 
