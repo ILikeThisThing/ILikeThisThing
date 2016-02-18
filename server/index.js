@@ -3,6 +3,7 @@ var Path = require('path');
 var routes = express.Router();
 require('./db');
 var db = ('./dbRequests.js');
+var api = ('./apiHandlers.js');
 //
 //route to your index.html
 //
@@ -15,6 +16,8 @@ if(process.env.NODE_ENV !== 'test') {
 
 //GET api/works --> looks to see if we have the given work already in the database
   routes.get('/api/works', function(req, res){
+    var workTitle = req.body.title;
+    var workType = req.body.type;
     db.lookupWork(req.body)
       .then(function(result){
         res.send(200, result);
@@ -22,6 +25,23 @@ if(process.env.NODE_ENV !== 'test') {
       })
       .catch(function(error){
         //if error.message = 'Not found in database' --> make call to api --> confirm with user --> POST to api/works
+        if (error.message === 'No such work found'){
+          var apiData;
+          switch (workType){
+            case "Game":
+              api.gameSearcher(workTitle)
+                .then(function(gameData){
+                  apiData = gameData;
+                })
+              break;
+            case "Movie":
+              //call the movie handler
+              break;
+            case "Book":
+              //call the book handler
+              break;
+          }
+        }
         //else 500 server error
         console.error('error in GET to api/works ', err)
       })
