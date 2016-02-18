@@ -8,7 +8,7 @@ exports.up = function(knex, Promise) {
 			}),
 		
 			knex.schema.createTableIfNotExists('Books', function(table){
-				table.increments('id').references('id').inTable('works').unique();
+				table.increments('id').references('id').inTable('Works').unique();
 				table.string('title');
 				table.string('author');
 				table.json('data');
@@ -16,7 +16,7 @@ exports.up = function(knex, Promise) {
 			}),
 		
 			knex.schema.createTableIfNotExists('Movies', function(table){
-				table.integer('id').references('id').inTable('works').unique();
+				table.integer('id').references('id').inTable('Works').unique();
 				table.string('title');
 				table.string('director');
 				table.json('data');
@@ -24,7 +24,7 @@ exports.up = function(knex, Promise) {
 			}),
 		
 			knex.schema.createTableIfNotExists('Games', function(table){
-				table.increments('id').references('id').inTable('works').unique();
+				table.increments('id').references('id').inTable('Works').unique();
 				table.string('title');
 				table.string('studio');
 				table.json('data');
@@ -38,8 +38,8 @@ exports.up = function(knex, Promise) {
 			}),
 		
 			knex.schema.createTableIfNotExists('WorkTag', function(table){
-				table.integer('tag_id').references('id').inTable('tags');
-				table.integer('work_id').references('id').inTable('works')
+				table.integer('tag_id').references('id').inTable('Tags');
+				table.integer('work_id').references('id').inTable('Works')
 				table.timestamps('created-at');
 			})
 		])
