@@ -27,6 +27,10 @@ exports.gameSearcher = function(gameName){
 		})
 		.catch(function(err){
 			console.error('The games API failed to GET: ', err);
+			throw new Error('The games API failed to GET.')
+			//Unfortunately, this api is pretty bad at telling you it didn't find what you were searching for... 
+			//for example, the search string 'a;lsdkjf' does not throw an error. It just sends back some 
+			//random game that starts with the letter 'a' (JW)
 		})
 }
 
@@ -61,6 +65,9 @@ exports.bookSearcher = function(bookName){
 		.catch(function(err){
 			console.error('The books API failed to GET: ', err);
 		})
+		//As with Giant Bomb for games, the Google Books api isn't great at saying "I don't know." 
+		//for example, the search string 'a;lsdkjf' does not throw an error. It just sends back some 
+		//random book that starts with the letter 'a' (JW)
 }
 
 
@@ -78,20 +85,18 @@ exports.movieSearcher = function(movieName){
 	return request
 		.get(requestBody)
 		.then(function(movie) {
-			if (movie.response='false'){
-				throw {
-					errorMessage: "IMDB could not find that movie!"
-				}
+			if (movie.Response==='False'){
+				console.error("IMDB could not find that movie! Try searching for something else.")
 			} else {
+				console.log("This came back: ", movie);
 				return movie;
 			}
 		})
 		.catch(function(err){
-			console.error('The movie API failed to GET: ', err);
+			console.error('The movie API failed to GET: ', err)
+			throw new Error("The movie API failed to GET. Like, it actually pooped the bed and broke.");
 		})
 }
-
-
 
 
 
