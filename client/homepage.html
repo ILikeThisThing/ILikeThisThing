@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script type="text/javascript" src="homepage.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css"/>
+    <link rel="stylesheet" href="homepage.css">
+</head>
+
+ <header id="top" class="header" style="text-align: center">
+    <h1>I LIKE THIS</h1>
+    <h3>Find your new favorite book, movie, or videogame!</h3>
+    <br>
+
+    <form name="titleAndTypeSubmissionForm"  ng-submit=>
+    <input type="text"
+           name="title" 
+           placeholder="Enter a book, movie, or videogame you like here" 
+           style="width:300px">
+    <select placeholder="This is a...">
+        <option value="This is a...">This is a...</option>
+        <option value="Book">Book</option>
+        <option value="Movie">Movie</option>
+        <option value="Videogame">Videogame</option>
+    </select>
+    <input type="submit" value="Search" />
+    </form>
+        
+    <!-- <button a href="#about" class="btn">Search</button> -->
+<!-- with angular, create an "is this the title you meant?" pop-up or drop-down or something (even an alternate page if need be for now)
+
+then create the same thing but for if a work couldn't be found at all -->
+
+
+
+ </header>
+<body>
+    <!-- this is just a test to see that angular is working on this page. to be deleted. -->
+    <p>{{ "hello" + " world" }}</p>
+
+
+</body>
+</html>
+
