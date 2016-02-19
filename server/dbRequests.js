@@ -1,10 +1,11 @@
-require('./db');
-var knex = require('knex');
-
+var db = require('./db');
+var config      = require('../knexfile.js');  
+var env         =  process.env.NODE_ENV || 'development';  
+var knex = require('knex')(config[env]); 
 
 exports.lookupWork = function(req){
 	var title = req.title // => maybe we should make this all caps or something?
-	    var type = req.type // => needs to be in 'Books', 'Movies' etc format
+	var type = req.type // => needs to be in 'Books', 'Movies' etc format
 
 	    knex.from(type).where('title', title) //maybe change this to a LIKE to account for case errors or something?
 	        .then(function(result){
