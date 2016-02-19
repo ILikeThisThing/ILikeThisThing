@@ -98,39 +98,31 @@ if(process.env.NODE_ENV !== 'test') {
       })
   })
 
-  //GET api/tags --> looks for all works with passed in tag names --> results will include the looked for work
-  routes.get('/api/tags', function(req, res){
-    db.findWorks(req.body)
-      .then(function(result){
-        res.send(200, results)  // => this is an array of objects
-      })
-      .catch(function(err){
-        console.error('error in GET to api/tags ', err);
-      })
-    
-  })
-
-  //POST api/tags --> if tags need to be added to a given work
+  //POST api/tags --> looks for all works with passed in tag names --> results will include the looked for work
   routes.post('/api/tags', function(req, res){
     //first look to see what tags should be added
     db.findTags(req.body)
+      .then(function(result){
+        return result.filter(function(tag){
+          if (req.body.tags.indexOf(tag) === -1){
+            return tag;
+          }
+        })
+      })
       .then(function(newTags){
-        //then run function that adds the new tags
-        db.addTags(req.body, newTags) //title that tags should be added to and array of the new tags 
-          .then(function(result){
-            res.send(201, result);
-          })
-          .catch(function(error){
-            //some sort of error
-            res.send(500);
-            console.error('error in POST to api/tags inside addTags ', err)
-          })
+        if (newTags.length > 0){
+          db.addTags(req.body, newTags)
+        }
       })
-      .catch(function(error){
-        res.send(500)
-        console.error('error in POST to api/tags inside findTags ', err)
+      .then(function(){
+        return db.findWorks(req.body)
       })
-
+      .then(function(result){
+              res.send(200, results)  // => this is an array of objects
+            })
+            .catch(function(err){
+              console.error('error in GET to api/tags ', err);
+            })
   })
 
   // The Catch-all Route
