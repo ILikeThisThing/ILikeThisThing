@@ -99,7 +99,7 @@ describe('database API', function(){
     it ('should update queried works tags', function(){
       return request(app)
               .post('/api/tags')
-              .send({work: 'The Room', type: 'movie', director: 'Tommy Wiseau', data: 'lots of things', tags:["high-art"]})
+              .send({work: 'The Room', type: 'movie', director: 'Tommy Wiseau', 'image': 'and image link', data: 'lots of things', tags:["high-art"]})
               .expect(201)
               .expect(function(response){
 

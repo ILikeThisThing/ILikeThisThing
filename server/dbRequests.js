@@ -3,6 +3,7 @@ var config      = require('../knexfile.js');
 var env         =  process.env.NODE_ENV || 'development';  
 var knex = require('knex')(config[env]); 
 
+
 exports.lookupWork = function(req){ //all these functions need to return promises (to allow calling .then in index.js), but
   //don't yet. Currently results in errors. (JW)
 	var title = req.title //or whatever that path ends up being
@@ -23,91 +24,124 @@ exports.lookupWork = function(req){ //all these functions need to return promise
 
 //called after an apirequest
 exports.addWork = function(work, apiRes){
-  knex.insert({'title': work.title, 'type': work.type}).into('Works')
-      .then(function(result){
-        if (work.type === 'Books'){
-          return knex.insert({'id': result[0].id, 'title': work.title, 'author': work.author, 'data': apiRes}).into('Books')
-              .then(function(result){
-                return result[0];
-              })
-        }
-        else if (work.type === 'Movies'){
-          return knex.insert({'id': result[0].id, 'title': work.title, 'director': work.author, 'data': apiRes}).into('Movies')
-              .then(function(result){
-                return result[0];
-              })
-        }
-        else if (work.type === 'Games'){
-          return knex.insert({'id': result[0].id, 'title': work.title, 'studio': work.studio, 'data': apiRes}).into('Movies')
-              .then(function(result){
-                return result[0];
-              })
+
+  return knex.insert({'title': apiRes.title, 'type': work.type}).into('Works')
+        .then(function(result){
+          if (work.type === 'Books'){
+            return knex.insert({'id': result[0].id, 
+                                'title': apiRes.title, 
+                                'author': apiRes.author, 
+                                'image': apiRes.largeImage, 
+                                'data': JSON.stringify(apiRes)})
+                .into('Books')
+                .then(function(result){
+                  return result[0];
+                })
           }
-      })
+          else if (work.type === 'Movies'){
+            return knex.insert({'id': result[0].id, 
+                                'title': apiRes.title, 
+                                'director': apiRes.author, 
+                                'image': apiRes.image, 
+                                'data': JSON.stringify(apiRes)})
+                .into('Movies')
+                .then(function(result){
+                  return result[0];
+                })
+          }
+          else if (work.type === 'Games'){
+            return knex.insert({'id': result[0].id, 
+                                'title': apiRes.title, 
+                                'studio': apiRes.studio, 
+                                'image': apiRes.image, 
+                                'data': JSON.stringify(apiRes)})
+                        .into('Movies')
+                        .then(function(result){
+                          return result[0];
+                        })
+            }
+        })
 };
 
 
 exports.findWorks = function(req){
 	var tagsArr = req.tags // => must be array
+  //join table of the things we want
 
-    //returns all tag ids for the passed in tags
-    var tagLookup = knex.select('id').from('Tags').whereIn('tag', tagsArr);
-    //returns work ids for all works that have any of the given tags
-    var workLookup = knex.select('work_id').from('TagWork').whereIn('tag_id', tagLookup);
+  var tagIds = knex.select('id')
+                   .from('Tags')
+                   .whereIn('tag', tagsArr)
+                   .map(function(rows){
+                      return rows.id
+                   })
+                   .return(tag_ids);
 
-    //inner join of books, games, movies tables to return all colomns for each work_id
-    knex.from(/* all work tables*/).whereIn('id', workLookup)
-        .then(function(results){
-            return results;
-        })
-        .catch(function(err){
-          //won't get no matching works unless we filter out the searched for thing
-          console.error('error in findWorks ', err)
-        })
+  return knex('WorkTag')
+          .select(['WorkTag.count', 'Books.title', 'Books.author', 'Books.image', 'Books.data', 
+                    'Movies.title', 'Movies.director', 'Movies.image', 'Movies.data',
+                    'Games.title', 'Games.studio', 'Games.image', 'Games.data'])
+          .join('Books', 'Books.id', 'WorkTag.work_id')
+          .join('Movies', 'Movies.id', 'WorkTag.work_id')
+          .join('Games', 'Games.id', 'WorkTag.work_id')
+          .whereIn('tag_id', tagIds)
+          .return(results)
 };
 
 //checks to see what tags a given work already has
 exports.findTags = function(req){
+
   //first find the works id
-
-  knex.select('id').from('Works').where('title', title)
-      .then(function(result){
-        return knex.select('tag_id').from('WorkTag').where('work_id', result[0].id)
-            .map(function(row){
-              return row.tag_id;
-            })
-            .then(function(tags){
-              knex.select('tag').from('Tags').whereIn('tag', tags);
-            })
-            .map(function(row){
-              return row.tag; //=> should be returning a flat array of tagnames to filter against users passed in tags
-            })
-            .then(function(tagNames){
-              return tagNames;
-            })
-      })
-
-      
+  return knex.select('id')
+            .from('Works')
+            .where('title', title)
+            .then(function(result){
+              //then update the counts for each of the tags
+              var workId = result[0].id;
+              return knex('WorkTag')
+                          .where('work_id', workId)
+                          .increment('count', 1)
+                          .then(function(){
+                            return knex.select('tag_id')
+                                     .from('WorkTag')
+                                     .where('work_id', workId)
+                                     .map(function(row){
+                                      return row.tag_id;
+                                     })
+                                     .then(function(tags){
+                                      knex.select('tag').from('Tags').whereIn('tag', tags);
+                                     })
+                                     .map(function(row){
+                                      return row.tag; //=> should be returning a flat array of tagnames to filter against users passed in tags
+                                     })
+                                    .then(function(tagNames){
+                                     return tagNames;
+                                    })
+                          })
+              
+      })      
 };
 
 
 exports.addTags = function(req){
 	var title = req.title; // => should be a string of a single work
-    var tagNames = req.tags; // => must be an array
+  var tagNames = req.tags; // => must be an array
 
-    //finds id for the given title
-    knex.select('id').from('Works').where('title', title)
+  //finds id for the given title
+  return knex.select('id').from('Works').where('title', title)
         .then(function(row){
           return row[0].id
         })
         .then(function(workId){
           //add to Tags -- then add to WorkTag
-          
           tagNames.forEach(function(tagName){
-            knex.insert({'tag': tagName}).into('Tags')
+            knex.insert({'tag': tagName})
+                .into('Tags')
                 .then(function(row){
                   var id = row[0].id;
-                  knex.insert({'work_id': workId, 'tag_id': id}).into('WorkTag')
+                  knex.insert({'work_id': workId, 
+                               'tag_id': id, 
+                               'count': 1})
+                  .into('WorkTag')
                 })
           });
         })
