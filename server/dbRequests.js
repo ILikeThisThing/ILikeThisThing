@@ -5,6 +5,7 @@ var knex = require('knex')(config[env]);
 
 
 exports.lookupWork = function(req){
+  console.log('inside lookupWork ', req)
 	var title = req.title; //or whatever that path ends up being
 	var type = req.type; //same as above
 
@@ -19,12 +20,13 @@ exports.lookupWork = function(req){
 
 //called after an apirequest
 exports.addWork = function(work, apiRes){
+  console.log('Inisde addWork', work)
   var title = apiRes.title;
 
   return knex.insert({'title': title, 'type': work.type}).into('Works')
         .then(function(result){
           if (work.type === 'Books'){
-            return knex.insert({'id': result[0].id, 
+            return knex.insert({'id': result.id, 
                                 'title': title, 
                                 'author': apiRes.author, 
                                 'image': apiRes.largeImage, 
@@ -35,10 +37,10 @@ exports.addWork = function(work, apiRes){
                 })
           }
           else if (work.type === 'Movies'){
-            return knex.insert({'id': result[0].id, 
+            return knex.insert({'id': result.id, 
                                 'title': title, 
-                                'director': apiRes.author, 
-                                'image': apiRes.image, 
+                                'director': apiRes.Director, 
+                                'image': apiRes.Poster, 
                                 'data': JSON.stringify(apiRes)})
                 .into('Movies')
                 .then(function(result){
@@ -46,14 +48,14 @@ exports.addWork = function(work, apiRes){
                 })
           }
           else if (work.type === 'Games'){
-            return knex.insert({'id': result[0].id, 
+            return knex.insert({'id': result.id, 
                                 'title': title, 
                                 'studio': apiRes.studio, 
                                 'image': apiRes.image, 
                                 'data': JSON.stringify(apiRes)})
                         .into('Movies')
                         .then(function(result){
-                          return result[0];
+                          return result;
                         })
             }
         })
