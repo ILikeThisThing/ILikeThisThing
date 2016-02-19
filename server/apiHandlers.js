@@ -22,7 +22,6 @@ exports.gameSearcher = function(gameName){
 	return request
 		.get(requestBody)
 		.then(function(games) {
-			console.log(games.results[0]);
 			return games.results[0];
 		})
 		.catch(function(err){

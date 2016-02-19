@@ -19,7 +19,7 @@ if(process.env.NODE_ENV !== 'test') {
     var workTitle = req.body.title;
     var workType = req.body.type;
     db.lookupWork(req.body)
-      .then(function(result){
+      .then(function(result){//this should return promise, but doesnt yet.
         res.send(200, result);
         //puts result into response
       })
