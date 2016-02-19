@@ -1,29 +1,44 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-  </head>
-  
-  <body ng-app="myApp">
-    <div class="container">
-      <div ui-view></div>
-      </div>
-    </div>
-  </body>
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css"/>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css" media="screen" title="no title" charset="utf-8">
+</head>
+
+ <header id="top" class="header" style="text-align: center">
+    <h1>I LIKE THIS</h1>
+    <h3>Find your new favorite book, movie, or videogame!</h3>
+    <br>
+
+    <form name="titleAndTypeSubmissionForm"  ng-submit=>
+    <input type="text"
+           name="title"
+           placeholder="Enter a book, movie, or videogame you like here"
+           style="width:300px">
+    <select placeholder="This is a...">
+        <option value="This is a...">This is a...</option>
+        <option value="Book">Book</option>
+        <option value="Movie">Movie</option>
+        <option value="Videogame">Videogame</option>
+    </select>
+    <input type="submit" value="Search" />
+    </form>
+
+<!-- with angular, create an "is this the title you meant?" pop-up or drop-down or something (even an alternate page if need be for now)
+
+then create the same thing but for if a work couldn't be found at all -->
 
 
 
-  <footer>
-    <script src="./lib/angular/angular.js"></script>
-    <script src="./lib/angular-animate/angular-animate.js"></script>
-    <script src="./lib/angular-cookies/angular-cookies.js"></script>
-    <script src="./lib/angular-resource/angular-resource.js"></script>
-    <script src="./lib/angular-touch/angular-touch.js"></script>
-    <script src="./lib/angular-sanitize/angular-sanitize.js"></script>
-    <script src="./lib/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="app.js"></script>
-    <script src="src/main.js"></script>
-    <script src="src/about.js"></script>
-    <link rel="stylesheet" type="text/css" href="index.css">
-  </footer>
+ </header>
+<body>
+    <!-- this is just a test to see that angular is working on this page. to be deleted. -->
+    <p>{{ "hello" + " world" }}</p>
+
+
+</body>
 </html>
