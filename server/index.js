@@ -15,7 +15,7 @@ routes.use(express.static(assetFolder));
 if(process.env.NODE_ENV !== 'test') {
 
 //POST api/searchworks --> takes a user-submitted work to search for, looks to see if we already have it in the database
-  routes.post('/api/seachworks', function(req, res){
+  routes.post('/api/searchworks', function(req, res){
     var workTitle = req.body.title;
     var workType = req.body.type;
     db.lookupWork(req.body)
