@@ -29,18 +29,18 @@ describe('database API', function(){
       
     })
 
-    it('should return all works in db', function(){
-        return request(app)
-                .get('/api/works')
-                .expect(201)
-                .expect(function(response){
-                  expect(response.body).to.not.be.null;
-                })
-    })
+    // it('should return all works in db', function(){
+    //     return request(app)
+    //             .get('/api/works')
+    //             .expect(201)
+    //             .expect(function(response){
+    //               expect(response.body.length).to.equal(4);
+    //             })
+    // })
 
     it ('should return just the queried work from db', function(){
         return request(app)
-                .get('/api/works')
+                .post('/api/searchWorks')
                 .send({work: 'Evil Dead', type: 'movie', director: 'Sam Raimi'})
                 .expect(200)
                 .expect(function(response){
@@ -84,7 +84,7 @@ describe('database API', function(){
 
     it ('should return all tag matching works', function(){
       return request(app)
-              .get('/api/tags')
+              .post('/api/tags')
               .send({work: 'The Room', type: 'movie', director: 'Tommy Wiseau', data: 'lots of things', tags:["so bad it's good"]})
               .expect(200)
               .expect(function(response){
@@ -106,9 +106,9 @@ describe('database API', function(){
                 //search for tag to confirm it was added
 
                 return request(app)
-                        .get('/api/tags')
+                        .post('/api/tags')
                         .expect(200)
-                        .send({tags: 'high-art'})
+                        .send({tags: ['high-art']})
                         .expect(function(response){
                           expect(response.body.results.length).to.equal(1)
                           expect(response.body.results.work).to.equal('The Room')
