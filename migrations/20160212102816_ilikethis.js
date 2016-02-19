@@ -13,6 +13,7 @@ exports.up = function(knex, Promise) {
 				table.string('author');
 				table.string('image');
 				table.json('data');
+				table.string('image');
 				table.timestamps('created-at');
 			}),
 		
@@ -22,6 +23,7 @@ exports.up = function(knex, Promise) {
 				table.string('director');
 				table.string('image');
 				table.json('data');
+				table.string('image');
 				table.timestamps('created-at');
 			}),
 		
@@ -31,6 +33,7 @@ exports.up = function(knex, Promise) {
 				table.string('studio');
 				table.string('image');
 				table.json('data');
+				table.string('image');
 				table.timestamps('created-at');
 			}),
 		
@@ -41,8 +44,8 @@ exports.up = function(knex, Promise) {
 			}),
 		
 			knex.schema.createTableIfNotExists('WorkTag', function(table){
-				table.integer('tag_id').references('id').inTable('tags');
-				table.integer('work_id').references('id').inTable('works');
+				table.integer('tag_id').references('id').inTable('Tags');
+				table.integer('work_id').references('id').inTable('Works');
 				table.integer('count');
 				table.timestamps('created-at');
 			})

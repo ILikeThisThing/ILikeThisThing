@@ -39,10 +39,15 @@ exports.addWork = function(work, apiRes){
                 })
           }
           else if (work.type === 'Games'){
-            return knex.insert({'id': result[0].id, 'title': apiRes.title, 'studio': apiRes.studio, 'image': apiRes.image, 'data': JSON.stringify(apiRes)}).into('Movies')
-                .then(function(result){
-                  return result[0];
-                })
+            return knex.insert({'id': result[0].id, 
+                                'title': apiRes.title, 
+                                'studio': apiRes.studio, 
+                                'image': apiRes.image, 
+                                'data': JSON.stringify(apiRes)})
+                        .into('Movies')
+                        .then(function(result){
+                          return result[0];
+                        })
             }
         })
 };
@@ -61,12 +66,14 @@ exports.findWorks = function(req){
                    .return(tag_ids);
 
   return knex('WorkTag')
+          .select(['WorkTag.count', 'Books.title', 'Books.author', 'Books.image', 'Books.data', 
+                    'Movies.title', 'Movies.director', 'Movies.image', 'Movies.data',
+                    'Games.title', 'Games.studio', 'Games.image', 'Games.data'])
           .join('Books', 'Books.id', 'WorkTag.work_id')
           .join('Movies', 'Movies.id', 'WorkTag.work_id')
           .join('Games', 'Games.id', 'WorkTag.work_id')
           .whereIn('tag_id', tagIds)
           .return(results)
-
 };
 
 //checks to see what tags a given work already has
@@ -117,7 +124,6 @@ exports.addTags = function(req){
         })
         .then(function(workId){
           //add to Tags -- then add to WorkTag
-          
           tagNames.forEach(function(tagName){
             knex.insert({'tag': tagName})
                 .into('Tags')
