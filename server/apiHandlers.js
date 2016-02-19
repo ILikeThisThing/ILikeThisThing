@@ -10,7 +10,6 @@ var routes = express.Router();
 
 exports.gameSearcher = function(gameName){
 	//Queries the Giant Bomb games API. Returns a JSON object for the closest matching game
-
 	var apiKey = process.env.GIANTBOMB_KEY //remember to set this!
 	var baseUrl = "http://www.giantbomb.com/api";
 	var gamesSearchUrl = baseUrl + '/search/?api_key=' + apiKey + '&format=json';
@@ -22,7 +21,15 @@ exports.gameSearcher = function(gameName){
 	return request
 		.get(requestBody)
 		.then(function(games) {
-			return games.results[0];
+			if (!!games.results[0]){
+				return games.results[0];
+			}
+			else{
+				return {
+					'workNotFound': true,
+					'message': "the API came up empty for that search"
+				}
+			}
 		})
 		.catch(function(err){
 			console.error('The games API failed to GET: ', err);
@@ -86,6 +93,10 @@ exports.movieSearcher = function(movieName){
 		.then(function(movie) {
 			if (movie.Response==='False'){
 				console.error("IMDB could not find that movie! Try searching for something else.")
+				return {
+					'workNotFound': true,
+					'message': "the API came up empty for that search"
+				};
 			} else {
 				console.log("This came back: ", movie);
 				return movie;
