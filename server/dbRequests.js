@@ -21,14 +21,23 @@ exports.lookupWork = function(req){
 //called after an apirequest
 exports.addWork = function(work, apiRes){
   console.log('Inisde addWork', work)
-  var title = apiRes.title;
+
+  //set the title, depending on work type (API response format)
+  var title; 
+  if (work.type === 'Books'){
+    title = apiRes.title;
+  } else if (work.type === 'Movies'){
+    title = apiRes.Title;
+  } else if (work.type === 'Games'){
+    title = apiRes.name;
+  }
 
   return knex.insert({'title': title, 'type': work.type}).into('Works')
         .then(function(result){
           if (work.type === 'Books'){
             return knex.insert({'id': result.id, 
                                 'title': title, 
-                                'author': apiRes.author, 
+                                'author': apiRes.authors, //an array - could be more than one 
                                 'image': apiRes.largeImage, 
                                 'data': JSON.stringify(apiRes)})
                 .into('Books')
@@ -49,11 +58,10 @@ exports.addWork = function(work, apiRes){
           }
           else if (work.type === 'Games'){
             return knex.insert({'id': result.id, 
-                                'title': title, 
-                                'studio': apiRes.studio, 
-                                'image': apiRes.image, 
+                                'title': title,
+                                'image': apiRes.image.medium_url, 
                                 'data': JSON.stringify(apiRes)})
-                        .into('Movies')
+                        .into('Games')
                         .then(function(result){
                           return result;
                         })
