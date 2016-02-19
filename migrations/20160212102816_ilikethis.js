@@ -41,8 +41,9 @@ exports.up = function(knex, Promise) {
 			}),
 		
 			knex.schema.createTableIfNotExists('WorkTag', function(table){
-				table.integer('tag_id').references('id').inTable('Tags');
-				table.integer('work_id').references('id').inTable('Works')
+				table.integer('tag_id').references('id').inTable('tags');
+				table.integer('work_id').references('id').inTable('works');
+				table.integer('count');
 				table.timestamps('created-at');
 			})
 		])
