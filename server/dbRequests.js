@@ -44,6 +44,7 @@ exports.addWork = function(work, apiRes){
       })
 };
 
+
 exports.findWorks = function(req){
 	var tagsArr = req.tags // => must be array
 
