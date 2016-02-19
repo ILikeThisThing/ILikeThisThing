@@ -3,29 +3,32 @@ var request = require('supertest-as-promised');
 // var should = chai.should();
 var expect = chai.expect();
 
+var config = require('../../knexfile.js');
+var env = process.env.NODE_ENV;
 
-var apiHandler = require('../../server/apiHandler.js');
-var db   = require('../../server/db');
-var app  = require('../../server/server.js');
-var Caller = require('../../models/caller.js')
+var apiHandler = require(__server + '/apiHandlers.js');
+var db   = require(__server + '/db.js');
+var app  = require(__server + '/index.js');
+var knex = require('knex')(config[env]);
+// var Caller = require('../../models/caller.js')
 
-// process.env.NODE_ENV = 'test';
+
 
 describe('database API', function(){
 
   beforeEach(function(){
-    db.down();
+    // knex.down();
   })
 
 
   describe('Works', function(){
     beforeEach(function(){
-      db.up();
+      // knex.up();
 
-      Caller.create({work: 'Evil Dead', type: 'movie', director: 'Sam Raimi', data: 'this is some evil data', tags:["so bad it's good"]});
-      Caller.create({work: 'Sharknado', type: 'movie', director: 'Anthony C. Ferrante', data: 'this is some shark data', tags:["so bad it's good"]});
-      Caller.create({work: 'Pride and Prejudice', type: 'book', author: 'Jane Austen', data: 'this is some regency data', tags:["romance"]});
-      Caller.create({work: 'Human Resource Machine', type: 'game', studio: 'Tomorrow Corporation', data: 'this is some computer data', tags:["programming"]})
+      // request(app).post({work: 'Evil Dead', type: 'movie', director: 'Sam Raimi', data: 'this is some evil data', tags:["so bad it's good"]});
+      // request(app).post({work: 'Sharknado', type: 'movie', director: 'Anthony C. Ferrante', data: 'this is some shark data', tags:["so bad it's good"]});
+      // request(app).post({work: 'Pride and Prejudice', type: 'book', author: 'Jane Austen', data: 'this is some regency data', tags:["romance"]});
+      // request(app).post({work: 'Human Resource Machine', type: 'game', studio: 'Tomorrow Corporation', data: 'this is some computer data', tags:["programming"]})
       
     })
 
@@ -49,14 +52,14 @@ describe('database API', function(){
                 })
     })
 
-    it ('should initialize api call if no results', function(){
-        return request(app)
-            //whatever the call to a given apis path is.
-              .expect()//expected status code in response
-              .expect(function(response){
-                expect(response.body) //whatever the response body should be for a positive result
-              })
-    })
+    // it ('should initialize api call if no results', function(){
+    //     return request(app)
+    //         //whatever the call to a given apis path is.
+    //           .expect()//expected status code in response
+    //           .expect(function(response){
+    //             expect(response.body) //whatever the response body should be for a positive result
+    //           })
+    // })
 
     it ('should add new entry into database after user confirmation', function(){
         return request(app)

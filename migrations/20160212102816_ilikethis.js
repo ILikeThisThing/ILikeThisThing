@@ -13,7 +13,6 @@ exports.up = function(knex, Promise) {
 				table.string('author');
 				table.string('image');
 				table.json('data');
-				table.string('image');
 				table.timestamps('created-at');
 			}),
 		
@@ -23,7 +22,6 @@ exports.up = function(knex, Promise) {
 				table.string('director');
 				table.string('image');
 				table.json('data');
-				table.string('image');
 				table.timestamps('created-at');
 			}),
 		
@@ -33,7 +31,6 @@ exports.up = function(knex, Promise) {
 				table.string('studio');
 				table.string('image');
 				table.json('data');
-				table.string('image');
 				table.timestamps('created-at');
 			}),
 		
