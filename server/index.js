@@ -2,8 +2,8 @@ var express = require('express');
 var Path = require('path');
 var routes = express.Router();
 require('./db');
-var db = ('./dbRequests.js');
-var api = ('./apiHandlers.js');
+var db = require('./dbRequests.js');
+var api = require('./apiHandlers.js');
 //
 //route to your index.html
 //
@@ -160,3 +160,6 @@ if(process.env.NODE_ENV !== 'test') {
   // We're in test mode; make this file importable instead.
   module.exports = routes;
 }
+
+
+// db.addWork({'title':'Bud, Not Buddy', 'type':'Books'});
