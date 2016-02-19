@@ -11,9 +11,6 @@ var assetFolder = Path.resolve(__dirname, '../client/');
 routes.use(express.static(assetFolder));
 
 
-//if we are in development or production mode
-if(process.env.NODE_ENV !== 'test') {
-
 //POST api/searchworks --> takes a user-submitted work to search for, looks to see if we already have it in the database
   routes.post('/api/searchworks', function(req, res){
     var workTitle = req.body.title;
@@ -136,6 +133,7 @@ if(process.env.NODE_ENV !== 'test') {
   // We're in development or production mode;
   // create and run a real server.
   //
+if(process.env.NODE_ENV !== 'test') {
   var app = express();
 
   // Parse incoming request bodies as JSON

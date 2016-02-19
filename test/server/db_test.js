@@ -1,5 +1,5 @@
 var chai = require('chai');
-var request = require('supertest-as-promised');
+var request = require('supertest');
 // var should = chai.should();
 var expect = chai.expect();
 
@@ -8,7 +8,7 @@ var env = process.env.NODE_ENV;
 
 var apiHandler = require(__server + '/apiHandlers.js');
 var db   = require(__server + '/db.js');
-var app  = require(__server + '/index.js');
+var routes  = require(__server + '/index.js');
 var knex = require('knex')(config[env]);
 // var Caller = require('../../models/caller.js')
 
@@ -20,15 +20,19 @@ describe('database API', function(){
     // knex.down();
   })
 
+  var app = TestHelper.createApp()
+  app.use('/', routes)
+  app.testReady()
+
 
   describe('Works', function(){
     beforeEach(function(){
       // knex.up();
 
-      // request(app).post({work: 'Evil Dead', type: 'movie', director: 'Sam Raimi', data: 'this is some evil data', tags:["so bad it's good"]});
-      // request(app).post({work: 'Sharknado', type: 'movie', director: 'Anthony C. Ferrante', data: 'this is some shark data', tags:["so bad it's good"]});
-      // request(app).post({work: 'Pride and Prejudice', type: 'book', author: 'Jane Austen', data: 'this is some regency data', tags:["romance"]});
-      // request(app).post({work: 'Human Resource Machine', type: 'game', studio: 'Tomorrow Corporation', data: 'this is some computer data', tags:["programming"]})
+      request(app).post({work: 'Evil Dead', type: 'Movies', director: 'Sam Raimi', data: 'this is some evil data', tags:["so bad it's good"]});
+      request(app).post({work: 'Sharknado', type: 'Movies', director: 'Anthony C. Ferrante', data: 'this is some shark data', tags:["so bad it's good"]});
+      request(app).post({work: 'Pride and Prejudice', type: 'Books', author: 'Jane Austen', data: 'this is some regency data', tags:["romance"]});
+      request(app).post({work: 'Human Resource Machine', type: 'Games', studio: 'Tomorrow Corporation', data: 'this is some computer data', tags:["programming"]})
       
     })
 
@@ -44,7 +48,7 @@ describe('database API', function(){
     it ('should return just the queried work from db', function(){
         return request(app)
                 .post('/api/searchWorks')
-                .send({work: 'Evil Dead', type: 'movie', director: 'Sam Raimi'})
+                .send({work: 'Evil Dead', type: 'Movies', director: 'Sam Raimi'})
                 .expect(200)
                 .expect(function(response){
                   expect(response.body.results.length).to.equal(1)
@@ -64,7 +68,7 @@ describe('database API', function(){
     it ('should add new entry into database after user confirmation', function(){
         return request(app)
                 .post('/api/works')
-                .send({work: 'The Room', type: 'movie', director: 'Tommy Wiseau', data: 'lots of things'})
+                .send({work: 'The Room', type: 'Movies', director: 'Tommy Wiseau', data: 'lots of things'})
                 .expect(201)
                 .expect(function(response){
                   
@@ -76,7 +80,7 @@ describe('database API', function(){
                           .expect(function(response){
                             expect(response.body.length).to.equal(1)
                             expect(response.body.results[0].work).to.equal('The Room')
-                            expect(response.body.results[0].type).to.equal('movie')
+                            expect(response.body.results[0].type).to.equal('Movies')
                             expect(response.body.results[0].director).to.equal('Tommy Wiseau')
                             expect(response.body.data).to.equal('lots of things')
                           })
@@ -88,13 +92,13 @@ describe('database API', function(){
     it ('should return all tag matching works', function(){
       return request(app)
               .post('/api/tags')
-              .send({work: 'The Room', type: 'movie', director: 'Tommy Wiseau', data: 'lots of things', tags:["so bad it's good"]})
+              .send({work: 'The Room', type: 'Movies', director: 'Tommy Wiseau', data: 'lots of things', tags:["so bad it's good"]})
               .expect(200)
               .expect(function(response){
                 expect(function(response){
                   expect(response.body.results.length).to.equal(2)
-                  expect(response.body.results[0]).to.equal({work: 'Evil Dead', type: 'movie', director: 'Sam Raimi', data: 'this is some evil data', tags:["so bad it's good"]})
-                  expect(response.body.results[1]).to.equal({work: 'Sharknado', type: 'movie', director: 'Anthony C. Ferrante', data: 'this is some shark data', tags:["so bad it's good"]})
+                  expect(response.body.results[0]).to.equal({work: 'Evil Dead', type: 'Movies', director: 'Sam Raimi', data: 'this is some evil data', tags:["so bad it's good"]})
+                  expect(response.body.results[1]).to.equal({work: 'Sharknado', type: 'Movies', director: 'Anthony C. Ferrante', data: 'this is some shark data', tags:["so bad it's good"]})
                 })
               })
     })
@@ -102,7 +106,7 @@ describe('database API', function(){
     it ('should update queried works tags', function(){
       return request(app)
               .post('/api/tags')
-              .send({work: 'The Room', type: 'movie', director: 'Tommy Wiseau', 'image': 'and image link', data: 'lots of things', tags:["high-art"]})
+              .send({work: 'The Room', type: 'Movies', director: 'Tommy Wiseau', 'image': 'and image link', data: 'lots of things', tags:["high-art"]})
               .expect(201)
               .expect(function(response){
 
