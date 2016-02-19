@@ -1,262 +1,44 @@
-<!doctype html>
-<html>
-
+<!DOCTYPE html>
+<html ng-app="myApp">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>I Like This - Cross-Media Recommendations</title>
-
-  <!-- Bootstrap Core CSS -->
-  <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom CSS -->
-  <link href="css/stylish-portfolio.css" rel="stylesheet">
-
-  <!-- Animate CSS -->
-  <link href="../bower_components/animate.css/animate.min.css" rel="stylesheet">
-
-  <!-- Custom Fonts -->
-  <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-
-  <link rel="stylesheet" href="/css/master.css" media="screen" title="no title" charset="utf-8">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+    <script type="text/javascript" src="homepage.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css"/>
+    <link rel="stylesheet" href="homepage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css" media="screen" title="no title" charset="utf-8">
 </head>
 
-<body ng-app="myApp">
+ <header id="top" class="header" style="text-align: center">
+    <h1>I LIKE THIS</h1>
+    <h3>Find your new favorite book, movie, or videogame!</h3>
+    <br>
 
-  <!-- Navigation -->
-  <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-          <i class="fa fa-bars"></i>
-        </button>
-        <a class="navbar-brand page-scroll" href="#top">
-          <i class="fa fa-play-circle"></i> <span class="light"></span> Main
-        </a>
-      </div>
+    <form name="titleAndTypeSubmissionForm"  ng-submit=>
+    <input type="text"
+           name="title"
+           placeholder="Enter a book, movie, or videogame you like here"
+           style="width:300px">
+    <select placeholder="This is a...">
+        <option value="This is a...">This is a...</option>
+        <option value="Book">Book</option>
+        <option value="Movie">Movie</option>
+        <option value="Videogame">Videogame</option>
+    </select>
+    <input type="submit" value="Search" />
+    </form>
 
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-        <ul class="nav navbar-nav">
-          <!-- Hidden li included to remove active class from why link when scrolled up past why section -->
-          <li class="hidden">
-            <a href="#top"></a>
-          </li>
-          <li>
-            <a class="page-scroll" href="#why">Why?</a>
-          </li>
-          <li>
-            <a class="page-scroll" href="#madlibs">Fill me out</a>
-          </li>
-          <li>
-            <a class="page-scroll" href="#contact">Results</a>
-          </li>
-        </ul>
-      </div>
-      <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container -->
-  </nav>
+<!-- with angular, create an "is this the title you meant?" pop-up or drop-down or something (even an alternate page if need be for now)
 
-  <!-- Header -->
-  <header id="top" class="header">
-    <div class="text-vertical-center">
-      <h1 id="rgb" class="animated flash">I Like This</h1>
-      <h3 class="animated jello">Cross-Media Recommendations</h3>
-      <br>
-      <input type="search" name="name" id="likeSearch" value="What do you like?"></input>
-      <br>
-      <label for="mediaType">What type of media is this?</label>
-      <select class="mediaType" name="">
-        <option value="book">Book</option>
-        <option value="movie">Movie</option>
-        <option value="videogame">Video Game</option>
-      </select>
-      <br>
-      <br>
-      <a href="#why" class="btn btn-dark btn-lg">Why?</a>
-    </div>
-  </header>
+then create the same thing but for if a work couldn't be found at all -->
 
-  <!-- Why -->
-  <section id="why" class="why">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 text-center">
-          <h2>Tell us more to improve your recommendations!</h2>
-          <p class="lead"></p>
-        </div>
-      </div>
-      <!-- /.row -->
-    </div>
-    <!-- /.container -->
-  </section>
 
-  <!-- madlibs -->
-  <section id="madlibs" class="madlibs bg-primary">
-    <div class="container">
-      <div class="row text-center">
-        <label for="plot">I like that the plot was...</label>
-        <select class="plot" name="">
-          <option value="book">Tragic</option>
-          <option value="movie">Epic</option>
-          <option value="videogame">Dramatic</option>
-        </select>
-        <br>
-        <label for="character">This type of main character is appealing...</label>
-        <select class="character" name="">
-          <option value="book">Hero</option>
-          <option value="movie">Underdog</option>
-          <option value="videogame">Villain</option>
-        </select>
-        <br>
-        <label for="setting">I enjoyed this setting...</label>
-        <select class="setting" name="">
-          <option value="book">School</option>
-          <option value="movie">Desert</option>
-          <option value="videogame">Space</option>
-        </select>
-        <br>
-        <label for="genre">This work genre is one I gravitate towards...</label>
-        <select class="genre" name="">
-          <option value="book">Horror</option>
-          <option value="movie">Sci-fi</option>
-          <option value="videogame">Fantasy</option>
-        </select>
-        <br>
-        <button id="submitRecs" type="submit" name="button">Show me recommendations, Pal!</button>
 
-      </div>
-      <!-- /.row -->
-    </div>
-    <!-- /.container -->
-  </section>
+ </header>
+<body>
+    <!-- this is just a test to see that angular is working on this page. to be deleted. -->
+    <p>{{ "hello" + " world" }}</p>
 
-  <br>
-
-  <section id="books" class="madlibs bg-primary">
-    <div class="container">
-      <div class="row text-center">
-        <p>
-          This is a place for book results
-        </p>
-      </div>
-      <!-- /.row -->
-    </div>
-    <!-- /.container -->
-  </section>
-
-  <br>
-
-  <section id="movies" class="madlibs bg-primary">
-    <div class="container">
-      <div class="row text-center">
-        <p>
-          This is a place for movie results
-        </p>
-      </div>
-      <!-- /.row -->
-    </div>
-    <!-- /.container -->
-  </section>
-
-  <br>
-
-  <section id="videogames" class="madlibs bg-primary">
-    <div class="container">
-      <div class="row text-center">
-        <p>
-          This is a place for video game results
-        </p>
-      </div>
-      <!-- /.row -->
-    </div>
-    <!-- /.container -->
-  </section>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-10 col-lg-offset-1 text-center">
-        <h4><strong>I Like This Inc.</strong>
-        </h4>
-        <ul class="list-unstyled">
-          </li>
-        </ul>
-        <br>
-        <ul class="list-inline">
-          <li>
-            <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
-          </li>
-          <li>
-            <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
-          </li>
-          <li>
-            <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
-          </li>
-        </ul>
-        <hr class="small">
-        <p class="text-muted">Copyright &copy; I Like Dis 2016</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- jQuery -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
-
-  <!-- Bootstrap Core JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
-
-  <!-- Custom Theme JavaScript -->
-  <script>
-    // Closes the sidebar menu
-    $("#menu-close").click(function(e) {
-      e.preventDefault();
-      $("#sidebar-wrapper").toggleClass("active");
-    });
-
-    // Opens the sidebar menu
-    $("#menu-toggle").click(function(e) {
-      e.preventDefault();
-      $("#sidebar-wrapper").toggleClass("active");
-    });
-
-    // Scrolls to the selected menu item on the page
-    $(function() {
-      $('a[href*=#]:not([href=#])').click(function() {
-        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
-
-          var target = $(this.hash);
-          target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-          if (target.length) {
-            $('html,body').animate({
-              scrollTop: target.offset().top
-            }, 1000);
-            return false;
-          }
-        }
-      });
-    });
-  </script>
 
 </body>
-
-<footer>
-  <script src="./lib/angular/angular.js"></script>
-  <script src="./lib/angular-animate/angular-animate.js"></script>
-  <script src="./lib/angular-cookies/angular-cookies.js"></script>
-  <script src="./lib/angular-resource/angular-resource.js"></script>
-  <script src="./lib/angular-touch/angular-touch.js"></script>
-  <script src="./lib/angular-sanitize/angular-sanitize.js"></script>
-  <script src="./lib/angular-ui-router/release/angular-ui-router.js"></script>
-  <script src="app.js"></script>
-  <script src="src/main.js"></script>
-  <script src="src/about.js"></script>
-  <link rel="stylesheet" type="text/css" href="index.css">
-</footer>
-
 </html>
