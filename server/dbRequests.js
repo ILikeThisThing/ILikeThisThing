@@ -8,7 +8,7 @@ exports.lookupWork = function(req){
 	var title = req.title; //or whatever that path ends up being
 	var type = req.type; //same as above
 
-	return knex.from(type).where('title', title) //maybe change this to a LIKE to account for case errors or something?
+	return knex.from(type).where('title', title)
 	        .then(function(result){
             if (result.length === 0){
               throw new Error('No such work found');
