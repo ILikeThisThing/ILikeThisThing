@@ -106,20 +106,29 @@ routes.use(express.static(assetFolder));
           }
         })
       })
+      .catch(function(err){
+        console.error('error after first return in api/tags ', err);
+      })
       .then(function(newTags){
         if (newTags.length > 0){
           db.addTags(req.body, newTags)
         }
       })
+      .catch(function(err){
+        console.error('error after second return in api/tags ', err);
+      })
       .then(function(){
         return db.findWorks(req.body)
       })
+      .catch(function(err){
+        console.error('error after third return in api/tags ', err);
+      })
       .then(function(result){
-              res.status(200).send(results)  // => this is an array of objects
-            })
-            .catch(function(err){
-              console.error('error in GET to api/tags ', err);
-            })
+        res.status(200).send(results)  // => this is an array of objects
+      })
+      .catch(function(err){
+        console.error('error after forth return to api/tags ', err);
+      })
   })
 
   // The Catch-all Route

@@ -136,6 +136,7 @@ exports.findTags = function(req){
                                     .then(function(tagNames){
                                      return tagNames;
                                     })
+                                    
                           })
               
       })      
