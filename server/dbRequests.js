@@ -62,8 +62,8 @@ exports.addWork = function(work, apiRes){
 
 exports.findWorks = function(req){
 	var tagsArr = req.tags // => must be array
-  //join table of the things we want
-
+  
+  //subquery to find the tag_ids
   var tagIds = knex.select('id')
                    .from('Tags')
                    .whereIn('tag', tagsArr)
@@ -91,7 +91,7 @@ exports.findWorks = function(req){
 
 //checks to see what tags a given work already has
 exports.findTags = function(req){
-  var title = req.body.title
+  var title = req.title
 
   //first find the works id
   return knex.select('id')
@@ -124,9 +124,8 @@ exports.findTags = function(req){
       })      
 };
 
-exports.addTags = function(req){
+exports.addTags = function(req, tagNames){
 	var title = req.title; // => should be a string of a single work
-  var tagNames = req.tags; // => must be an array
 
   //finds id for the given title
   return knex.select('id').from('Works').where('title', title)

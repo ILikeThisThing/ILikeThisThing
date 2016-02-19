@@ -99,7 +99,20 @@ if(process.env.NODE_ENV !== 'test') {
   })
 
   //GET api/tags --> looks for all works with passed in tag names --> results will include the looked for work
+  //needs to have both the tags and the searched for title
   routes.get('/api/tags', function(req, res){
+    db.findTags(req.body)
+      .then(function(result){
+        return result.filter(function(tag){
+          if (req.body.tags.indexOf(tag) === -1){
+            return tag;
+          }
+        })
+      })
+      .then(function(newTags){
+        db.addTags(req.body, newTags)
+      })
+
     db.findWorks(req.body)
       .then(function(result){
         res.send(200, results)  // => this is an array of objects
