@@ -2,7 +2,8 @@ var express = require('express');
 var Path = require('path');
 var routes = express.Router();
 require('./db');
-var db = ('./dbRequests.js');
+var db = require('./dbRequests.js');
+var api = require('./apiHandlers.js');
 //
 //route to your index.html
 //
@@ -13,19 +14,75 @@ routes.use(express.static(assetFolder));
 //if we are in development or production mode
 if(process.env.NODE_ENV !== 'test') {
 
-//GET api/works --> looks to see if we have the given work already in the database
-  routes.get('/api/works', function(req, res){
+//POST api/searchworks --> takes a user-submitted work to search for, looks to see if we already have it in the database
+  routes.post('/api/searchworks', function(req, res){
+    var workTitle = req.body.title;
+    var workType = req.body.type;
     db.lookupWork(req.body)
-      .then(function(result){
+      .then(function(result){//this should return promise, but doesnt yet.
         res.send(200, result);
         //puts result into response
       })
+      //if we don't have this work, make a call to the api:
+      //*** EVERYTHING HERE to END OF .CATCH STILL NEEDS TESTING! ***
       .catch(function(error){
-        //if error.message = 'Not found in database' --> make call to api --> confirm with user --> POST to api/works
-        //else 500 server error
-        console.error('error in GET to api/works ', err)
+        if (error.message === 'No such work found'){
+          switch (workType){
+            case "Games":
+              api.gameSearcher(workTitle)
+                .then(function(gameData){
+                  res.send(200, gameData);
+                  //even for pure giberish searches, something almost always comes back if the code
+                  //ran correctly.
+                })
+                .catch(function(error){
+                  console.error("Error with the games API handler: ", error);
+                  res.send(500);
+                });
+              break;
+            case "Movies":
+              api.movieSearcher(workTitle)
+                .then(function(movieData){
+                  if (movieData.Response !=='False'){
+                    res.send(200, movieData);
+                  }
+                  else{
+                    console.error("IMDB couldn't find a movie by that name");
+                    res.send(404);
+                  }
+                })
+                .catch(function(error){
+                  console.error("Error with the movies API handler: ", error);
+                  res.send(500);
+                })
+              break;
+            case "Books":
+              //call the book handler
+              api.bookSearcher(workTitle)
+                .then(function(bookData){
+                  res.send(200, bookData);
+                })
+                .catch(function(error){
+                  console.error("Error with the Books API handler: ", error);
+                  res.send(500);
+                })
+              break;
+          }
+        }
+        else{
+          //else 500 server error
+          console.error('error in GET to api/works ', error)
+          res.send(500)
+        }
       })
   })
+
+
+//rest of flow: 
+    //1) server sends response
+    //2) client confirms with user.
+    //3) user supplies tags
+    //4) client POSTs to api/works
 
 //POST api/works --> gets called if the work doesn't exist in database already AFTER api lookup has been done
   routes.post('/api/works', function(req, res){
@@ -103,3 +160,6 @@ if(process.env.NODE_ENV !== 'test') {
   // We're in test mode; make this file importable instead.
   module.exports = routes;
 }
+
+
+// db.addWork({'title':'Bud, Not Buddy', 'type':'Books'});

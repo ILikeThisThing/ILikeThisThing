@@ -1,12 +1,14 @@
-require('./db');
-var knex = require('knex');
+var db = require('./db');
+var config      = require('../knexfile.js');  
+var env         =  process.env.NODE_ENV || 'development';  
+var knex = require('knex')(config[env]); 
 
-
-exports.lookupWork = function(req){
+exports.lookupWork = function(req){ //all these functions need to return promises (to allow calling .then in index.js), but
+  //don't yet. Currently results in errors. (JW)
 	var title = req.title //or whatever that path ends up being
-	    var type = req.type //same as above
+	var type = req.type //same as above
 
-	    knex.from(type).where('title', title) //maybe change this to a LIKE to account for case errors or something?
+	    knex.select('*').from(type).where('title', title) //maybe change this to a LIKE to account for case errors or something?
 	        .then(function(result){
 	          return result[0];
 	        })
@@ -43,6 +45,7 @@ exports.addWork = function(work, apiRes){
           }
       })
 };
+
 
 exports.findWorks = function(req){
 	var tagsArr = req.tags // => must be array
