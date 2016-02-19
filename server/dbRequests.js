@@ -27,13 +27,23 @@ exports.addWork = function(work, apiRes){
   return knex.insert({'title': apiRes.title, 'type': work.type}).into('Works')
         .then(function(result){
           if (work.type === 'Books'){
-            return knex.insert({'id': result[0].id, 'title': apiRes.title, 'author': apiRes.author, 'image': apiRes.largeImage, 'data': JSON.stringify(apiRes)}).into('Books')
+            return knex.insert({'id': result[0].id, 
+                                'title': apiRes.title, 
+                                'author': apiRes.author, 
+                                'image': apiRes.largeImage, 
+                                'data': JSON.stringify(apiRes)})
+                .into('Books')
                 .then(function(result){
                   return result[0];
                 })
           }
           else if (work.type === 'Movies'){
-            return knex.insert({'id': result[0].id, 'title': apiRes.title, 'director': apiRes.author, 'image': apiRes.image, 'data': JSON.stringify(apiRes)}).into('Movies')
+            return knex.insert({'id': result[0].id, 
+                                'title': apiRes.title, 
+                                'director': apiRes.author, 
+                                'image': apiRes.image, 
+                                'data': JSON.stringify(apiRes)})
+                .into('Movies')
                 .then(function(result){
                   return result[0];
                 })
@@ -107,9 +117,7 @@ exports.findTags = function(req){
                                     })
                           })
               
-      })
-
-      
+      })      
 };
 
 
@@ -129,7 +137,10 @@ exports.addTags = function(req){
                 .into('Tags')
                 .then(function(row){
                   var id = row[0].id;
-                  knex.insert({'work_id': workId, 'tag_id': id, 'count': 1}).into('WorkTag')
+                  knex.insert({'work_id': workId, 
+                               'tag_id': id, 
+                               'count': 1})
+                  .into('WorkTag')
                 })
           });
         })
