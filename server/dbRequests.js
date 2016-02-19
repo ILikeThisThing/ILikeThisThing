@@ -1,34 +1,31 @@
 var db = require('./db');
-var config      = require('../knexfile.js');  
-var env         =  process.env.NODE_ENV || 'development';  
+var config = require('../knexfile.js');  
+var env =  process.env.NODE_ENV || 'development';  
 var knex = require('knex')(config[env]); 
 
 
 exports.lookupWork = function(req){
-	var title = req.title //or whatever that path ends up being
-	var type = req.type //same as above
+	var title = req.title; //or whatever that path ends up being
+	var type = req.type; //same as above
 
-	 return knex.from(type).where('title', title) //maybe change this to a LIKE to account for case errors or something?
+	return knex.from(type).where('title', title) //maybe change this to a LIKE to account for case errors or something?
 	        .then(function(result){
-	          return result[0];
+            if (result.length === 0){
+              throw new Error('No such work found');
+            }
+	          return result[0]; // => returns just the object of the found work
 	        })
-	        .catch(function(err){
-	          //if err.message.match() something indicating it wasn't found? or just always make query to api
-	          //make call to appropriate api and return that in response
-	          //also should make POST req to api/works to add it into the database
-            throw new Error('No such work found')
-	        })
-	    //response should have an array of the searched for object in it.
 };
 
 //called after an apirequest
 exports.addWork = function(work, apiRes){
+  var title = apiRes.title;
 
-  return knex.insert({'title': apiRes.title, 'type': work.type}).into('Works')
+  return knex.insert({'title': title, 'type': work.type}).into('Works')
         .then(function(result){
           if (work.type === 'Books'){
             return knex.insert({'id': result[0].id, 
-                                'title': apiRes.title, 
+                                'title': title, 
                                 'author': apiRes.author, 
                                 'image': apiRes.largeImage, 
                                 'data': JSON.stringify(apiRes)})
@@ -39,7 +36,7 @@ exports.addWork = function(work, apiRes){
           }
           else if (work.type === 'Movies'){
             return knex.insert({'id': result[0].id, 
-                                'title': apiRes.title, 
+                                'title': title, 
                                 'director': apiRes.author, 
                                 'image': apiRes.image, 
                                 'data': JSON.stringify(apiRes)})
@@ -50,7 +47,7 @@ exports.addWork = function(work, apiRes){
           }
           else if (work.type === 'Games'){
             return knex.insert({'id': result[0].id, 
-                                'title': apiRes.title, 
+                                'title': title, 
                                 'studio': apiRes.studio, 
                                 'image': apiRes.image, 
                                 'data': JSON.stringify(apiRes)})
@@ -75,6 +72,7 @@ exports.findWorks = function(req){
                    })
                    .return(tag_ids);
 
+  //not sure if the WorkTag count will be in the same object -- might need to join with Tags table as well
   return knex('WorkTag')
           .select(['WorkTag.count', 'Books.title', 'Books.author', 'Books.image', 'Books.data', 
                     'Movies.title', 'Movies.director', 'Movies.image', 'Movies.data',
@@ -83,11 +81,17 @@ exports.findWorks = function(req){
           .join('Movies', 'Movies.id', 'WorkTag.work_id')
           .join('Games', 'Games.id', 'WorkTag.work_id')
           .whereIn('tag_id', tagIds)
-          .return(results)
+          .then(function(results){
+            if (results.length === 1){
+              throw new Error('No other matching works found')
+            }
+            return results;
+          })
 };
 
 //checks to see what tags a given work already has
 exports.findTags = function(req){
+  var title = req.body.title
 
   //first find the works id
   return knex.select('id')
@@ -106,8 +110,8 @@ exports.findTags = function(req){
                                      .map(function(row){
                                       return row.tag_id;
                                      })
-                                     .then(function(tags){
-                                      knex.select('tag').from('Tags').whereIn('tag', tags);
+                                     .then(function(tagIds){
+                                      knex.select('tag').from('Tags').whereIn('id', tagIds);
                                      })
                                      .map(function(row){
                                       return row.tag; //=> should be returning a flat array of tagnames to filter against users passed in tags
@@ -119,7 +123,6 @@ exports.findTags = function(req){
               
       })      
 };
-
 
 exports.addTags = function(req){
 	var title = req.title; // => should be a string of a single work
