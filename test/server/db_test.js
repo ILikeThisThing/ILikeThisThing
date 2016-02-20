@@ -73,19 +73,19 @@ describe('database API', function(){
               .post('/api/tags')
               .send({title: 'The Room', tags:["high-art"]})
               .expect(200)
-              .expect(function(response){
+              // .expect(function(response){
 
-                //search for tag to confirm it was added
+              //   //search for tag to confirm it was added
 
-                return request(app)
-                        .post('/api/tags')
-                        .expect(200)
-                        .send({'title': 'The Room', tags: ['high-art']})
-                        .expect(function(response){
-                          expect(response.body.length).to.equal(1)
-                          expect(response.body.title).to.equal('The Room')
-                        })
-              })
+              //   return request(app)
+              //           .post('/api/tags')
+              //           .expect(200)
+              //           .send({'title': 'The Room', tags: ['high-art']})
+              //           .expect(function(response){
+              //             expect(response.body.length).to.equal(1)
+              //             expect(response.body.title).to.equal('The Room')
+              //           })
+              // })
     })
 
   });
