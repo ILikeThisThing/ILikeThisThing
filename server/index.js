@@ -105,6 +105,7 @@ routes.use(express.static(assetFolder));
       })
       .then(function(result){
         console.log('result right before filter ', result)
+        var result = result || [];
         return result.filter(function(tag){
           if (req.body.tags.indexOf(tag) === -1){
             return tag;
@@ -112,6 +113,7 @@ routes.use(express.static(assetFolder));
         })
       })
       .then(function(newTags){
+        console.log('newTags to add', newTags);
         if (newTags.length > 0){
           db.addTags(req.body, newTags)
         }
