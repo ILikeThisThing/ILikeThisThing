@@ -113,6 +113,7 @@ routes.use(express.static(assetFolder));
         })
       })
       .then(function(newTags){
+        console.log('newTags to add', newTags);
         if (newTags.length > 0){
           db.addTags(req.body, newTags)
         }
