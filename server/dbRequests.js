@@ -63,7 +63,7 @@ exports.addWork = function(apiRes){
                 })
           }
           else if (type === 'Games'){
-            return knex.insert({'id': result.id, 
+            return knex.insert({'id': result[0], 
                                 'title': title,
                                 'image': apiRes.image.medium_url, 
                                 'data': JSON.stringify(apiRes)})
