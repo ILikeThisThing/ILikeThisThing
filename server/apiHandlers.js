@@ -22,6 +22,7 @@ exports.gameSearcher = function(gameName){
 		.get(requestBody)
 		.then(function(games) {
 			if (!!games.results[0]){
+				games.results[0].type = 'Games';
 				return games.results[0];
 			}
 			else{
@@ -65,6 +66,7 @@ exports.bookSearcher = function(bookName){
 			var largeImageURL = splitURL[0]+splitURL[1];
 			//pack the new url into bookObject
 			bookObject.largeImage = largeImageURL;
+			bookObject.type = 'Books';
 
 			return bookObject;
 		})
@@ -98,7 +100,7 @@ exports.movieSearcher = function(movieName){
 					'message': "the API came up empty for that search"
 				};
 			} else {
-				console.log("This came back: ", movie);
+				movie.type = 'Movies';
 				return movie;
 			}
 		})
