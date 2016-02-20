@@ -13,10 +13,10 @@
   <title></title>
 </head>
 
-<body>
+<body ng-app="LikeApp">
 
   <section id="books" class="recommendations">
-    <div class="container">
+    <div class="container" ng-controller="RecController">
       <div class="row text-center">
         <p>
           This is a place for book results
@@ -28,7 +28,7 @@
   <br>
 
   <section id="movies" class="recommendations">
-    <div class="container">
+    <div class="container" ng-controller="RecController">
       <div class="row text-center">
         <p>
           This is a place for movie results
@@ -40,7 +40,7 @@
   <br>
 
   <section id="videogames" class="recommendations">
-    <div class="container">
+    <div class="container" ng-controller="RecController">
       <div class="row text-center">
         <p>
           This is a place for video game results
@@ -48,7 +48,6 @@
       </div>
     </div>
   </section>
-
 
 </body>
 

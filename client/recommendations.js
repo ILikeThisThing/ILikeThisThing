@@ -1,16 +1,11 @@
 angular.module('recommendations', [])
 
-.controller('RecController', function ($scope, Recs) {
-  $scope.rec = {};
-  $scope.addRec = function () {
-    $scope.loading = true;
-    Links.addRec($scope.rec)
-      .then(function () {
-        $scope.loading = false;
-        $location.path('/recommendations.html');
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
+.controller('RecController', function($scope, $http) {
+  $http.get('data/recs.json')
+  .success(function(data) {
+    $scope.recs = data;
+  })
+  .error(function(data) {
+    console.error(error);
+  });
 });
