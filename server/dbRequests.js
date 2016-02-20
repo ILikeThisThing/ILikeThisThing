@@ -33,12 +33,13 @@ exports.addWork = function(apiRes){
     title = apiRes.name;
   }
 
-  return knex.insert({'title': title, 'type': type}).into('Works')
+  return knex.insert({'title': title, 'type': type}).returning('id').into('Works')
         .then(function(result){
+          console.log("after insert, inside .then. this is result: ", result)
           if (type === 'Books'){
-            return knex.insert({'id': result.id, 
+            return knex.insert({'id': result[0], 
                                 'title': title, 
-                                'author': apiRes.authors, //an array - could be more than one 
+                                'author': JSON.stringify(apiRes.authors), //an array - could be more than one 
                                 'image': apiRes.largeImage, 
                                 'data': JSON.stringify(apiRes)})
                 .returning('*')
@@ -48,7 +49,7 @@ exports.addWork = function(apiRes){
                   return result[0];
                 })
           }
-          else if (apiRes.type === 'Movies'){
+          else if (type === 'Movies'){
             return knex.insert({'id': result[0], 
                                 'title': title, 
                                 'director': apiRes.Director, 
@@ -66,6 +67,7 @@ exports.addWork = function(apiRes){
                                 'title': title,
                                 'image': apiRes.image.medium_url, 
                                 'data': JSON.stringify(apiRes)})
+                        .returning('*')
                         .into('Games')
                         .then(function(result){
                           console.log('result from adding a game', result)
@@ -73,6 +75,9 @@ exports.addWork = function(apiRes){
                         })
             }
         })
+      .catch(function(error){
+        console.error("inserting into Works has failed: ", error);
+      })
 };
 
 
