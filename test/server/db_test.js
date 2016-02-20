@@ -17,7 +17,20 @@ var knex = require('knex')(config[env]);
 describe('database API', function(){
 
   beforeEach(function(){
-    // knex.down();
+    knex.schema.dropTableIfExists('Works');
+    knex.schema.dropTableIfExists('Books');
+    knex.schema.dropTableIfExists('Movies');
+    knex.schema.dropTableIfExists('Games');
+    knex.schema.dropTableIfExists('Tags');
+    knex.schema.dropTableIfExists('WorkTag');
+
+
+
+    knex.insert([{'tag': "so bad it's good"}, {'tag': 'programming'}, {'tag': 'romance'}, {'tag': 'high-art'}]).into('Tags')
+          .returning('*')
+          .then(function(result){
+            console.log('inserting tags ', result)
+          })
   })
 
   var app = TestHelper.createApp()
@@ -27,7 +40,9 @@ describe('database API', function(){
 
   describe('Works', function(){
     beforeEach(function(){
-      // knex.up();
+      // knex.migrate.latest().up();
+
+
   
       // request(app).post('/api/searchworks').send({title: 'Evil Dead', type: 'Movies'})
       // request(app).post('/api/tags').send({title: 'Evil Dead', tags:["so bad it's good"]})
@@ -99,13 +114,13 @@ describe('database API', function(){
               .post('/api/tags')
               .send({title: 'The Room', type: 'Movies', director: 'Tommy Wiseau', data: 'lots of things', tags:["so bad it's good"]})
               .expect(200)
-              .expect(function(response){
-                expect(function(response){
-                  expect(response.body.results.length).to.equal(2)
-                  expect(response.body[0]).to.equal({title: 'Evil Dead', type: 'Movies', director: 'Sam Raimi', data: 'this is some evil data', tags:["so bad it's good"]})
-                  expect(response.body[1]).to.equal({title: 'Sharknado', type: 'Movies', director: 'Anthony C. Ferrante', data: 'this is some shark data', tags:["so bad it's good"]})
-                })
-              })
+              // .expect(function(response){
+              //   expect(function(response){
+              //     expect(response.body.results.length).to.equal(2)
+              //     expect(response.body[0]).to.equal({title: 'Evil Dead', type: 'Movies', director: 'Sam Raimi', data: 'this is some evil data', tags:["so bad it's good"]})
+              //     expect(response.body[1]).to.equal({title: 'Sharknado', type: 'Movies', director: 'Anthony C. Ferrante', data: 'this is some shark data', tags:["so bad it's good"]})
+              //   })
+              // })
     })
 
     it ('should update queried works tags', function(){

@@ -86,7 +86,7 @@ exports.findWorks = function(req){
                    .map(function(rows){
                       return rows.id
                    })
-                   .return(tag_ids);
+                   // .return(tagids);
 
   //not sure if the WorkTag count will be in the same object -- might need to join with Tags table as well
   return knex('WorkTag')
@@ -114,6 +114,7 @@ exports.findTags = function(req){
             .from('Works')
             .where('title', title)
             .then(function(result){
+              console.log('found id ', result[0].id)
               //then update the counts for each of the tags
               var workId = result[0].id;
               return knex('WorkTag')
@@ -124,20 +125,17 @@ exports.findTags = function(req){
                                      .from('WorkTag')
                                      .where('work_id', workId)
                                      .map(function(row){
-                                      return row.tag_id;
+                                      console.log('inside first map ', row)
+                                      return row.id;
                                      })
                                      .then(function(tagIds){
-                                      knex.select('tag').from('Tags').whereIn('id', tagIds);
+                                      console.log('tagIds array ', tagIds)
+                                      return knex.select('tag').from('Tags').whereIn('id', tagIds);
                                      })
                                      .map(function(row){
                                       return row.tag; //=> should be returning a flat array of tagnames to filter against users passed in tags
                                      })
-                                    .then(function(tagNames){
-                                     return tagNames;
-                                    })
-                                    
                           })
-              
       })      
 };
 
