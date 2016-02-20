@@ -99,6 +99,9 @@ routes.use(express.static(assetFolder));
   routes.post('/api/tags', function(req, res){
     //first look to see what tags should be added
     db.findTags(req.body)
+      .catch(function(err){
+        console.log('findTags itself is broken ', err)
+      })
       .then(function(result){
         return result.filter(function(tag){
           if (req.body.tags.indexOf(tag) === -1){
@@ -114,17 +117,12 @@ routes.use(express.static(assetFolder));
           db.addTags(req.body, newTags)
         }
       })
-      .catch(function(err){
-        console.error('error after second return in api/tags ', err);
-      })
       .then(function(){
         return db.findWorks(req.body)
       })
-      .catch(function(err){
-        console.error('error after third return in api/tags ', err);
-      })
       .then(function(result){
-        res.status(200).send(results)  // => this is an array of objects
+        console.log(result)
+        res.status(200).send(result)  // => this is an array of objects
       })
       .catch(function(err){
         console.error('error after forth return to api/tags ', err);
