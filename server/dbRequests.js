@@ -132,6 +132,9 @@ exports.findTags = function(req){
               return knex('WorkTag')
                           .where('work_id', workId)
                           .increment('count', 1)
+                          .catch(function(err){
+                            console.error('no prexisting tag ', err)
+                          })
                           .then(function(){
                             return knex.select('tag_id')
                                      .from('WorkTag')

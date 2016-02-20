@@ -105,6 +105,7 @@ routes.use(express.static(assetFolder));
       })
       .then(function(result){
         console.log('result right before filter ', result)
+        var result = result || [];
         return result.filter(function(tag){
           if (req.body.tags.indexOf(tag) === -1){
             return tag;
