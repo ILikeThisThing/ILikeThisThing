@@ -22,8 +22,10 @@ exports.gameSearcher = function(gameName){
 		.get(requestBody)
 		.then(function(games) {
 			if (!!games.results[0]){
-				games.results[0].type = 'Games';
-				return games.results[0];
+				games.results.forEach(function(x){
+					x.type = 'Games';
+				})
+				return games.results;
 			}
 			else{
 				return {
@@ -56,19 +58,27 @@ exports.bookSearcher = function(bookName){
 	return request
 		.get(requestBody)
 		.then(function(books) {
-			var bookObject = books.items[0].volumeInfo;
 
-			//Get a url for a larger image, as the ones that come back are too small
+			//nicely pack all the book objects into an array, instead of the mess that comes back.
+			var bookList = books.items.map(function(x){
+				return x.volumeInfo;
+			})
+
+			// for each book in booklist, get a url for a larger image, as the ones that come back are too small
 			//howTo: change the 'zoom' parameter to 0 in the original thumbnail url
-			var imageURL = bookObject.imageLinks.thumbnail;
-			var splitURL = imageURL.split('zoom=1')
-			splitURL[0] = splitURL[0]+'zoom=0';
-			var largeImageURL = splitURL[0]+splitURL[1];
-			//pack the new url into bookObject
-			bookObject.largeImage = largeImageURL;
-			bookObject.type = 'Books';
 
-			return bookObject;
+			bookList.forEach(function(x){
+				var bookObject = x;
+				var imageURL = bookObject.imageLinks.thumbnail;
+				var splitURL = imageURL.split('zoom=1');
+				splitURL[0] = splitURL[0]+'zoom=0';
+				var largeImageURL = splitURL[0]+splitURL[1];
+				//pack the new url into bookObject
+				bookObject.largeImage = largeImageURL;
+				bookObject.type = 'Books';
+			})
+
+			return bookList;
 		})
 		.catch(function(err){
 			console.error('The books API failed to GET: ', err);
@@ -108,6 +118,8 @@ exports.movieSearcher = function(movieName){
 			console.error('The movie API failed to GET: ', err)
 			throw new Error("The movie API failed to GET. Like, it actually pooped the bed and broke.");
 		})
+
+		//OMDB only returns a single movie - no obvious workaround. Researching other options.
 }
 
 
