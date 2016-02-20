@@ -20,7 +20,7 @@ exports.lookupWork = function(req){
 
 //called after an apirequest
 exports.addWork = function(apiRes){
-  console.log('Inisde addWork, heres the apiRes sent in: ', apiRes)
+  console.log('Inside addWork, heres the apiRes sent in: ', apiRes)
 
   //set the title, depending on work type (API response format)
   var title; 

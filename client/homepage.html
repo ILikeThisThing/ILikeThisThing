@@ -2,11 +2,9 @@
 <html ng-app="myApp">
 <head>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
-    <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript" src="homepage.js"></script>
     <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css"/>
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="homepage.css">
 </head>
 
  <header id="top" class="header" style="text-align: center">
@@ -14,11 +12,11 @@
     <h3>Find your new favorite book, movie, or videogame!</h3>
     <br>
 
-    <form name="titleAndTypeSubmissionForm"  ng-submit=>
+    <form name="titleAndTypeSubmissionForm"  novalidate ng-=>
         <!-- add an ajax request that routes through the AlreadyIncludedCheck on submission -->
     <input type="text"
-           name="title"
-           placeholder="Enter a book, movie, or videogame you like here"
+           name="title" 
+           placeholder="Enter a book, movie, or videogame you like here" 
            style="width:300px">
     <select placeholder="This is a...">
         <option value="This is a...">This is a...</option>
@@ -28,7 +26,7 @@
     </select>
     <input type="submit" value="Search" />
     </form>
-
+       
 <!-- with angular, create an "is this the title you meant?" pop-up or drop-down or something (even an alternate page if need be for now)
 
 then create the same thing but for if a work couldn't be found at all -->
@@ -43,3 +41,4 @@ then create the same thing but for if a work couldn't be found at all -->
 
 </body>
 </html>
+
