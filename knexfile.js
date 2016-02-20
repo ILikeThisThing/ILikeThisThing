@@ -6,6 +6,9 @@ module.exports = {
     client: 'postgresql',
     connection: {
       database: 'ilikethis_dev'
+    },
+    seeds: {
+      directory: './seeds/tags'
     }
   },
 
