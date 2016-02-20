@@ -2,7 +2,8 @@
 exports.seed = function(knex, Promise) {
   return Promise.join(
     // Deletes ALL existing entries
-    knex('Tags').del(), 
+    knex('Tags').del(),
+    knex('WorkTag').del(), 
 
     // Inserts seed entries
     knex('Tags').insert([{tag: 'Dark/macabre'}, {tag: 'Absurdist'}, {tag: 'Existential'},

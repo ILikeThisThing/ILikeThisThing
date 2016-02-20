@@ -5,7 +5,10 @@ var knex        = require('knex')(config[env]);
 module.exports = knex;
 
 
-knex.migrate.latest();
-knex.seed.run(); 
+knex.migrate.latest()
+.then(function(){
+	knex.seed.run(); 
+});
+
 
 

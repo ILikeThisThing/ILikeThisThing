@@ -98,9 +98,10 @@ exports.findWorks = function(req){
                           .select(['WorkTag.count', 'Books.title', 'Books.author', 'Books.image', 'Books.data', 
                                     'Movies.title', 'Movies.director', 'Movies.image', 'Movies.data',
                                     'Games.title', 'Games.image', 'Games.data'])
-                          .fullOuterJoin('Books', 'Books.id', 'WorkTag.work_id')
-                          .fullOuterJoin('Movies', 'Movies.id', 'WorkTag.work_id')
-                          .fullOuterJoin('Games', 'Games.id', 'WorkTag.work_id')
+                          .leftOuterJoin('Books', 'Books.id', 'WorkTag.work_id')
+                          .leftOuterJoin('Movies', 'Movies.id', 'WorkTag.work_id')
+                          .leftOuterJoin('Games', 'Games.id', 'WorkTag.work_id')
+                          .leftOuterJoin('Tags', 'Tags.id', 'WorkTag.tag_id')
                           .whereIn('tag_id', tagIds)
                           .catch(function(err){
                             console.log('error in WorkTag ', err)
