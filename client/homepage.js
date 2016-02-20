@@ -1,11 +1,11 @@
 var app=angular.module('myApp', [ ]);
 
-
-// controller create object out of user input -
+app.controller('RequestController', function) {
+// create object out of user input -
 // containing two key value pairs - for title
 // and type - this object will then be passed
 // into the UserRequest factory function
-
+}
 
 
 
