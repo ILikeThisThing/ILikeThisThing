@@ -80,29 +80,36 @@ exports.findWorks = function(req){
 	var tagsArr = req.tags // => must be array
   
   //subquery to find the tag_ids
-  var tagIds = knex.select('id')
+  return knex.select('id')
                    .from('Tags')
                    .whereIn('tag', tagsArr)
                    .map(function(rows){
                       return rows.id
                    })
-                   // .return(tagids);
-
-  //not sure if the WorkTag count will be in the same object -- might need to join with Tags table as well
-  return knex('WorkTag')
-          .select(['WorkTag.count', 'Books.title', 'Books.author', 'Books.image', 'Books.data', 
-                    'Movies.title', 'Movies.director', 'Movies.image', 'Movies.data',
-                    'Games.title', 'Games.studio', 'Games.image', 'Games.data'])
-          .join('Books', 'Books.id', 'WorkTag.work_id')
-          .join('Movies', 'Movies.id', 'WorkTag.work_id')
-          .join('Games', 'Games.id', 'WorkTag.work_id')
-          .whereIn('tag_id', tagIds)
-          .then(function(results){
-            if (results.length === 1){
-              throw new Error('No other matching works found')
-            }
-            return results;
-          })
+                   .then(function(tagIds){
+                    // console.log('tagIds ', tagIds)      
+                  //not sure if the WorkTag count will be in the same object -- might need to join with Tags table as well
+                  return knex('WorkTag')
+                          .select(['WorkTag.count', 'Books.title', 'Books.author', 'Books.image', 'Books.data', 
+                                    'Movies.title', 'Movies.director', 'Movies.image', 'Movies.data',
+                                    'Games.title', 'Games.image', 'Games.data'])
+                          .fullOuterJoin('Books', 'Books.id', 'WorkTag.work_id')
+                          .fullOuterJoin('Movies', 'Movies.id', 'WorkTag.work_id')
+                          .fullOuterJoin('Games', 'Games.id', 'WorkTag.work_id')
+                          .whereIn('tag_id', tagIds)
+                          .catch(function(err){
+                            console.log('error in WorkTag ', err)
+                          })
+                          .then(function(results){
+                            console.log('results ', results)
+                            if (results.length <= 1){
+                              throw new Error('No other matching works found')
+                            }
+                            console.log('results of join table ', results)
+                            return results;
+                          })
+                          
+                  })
 };
 
 //checks to see what tags a given work already has
@@ -125,7 +132,7 @@ exports.findTags = function(req){
                                      .from('WorkTag')
                                      .where('work_id', workId)
                                      .map(function(row){
-                                      console.log('inside first map ', row)
+                                      // console.log('inside first map ', row)
                                       return row.id;
                                      })
                                      .then(function(tagIds){
