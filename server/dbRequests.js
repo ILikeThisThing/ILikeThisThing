@@ -19,22 +19,23 @@ exports.lookupWork = function(req){
 };
 
 //called after an apirequest
-exports.addWork = function(work, apiRes){
-  console.log('Inisde addWork', work)
+exports.addWork = function(apiRes){
+  console.log('Inisde addWork, heres the apiRes sent in: ', apiRes)
 
   //set the title, depending on work type (API response format)
   var title; 
-  if (work.type === 'Books'){
+  var type = apiRes.type;
+  if (type === 'Books'){
     title = apiRes.title;
-  } else if (work.type === 'Movies'){
+  } else if (type === 'Movies'){
     title = apiRes.Title;
-  } else if (work.type === 'Games'){
+  } else if (type === 'Games'){
     title = apiRes.name;
   }
 
-  return knex.insert({'title': title, 'type': work.type}).into('Works')
+  return knex.insert({'title': title, 'type': type}).into('Works')
         .then(function(result){
-          if (work.type === 'Books'){
+          if (type === 'Books'){
             return knex.insert({'id': result.id, 
                                 'title': title, 
                                 'author': apiRes.authors, //an array - could be more than one 
@@ -45,7 +46,7 @@ exports.addWork = function(work, apiRes){
                   return result[0];
                 })
           }
-          else if (work.type === 'Movies'){
+          else if (type === 'Movies'){
             return knex.insert({'id': result.id, 
                                 'title': title, 
                                 'director': apiRes.Director, 
@@ -56,7 +57,7 @@ exports.addWork = function(work, apiRes){
                   return result[0];
                 })
           }
-          else if (work.type === 'Games'){
+          else if (type === 'Games'){
             return knex.insert({'id': result.id, 
                                 'title': title,
                                 'image': apiRes.image.medium_url, 
