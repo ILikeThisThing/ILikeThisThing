@@ -41,29 +41,34 @@ exports.addWork = function(apiRes){
                                 'author': apiRes.authors, //an array - could be more than one 
                                 'image': apiRes.largeImage, 
                                 'data': JSON.stringify(apiRes)})
+                .returning('*')
                 .into('Books')
                 .then(function(result){
+                  console.log('result from adding a book', result)
                   return result[0];
                 })
           }
-          else if (type === 'Movies'){
-            return knex.insert({'id': result.id, 
+          else if (apiRes.type === 'Movies'){
+            return knex.insert({'id': result[0], 
                                 'title': title, 
                                 'director': apiRes.Director, 
                                 'image': apiRes.Poster, 
                                 'data': JSON.stringify(apiRes)})
+                .returning('*')
                 .into('Movies')
                 .then(function(result){
+                  console.log('result from adding a movie', result)
                   return result[0];
                 })
           }
           else if (type === 'Games'){
-            return knex.insert({'id': result.id, 
+            return knex.insert({'id': result[0], 
                                 'title': title,
                                 'image': apiRes.image.medium_url, 
                                 'data': JSON.stringify(apiRes)})
                         .into('Games')
                         .then(function(result){
+                          console.log('result from adding a game', result)
                           return result;
                         })
             }
@@ -130,6 +135,7 @@ exports.findTags = function(req){
                                     .then(function(tagNames){
                                      return tagNames;
                                     })
+                                    
                           })
               
       })      

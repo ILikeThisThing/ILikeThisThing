@@ -28,7 +28,6 @@ exports.up = function(knex, Promise) {
 			knex.schema.createTableIfNotExists('Games', function(table){
 				table.increments('id').references('id').inTable('Works').unique();
 				table.string('title');
-				table.string('studio');
 				table.string('image');
 				table.json('data');
 				table.timestamps('created-at');

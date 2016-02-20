@@ -17,7 +17,7 @@ routes.use(express.static(assetFolder));
     var workType = req.body.type;
     db.lookupWork(req.body)
       .then(function(result){//this should return promise, but doesnt yet.
-        res.send(200, result);
+        res.status(200).send(result);
         //puts result into response
       })
       //if we don't have this work, make a call to the api:
@@ -28,40 +28,40 @@ routes.use(express.static(assetFolder));
             case "Games":
               api.gameSearcher(workTitle)
                 .then(function(gameData){
-                  res.send(200, gameData);
+                  res.status(200).send(gameData);
                   //even for pure giberish searches, something almost always comes back if the code
                   //ran correctly.
                 })
                 .catch(function(error){
                   console.error("Error with the games API handler: ", error);
-                  res.send(500);
+                  res.status(500);
                 });
               break;
             case "Movies":
               api.movieSearcher(workTitle)
                 .then(function(movieData){
                   if (movieData.Response !=='False'){
-                    res.send(200, movieData);
+                    res.status(200).send(movieData);
                   }
                   else{
                     console.error("IMDB couldn't find a movie by that name");
-                    res.send(404);
+                    res.status(404);
                   }
                 })
                 .catch(function(error){
                   console.error("Error with the movies API handler: ", error);
-                  res.send(500);
+                  res.status(500);
                 })
               break;
             case "Books":
               //call the book handler
               api.bookSearcher(workTitle)
                 .then(function(bookData){
-                  res.send(200, bookData);
+                  res.status(200).send(bookData);
                 })
                 .catch(function(error){
                   console.error("Error with the Books API handler: ", error);
-                  res.send(500);
+                  res.status(500);
                 })
               break;
           }
@@ -69,7 +69,7 @@ routes.use(express.static(assetFolder));
         else{
           //else 500 server error
           console.error('error in GET to api/works ', error)
-          res.send(500)
+          res.status(500)
         }
       })
   })
@@ -86,11 +86,11 @@ routes.use(express.static(assetFolder));
     //does a knex insert to the db of the given work
     db.addWork(req.body)
       .then(function(result){
-        res.send(201)
+        res.status(201).send(result);
       })
       .catch(function(err){
         console.error('error in POST to api/works ', err);
-        res.send(500)
+        res.sendStatus(500)
         //probably 500 server error or it didn't have everything it needed
       })
   })
@@ -106,20 +106,29 @@ routes.use(express.static(assetFolder));
           }
         })
       })
+      .catch(function(err){
+        console.error('error after first return in api/tags ', err);
+      })
       .then(function(newTags){
         if (newTags.length > 0){
           db.addTags(req.body, newTags)
         }
       })
+      .catch(function(err){
+        console.error('error after second return in api/tags ', err);
+      })
       .then(function(){
         return db.findWorks(req.body)
       })
+      .catch(function(err){
+        console.error('error after third return in api/tags ', err);
+      })
       .then(function(result){
-              res.send(200, results)  // => this is an array of objects
-            })
-            .catch(function(err){
-              console.error('error in GET to api/tags ', err);
-            })
+        res.status(200).send(results)  // => this is an array of objects
+      })
+      .catch(function(err){
+        console.error('error after forth return to api/tags ', err);
+      })
   })
 
   // The Catch-all Route
