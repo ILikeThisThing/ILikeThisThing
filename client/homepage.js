@@ -5,6 +5,8 @@ app.controller('RequestController', function) {
 // containing two key value pairs - for title
 // and type - this object will then be passed
 // into the UserRequest factory function
+var submission = {};
+
 }
 
 
