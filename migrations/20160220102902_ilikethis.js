@@ -32,7 +32,7 @@ exports.up = function(knex, Promise) {
 		
 			knex.schema.createTableIfNotExists('Tags', function(table){
 				table.increments('id');
-				table.string('tag');
+				table.string('tag').unique();
 			}),
 		
 			knex.schema.createTableIfNotExists('WorkTag', function(table){

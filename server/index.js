@@ -109,23 +109,23 @@ routes.use(express.static(assetFolder));
           }
         })
       })
-      .catch(function(err){
-        console.error('error after first return in api/tags ', err);
-      })
       .then(function(newTags){
         if (newTags.length > 0){
           db.addTags(req.body, newTags)
         }
       })
       .then(function(){
+        console.log('before findWorks')
         return db.findWorks(req.body)
       })
       .then(function(result){
-        console.log(result)
+        console.log('results from findWorks ', result)
         res.status(200).send(result)  // => this is an array of objects
       })
       .catch(function(err){
         console.error('error after forth return to api/tags ', err);
+        if (err.message === 'No other matching works found')
+        res.status(204).send()
       })
   })
 
