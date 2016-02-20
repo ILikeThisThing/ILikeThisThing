@@ -8,7 +8,7 @@ module.exports = {
       database: 'ilikethis_dev'
     },
     seeds: {
-      directory: './seeds/tags'
+      directory: './seeds/'
     }
   },
 

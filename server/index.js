@@ -40,7 +40,7 @@ routes.use(express.static(assetFolder));
             case "Movies":
               api.movieSearcher(workTitle)
                 .then(function(movieData){
-                  if (movieData.Response !=='False'){
+                  if (movieData.Response !== 'False'){
                     res.status(200).send(movieData);
                   }
                   else{
@@ -86,6 +86,7 @@ routes.use(express.static(assetFolder));
     //does a knex insert to the db of the given work
     db.addWork(req.body)
       .then(function(result){
+        console.log(result)
         res.status(201).send(result);
       })
       .catch(function(err){
@@ -103,6 +104,7 @@ routes.use(express.static(assetFolder));
         console.log('findTags itself is broken ', err)
       })
       .then(function(result){
+        console.log('result right before filter ', result)
         return result.filter(function(tag){
           if (req.body.tags.indexOf(tag) === -1){
             return tag;
