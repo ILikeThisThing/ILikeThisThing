@@ -119,11 +119,11 @@ routes.use(express.static(assetFolder));
       .then(function(newTags){
         console.log('newTags to add', newTags);
         if (newTags.length > 0){
-          db.addTags(req.body, newTags)
+          return db.addTags(req.body, newTags)
         }
       })
-      .then(function(){
-        console.log('before findWorks')
+      .then(function(added){
+        console.log('before findWorks ', added)
         return db.findWorks(req.body)
       })
       .then(function(result){
