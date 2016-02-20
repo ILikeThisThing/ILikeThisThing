@@ -16,7 +16,7 @@ routes.use(express.static(assetFolder));
     var workTitle = req.body.title;
     var workType = req.body.type;
     db.lookupWork(req.body)
-      .then(function(result){//this should return promise, but doesnt yet.
+      .then(function(result){
         res.status(200).send(result);
         //puts result into response
       })
@@ -68,8 +68,8 @@ routes.use(express.static(assetFolder));
         }
         else{
           //else 500 server error
-          console.error('error in GET to api/works ', error)
-          res.status(500)
+          console.error('error in POST to api/searchworks ', error)
+          res.status(500).send(error.message)
         }
       })
   })
