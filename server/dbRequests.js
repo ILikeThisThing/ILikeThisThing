@@ -19,16 +19,26 @@ exports.lookupWork = function(req){
 };
 
 //called after an apirequest
-exports.addWork = function(work, apiRes){
-  console.log('Inisde addWork', work)
-  var title = apiRes.title;
+exports.addWork = function(apiRes){
+  console.log('Inisde addWork, heres the apiRes sent in: ', apiRes)
 
-  return knex.insert({'title': title, 'type': work.type}).into('Works')
+  //set the title, depending on work type (API response format)
+  var title; 
+  var type = apiRes.type;
+  if (type === 'Books'){
+    title = apiRes.title;
+  } else if (type === 'Movies'){
+    title = apiRes.Title;
+  } else if (type === 'Games'){
+    title = apiRes.name;
+  }
+
+  return knex.insert({'title': title, 'type': type}).into('Works')
         .then(function(result){
-          if (work.type === 'Books'){
+          if (type === 'Books'){
             return knex.insert({'id': result.id, 
                                 'title': title, 
-                                'author': apiRes.author, 
+                                'author': apiRes.authors, //an array - could be more than one 
                                 'image': apiRes.largeImage, 
                                 'data': JSON.stringify(apiRes)})
                 .into('Books')
@@ -36,7 +46,7 @@ exports.addWork = function(work, apiRes){
                   return result[0];
                 })
           }
-          else if (work.type === 'Movies'){
+          else if (type === 'Movies'){
             return knex.insert({'id': result.id, 
                                 'title': title, 
                                 'director': apiRes.Director, 
@@ -47,13 +57,12 @@ exports.addWork = function(work, apiRes){
                   return result[0];
                 })
           }
-          else if (work.type === 'Games'){
+          else if (type === 'Games'){
             return knex.insert({'id': result.id, 
-                                'title': title, 
-                                'studio': apiRes.studio, 
-                                'image': apiRes.image, 
+                                'title': title,
+                                'image': apiRes.image.medium_url, 
                                 'data': JSON.stringify(apiRes)})
-                        .into('Movies')
+                        .into('Games')
                         .then(function(result){
                           return result;
                         })
