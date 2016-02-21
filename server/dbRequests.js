@@ -95,7 +95,7 @@ exports.findWorks = function(req){
                   //not sure if the WorkTag count will be in the same object
                   console.log('these are tagIds : ', tagIds);
                   return knex('WorkTag')
-                          .select(['Tags.tag', 'WorkTag.count', 'Works.title', 
+                          .select(['Tags.tag', 'WorkTag.count', 'Works.title', 'Works.type', 
                                     'Books.author', 'Books.image as bookImage', 'Books.data as bookData', 
                                     'Movies.director', 'Movies.image as movieImage', 'Movies.data as movieData',
                                     'Games.image as gameImage', 'Games.data as gameData'])
