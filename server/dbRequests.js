@@ -14,6 +14,7 @@ exports.lookupWork = function(req){
             if (result.length === 0){
               throw new Error('No such work found');
             }
+            console.log('result inside of lookup Work ', result)
 	          return result; // => returns an array with the object of the found work
 	        })
 };
