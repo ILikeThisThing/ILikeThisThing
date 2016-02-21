@@ -14,17 +14,15 @@
     <h3>Find your new favorite book, movie, or videogame!</h3>
     <br>
 
-    <form name="titleAndTypeSubmissionForm"  novalidate ng=>
+    <form name="titleAndTypeSubmissionForm" ng-controller="RequestController" novalidate>
         <!-- add an ajax request that routes through the AlreadyIncludedCheck on submission -->
     <input type="text"
-           name="title"
+           ng-model = "myQuery.title"
            placeholder="Enter a book, movie, or videogame you like here"
            style="width:300px">
-    <select placeholder="This is a...">
-        <option value="This is a...">This is a...</option>
-        <option value="Book">Book</option>
-        <option value="Movie">Movie</option>
-        <option value="Videogame">Videogame</option>
+    <select ng-model="myQuery.type" 
+            ng-options="o as o for o in types"
+            <option value="">This is a...</option>
     </select>
     <input type="submit" value="Search" />
     </form>
