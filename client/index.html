@@ -14,7 +14,7 @@
     <h3>Find your new favorite book, movie, or videogame!</h3>
     <br>
 
-    <form name="titleAndTypeSubmissionForm" ng-controller="RequestController as request" ng-submit="submitForm()" novalidate>
+    <form name="titleAndTypeSubmissionForm" ng-controller="RequestController as request" novalidate>
         <!-- add an ajax request that routes through the AlreadyIncludedCheck on submission -->
    <!--  <div class="form-group"> -->
       <input type="text"
@@ -27,11 +27,11 @@
       <select class="form-control"
             ng-model="userInput.type" 
             ng-options="o as o for o in types"
-            <option value="">This is a...</option>
+            <option value="">Category</option>
       </select>
     <!-- </div> -->
     <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" ng-click="saveData()" class="btn btn-success">Submit</button>
+      <button type="submit" ng-click="submitForm()" class="btn btn-success">Submit</button>
     </div>
       <span>{{userInput}}</span>
     </form>
