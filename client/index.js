@@ -10,7 +10,7 @@ app.controller('RequestController', function($scope, $http) {
 // $scope.title = 'The Room';
 
 //different types to populate the dropdown menu
-$scope.types = ['Books', 'Movies', 'Videogames'];
+$scope.types = ['Books', 'Movies', 'Games'];
 
 //create an empty object to store form data
 $scope.userInput = {
@@ -33,12 +33,29 @@ $scope.submitForm = function() {
     // this callback will be called asynchronously
     // when the response is available
     console.log(response);
+    var data = response.data;
+    return data;
+
   }, function errorCallback(response) {
     // called asynchronously if an error occurs
     // or server returns response with an error status.
   });
+  return data;
   }
 });
+
+
+// app.directive('initialResults', function() {
+//   return {
+//     restrict: 'E',
+//     templateUrl: 'initialResults.html'
+//   }
+// })
+
+
+
+
+// $scope.displayResults =
     
 
 // var signin = function (user) {
