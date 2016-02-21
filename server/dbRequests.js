@@ -125,6 +125,9 @@ exports.findTags = function(req){
   return knex.select('id')
             .from('Works')
             .where('title', title)
+            .catch(function(err){
+              console.error('.catch for findtags .select (1st one): ', err)//GET RID OF THIS!!!
+            })
             .then(function(result){
               console.log('found id ', result[0].id)
               //then update the counts for each of the tags
@@ -132,9 +135,6 @@ exports.findTags = function(req){
               return knex('WorkTag')
                           .where('work_id', workId)
                           .increment('count', 1)
-                          .catch(function(err){
-                            console.error('no prexisting tag ', err)
-                          })
                           .then(function(){
                             return knex.select('tag_id')
                                      .from('WorkTag')
@@ -154,9 +154,10 @@ exports.findTags = function(req){
       })      
 };
 
-exports.addTags = function(req, tagNames){
+exports.addTags = function(req){
+  console.log("inside addTags: ", req);
 	var title = req.title; // => should be a string of a single work
-
+  var tagNames = req.tags;
   //finds id for the given title
   return knex.select('id').from('Works').where('title', title)
         .then(function(row){
@@ -165,8 +166,9 @@ exports.addTags = function(req, tagNames){
         .then(function(workId){
           //add to Tags -- then add to WorkTag
           tagNames.forEach(function(tagName){
-            knex.insert({'tag': tagName})
-                .into('Tags')
+            knex.select('id')
+                .from('Tags')
+                .where('tag', tagName)
                 .then(function(row){
                   var id = row[0].id;
                   knex.insert({'work_id': workId, 
