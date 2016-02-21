@@ -132,9 +132,6 @@ exports.findTags = function(req){
   return knex.select('id')
             .from('Works')
             .where('title', title)
-            .catch(function(err){
-              console.error('.catch for findtags .select (1st one): ', err)//GET RID OF THIS!!!
-            })
             .then(function(result){
               console.log('found id ', result[0].id)
               //then update the counts for each of the tags
