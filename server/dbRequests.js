@@ -41,7 +41,8 @@ exports.addWork = function(apiRes){
                                 'title': title, 
                                 'author': JSON.stringify(apiRes.authors), //an array - could be more than one 
                                 'image': apiRes.largeImage, 
-                                'data': JSON.stringify(apiRes)})
+                                'data': JSON.stringify(apiRes),
+                                'database': true})
                 .returning('*')
                 .into('Books')
                 .then(function(result){
@@ -54,7 +55,8 @@ exports.addWork = function(apiRes){
                                 'title': title, 
                                 'director': apiRes.Director, 
                                 'image': apiRes.Poster, 
-                                'data': JSON.stringify(apiRes)})
+                                'data': JSON.stringify(apiRes),
+                                'database': true})
                 .returning('*')
                 .into('Movies')
                 .then(function(result){
@@ -66,7 +68,8 @@ exports.addWork = function(apiRes){
             return knex.insert({'id': result[0], 
                                 'title': title,
                                 'image': apiRes.image.medium_url, 
-                                'data': JSON.stringify(apiRes)})
+                                'data': JSON.stringify(apiRes),
+                                'database': true})
                         .returning('*')
                         .into('Games')
                         .then(function(result){
