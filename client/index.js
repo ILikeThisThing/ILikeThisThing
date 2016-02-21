@@ -1,29 +1,71 @@
 var app=angular.module('myApp', [ ]);
 
-/*
-app.controller('RequestController', function) {
+
+app.controller('RequestController', function($scope) {
 // create object out of user input -
 // containing two key value pairs - for title
 // and type - this object will then be passed
 // into the UserRequest factory function
-var submission = {};
 
-}
+// $scope.title = 'The Room';
+
+//different types to populate the dropdown menu
+$scope.types = ['Book', 'Movie', 'Videogame'];
+
+//create an empty object to store form data
+$scope.userInput = {
+  title: '',
+  type: ''
+};
+
+$scope.saveData = function() {
+  console.log($scope.userInput);
+};
+
+$scope.submitForm = function() {
+  $http({
+    method: 'POST',
+    url: '/api/searchworks',
+    data: $scope.userInput, //forms user object
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+  }) 
+    .success(function(data) {
+    if (data.errors) {
+      // Showing errors.
+      $scope.errorName = data.errors.name;
+      $scope.errorUserName = data.errors.username;
+      $scope.errorEmail = data.errors.email;
+    } else {
+      console.log("An error occured:", data.errors);
+    }
+  });
+};
+console.log($scope.userInput);
+});
+    
 
 
 
-.factory('UserRequest', function ($http) {
-  var getMatches = function () {
-    return $http({
-      method: 'POST',
-      url: '/api/searchworks'
-    })
-    .then(function (resp) {
-      return resp.data;
-    });
-  };
 
-*/
+
+
+
+// }]);
+
+// });
+
+// .factory('UserRequest', function ($http) {
+//   var getMatches = function () {
+//     return $http({
+//       method: 'POST',
+//       url: '/api/searchworks'
+//     })
+//     .then(function (resp) {
+//       return resp.data;
+//     });
+//   };
+
+
 
 
 
