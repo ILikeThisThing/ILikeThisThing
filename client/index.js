@@ -1,23 +1,33 @@
 var app=angular.module('myApp', [ ]);
 
 
-app.controller('RequestController', function($scope, $http) {
+app.controller('RequestController', function($scope) {
 // create object out of user input -
 // containing two key value pairs - for title
 // and type - this object will then be passed
 // into the UserRequest factory function
 
-//create an empty object to store form data
-$scope.title = 'The Room';
+// $scope.title = 'The Room';
+
+//different types to populate the dropdown menu
 $scope.types = ['Book', 'Movie', 'Videogame'];
 
-$scope.userInput = {};
+//create an empty object to store form data
+$scope.userInput = {
+  title: '',
+  type: ''
+};
+
+$scope.saveData = function() {
+  console.log($scope.userInput);
+};
 
 $scope.submitForm = function() {
   $http({
     method: 'POST',
     url: '/api/searchworks',
-    data: $scope.user, //forms user object
+    data: $scope.userInput, //forms user object
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
   }) 
     .success(function(data) {
     if (data.errors) {
@@ -26,10 +36,11 @@ $scope.submitForm = function() {
       $scope.errorUserName = data.errors.username;
       $scope.errorEmail = data.errors.email;
     } else {
-      $scope.message = data.message;
+      console.log("An error occured:", data.errors);
     }
   });
 };
+console.log($scope.userInput);
 });
     
 

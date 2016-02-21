@@ -14,17 +14,26 @@
     <h3>Find your new favorite book, movie, or videogame!</h3>
     <br>
 
-    <form name="titleAndTypeSubmissionForm" ng-controller="RequestController" novalidate>
+    <form name="titleAndTypeSubmissionForm" ng-controller="RequestController as request" ng-submit="submitForm()" novalidate>
         <!-- add an ajax request that routes through the AlreadyIncludedCheck on submission -->
-    <input type="text"
-           ng-model = "myQuery.title"
-           placeholder="Enter a book, movie, or videogame you like here"
-           style="width:300px">
-    <select ng-model="myQuery.type" 
+   <!--  <div class="form-group"> -->
+      <input type="text"
+        class="form-control"
+        ng-model="userInput.title"
+        placeholder="Enter a book, movie, or videogame you like here"
+        style="width:320px">
+    <!-- </div> -->
+    <!-- <div class="form-group"> -->
+      <select class="form-control"
+            ng-model="userInput.type" 
             ng-options="o as o for o in types"
             <option value="">This is a...</option>
-    </select>
-    <input type="submit" value="Search" />
+      </select>
+    <!-- </div> -->
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" ng-click="saveData()" class="btn btn-success">Submit</button>
+    </div>
+      <span>{{userInput}}</span>
     </form>
 
 <!-- with angular, create an "is this the title you meant?" pop-up or drop-down or something (even an alternate page if need be for now)
