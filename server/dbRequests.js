@@ -14,7 +14,7 @@ exports.lookupWork = function(req){
             if (result.length === 0){
               throw new Error('No such work found');
             }
-	          return result[0]; // => returns just the object of the found work
+	          return result; // => returns an array with the object of the found work
 	        })
 };
 
@@ -95,15 +95,15 @@ exports.findWorks = function(req){
                   //not sure if the WorkTag count will be in the same object
                   console.log('these are tagIds : ', tagIds);
                   return knex('WorkTag')
-                          .select(['Tags.tag', 'WorkTag.count', 'Works.title', 
-                                    /*'Books.author', 'Books.image', 'Books.data', 
-                                    'Movies.director', 'Movies.image', 'Movies.data',
-                                    'Games.image', 'Games.data'*/])
+                          .select(['Tags.tag', 'WorkTag.count', 'Works.title', 'Works.type', 
+                                    'Books.author', 'Books.image as bookImage', 'Books.data as bookData', 
+                                    'Movies.director', 'Movies.image as movieImage', 'Movies.data as movieData',
+                                    'Games.image as gameImage', 'Games.data as gameData'])
                           // .select('*')
                           .fullOuterJoin('Works', 'Works.id', 'WorkTag.work_id')
-                          // .fullOuterJoin('Books', 'Books.id', 'WorkTag.work_id')
-                          // .fullOuterJoin('Movies', 'Movies.id', 'WorkTag.work_id')
-                          // .fullOuterJoin('Games', 'Games.id', 'WorkTag.work_id')
+                          .leftJoin('Books', 'Books.id', 'WorkTag.work_id')
+                          .leftJoin('Movies', 'Movies.id', 'WorkTag.work_id')
+                          .leftJoin('Games', 'Games.id', 'WorkTag.work_id')
                           .fullOuterJoin('Tags', 'Tags.id', 'WorkTag.tag_id')
                           .whereIn('tag_id', tagIds)
                           .catch(function(err){
