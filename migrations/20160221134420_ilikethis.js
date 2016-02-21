@@ -14,6 +14,7 @@ exports.up = function(knex, Promise) {
 				table.string('author');
 				table.string('image');
 				table.json('data');
+				table.boolean('database');
 			}),
 		
 			knex.schema.createTableIfNotExists('Movies', function(table){
@@ -22,6 +23,7 @@ exports.up = function(knex, Promise) {
 				table.string('director');
 				table.string('image');
 				table.json('data');
+				table.boolean('database');
 			}),
 		
 			knex.schema.createTableIfNotExists('Games', function(table){
@@ -29,6 +31,7 @@ exports.up = function(knex, Promise) {
 				table.string('title');
 				table.string('image');
 				table.json('data');
+				table.boolean('database');
 			}),
 		
 			knex.schema.createTableIfNotExists('Tags', function(table){
