@@ -13,6 +13,7 @@ routes.use(express.static(assetFolder));
 
 //POST api/searchworks --> takes a user-submitted work to search for, looks to see if we already have it in the database
   routes.post('/api/searchworks', function(req, res){
+    console.log(req.body)
     var workTitle = req.body.title;
     var workType = req.body.type;
     db.lookupWork(req.body)
@@ -57,7 +58,7 @@ routes.use(express.static(assetFolder));
               //call the book handler
               api.bookSearcher(workTitle)
                 .then(function(bookData){
-                  res.status(200).send(bookData);
+                    res.status(200).send(bookData);
                 })
                 .catch(function(error){
                   console.error("Error with the Books API handler: ", error);
@@ -105,11 +106,11 @@ routes.use(express.static(assetFolder));
       })
       .then(function(result){
         console.log('result right before filter ', result)
-        var result = result || [];
+        // var result = result || [];
         if (result.length > 0){
                 return result.filter(function(tag){
                   if (req.body.tags.indexOf(tag) === -1){
-                    return tag;
+                    return true;
                   }
                 })
               } else {

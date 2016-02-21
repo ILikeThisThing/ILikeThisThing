@@ -69,12 +69,17 @@ exports.bookSearcher = function(bookName){
 
 			bookList.forEach(function(x){
 				var bookObject = x;
-				var imageURL = bookObject.imageLinks.thumbnail;
-				var splitURL = imageURL.split('zoom=1');
-				splitURL[0] = splitURL[0]+'zoom=0';
-				var largeImageURL = splitURL[0]+splitURL[1];
-				//pack the new url into bookObject
-				bookObject.largeImage = largeImageURL;
+				if (bookObject.imageLinks){
+					var imageURL = bookObject.imageLinks.thumbnail;
+					var splitURL = imageURL.split('zoom=1');
+					splitURL[0] = splitURL[0]+'zoom=0';
+					var largeImageURL = splitURL[0]+splitURL[1];
+					//pack the new url into bookObject
+					bookObject.largeImage = largeImageURL;
+				}
+				else {
+					bookObject.largeImage = "http://pngimg.com/upload/book_PNG2111.png"
+				}
 				bookObject.type = 'Books';
 			})
 
@@ -86,6 +91,8 @@ exports.bookSearcher = function(bookName){
 		//As with Giant Bomb for games, the Google Books api isn't great at saying "I don't know." 
 		//for example, the search string 'a;lsdkjf' does not throw an error. It just sends back some 
 		//random book that starts with the letter 'a' (JW)
+
+		//Not all books have an image associated with them -- in those cases we assign a placeholder book image (JB)
 }
 
 
