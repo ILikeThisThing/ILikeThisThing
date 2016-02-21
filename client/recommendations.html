@@ -13,13 +13,20 @@
   <title></title>
 </head>
 
-<body ng-app="LikeApp">
+<body>
 
+  <!-- recommendations -->
   <section id="books" class="recommendations">
     <div class="container" ng-controller="RecController">
       <div class="row text-center">
         <p>
-          {{This is a place for book results}}
+          {{book.image}}
+          <br>
+          {{book.title}}
+          <br>
+          {{book.description}}
+          <br>
+          {{book.review}}
         </p>
       </div>
     </div>
@@ -31,7 +38,13 @@
     <div class="container" ng-controller="RecController">
       <div class="row text-center">
         <p>
-          {{This is a place for movie results}}
+          {{movie.image}}
+          <br>
+          {{movie.title}}
+          <br>
+          {{movie.description}}
+          <br>
+          {{movie.review}}
         </p>
       </div>
     </div>
@@ -43,7 +56,13 @@
     <div class="container" ng-controller="RecController">
       <div class="row text-center">
         <p>
-          {{This is a place for video game results}}
+          {{videoGame.image}}
+          <br>
+          {{videoGame.title}}
+          <br>
+          {{videoGame.description}}
+          <br>
+          {{videoGame.review}}
         </p>
       </div>
     </div>
