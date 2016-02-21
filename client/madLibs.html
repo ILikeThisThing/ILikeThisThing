@@ -16,7 +16,7 @@
 <body>
 
   <!-- madlibs -->
-  <div class="container" ng-controller="MadLibsController">
+  <div class="container" ng-controller="MadLibsController" style="text-align: center">
     <label for="plot">I like that the plot was...</label>
     <select class="plot" name="" ng-model="plot">
       <option value="tragic">Tragic</option>
@@ -45,7 +45,7 @@
       <option value="fantasy">Fantasy</option>
     </select>
     <br>
-    <button id="submitRecs" type="submit" name="button">Show me recommendations, Pal!</button>
+    <button type="submit" ng-click="saveData()" name="button" class="btn btn-success">Show me recommendations, Pal!</button>
   </div>
 
 </body>
