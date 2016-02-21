@@ -106,11 +106,15 @@ routes.use(express.static(assetFolder));
       .then(function(result){
         console.log('result right before filter ', result)
         var result = result || [];
-        return result.filter(function(tag){
-          if (req.body.tags.indexOf(tag) === -1){
-            return tag;
-          }
-        })
+        if (result.length > 0){
+                return result.filter(function(tag){
+                  if (req.body.tags.indexOf(tag) === -1){
+                    return tag;
+                  }
+                })
+              } else {
+                return req.body.tags
+              }
       })
       .then(function(newTags){
         console.log('newTags to add', newTags);
