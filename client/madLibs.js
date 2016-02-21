@@ -24,7 +24,7 @@ $scope.saveData = function() {
 $scope.submitForm = function() {
   $http({
     method: 'POST',
-    url: '/api/searchworks',
+    url: '/api/tags',
     data: $scope.userInput
   });
 };
