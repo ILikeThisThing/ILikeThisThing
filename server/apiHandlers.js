@@ -119,7 +119,7 @@ exports.movieSearcher = function(movieName){
 				};
 			} else {
 				movie.type = 'Movies';
-				return movie;
+				return [movie];
 			}
 		})
 		.catch(function(err){
