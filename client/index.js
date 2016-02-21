@@ -26,49 +26,50 @@ $scope.submitForm = function() {
     return data;
     console.log(data);
 
-      if ... database && $scope.data.type === 'Movies'
-        $scope.data.title = title;
-        $scope.data.poster = image;
-        $scope.data.director = person;
+    
 
-      alternate for !database && $scope.data.type === 'Movies'
-        $scope.data.title = title;
-        $scope.data.poster = image;
-        $scope.data.director = person;
+    if (/*database flag*/ && $scope.data.type === 'Movies') {
+      for (i = 0; i < $scope.data.length; i ++) {
+        $scope.data[i].title = title;
+        $scope.data[i].poster = image;
+        $scope.data[i].director = person;
+      }
 
-      if ... database && $scope.data.type === 'Books'
-        $scope.data.title = title;
-        $scope.data.poster = image;
-        $scope.data.director = person;
+    } else if (/*!database flag*/ && $scope.data.type === 'Movies') {
+        for (i = 0; i < $scope.data.length; i ++) {
+        $scope.data[i].title = title;
+        $scope.data[i].poster = image;
+        $scope.data[i].director = person;
+      }
 
-      alternate for !database && $scope.data.type === 'Books'
-        $scope.data.title = title;
-        $scope.data.poster = image;
-        $scope.data.director = person;
+    } else if(/*database flag*/ && $scope.data.type === 'Books') {
+      for (i = 0; i < $scope.data.length; i ++) {
+        $scope.data[i].title = title;
+        $scope.data[i].largeImage = image;
+        $scope.data[i].authors[0] = person; //need to deal with instances where multiple authors
+      }
 
-      if ... database && $scope.data.type === 'Games'
-        $scope.data.title = title;
-        $scope.data.poster = image;
-        $scope.data.director = person;
+    } else if (/*!database flag*/ && $scope.data.type === 'Books') {
+      for (i = 0; i < $scope.data.length; i ++) {
+        $scope.data[i].title = title;
+        $scope.data[i].largeImage = image;
+        $scope.data[i].authors[0] = person; //need to deal with instances where multiple authors
+      }
 
-      alternate for !database && $scope.data.type === 'Games'
+    } else if (/*database flag*/ && $scope.data.type === 'Games') {
+      for (i = 0; i < $scope.data.length; i ++) {
+        $scope.data[i].name = title;
+        $scope.data[i].largeImage = image;
+        $scope.data[i].original_release_date = date
+      }
 
-        $scope.data.title = title;
-        $scope.data.poster = image;
-        $scope.data.director = person;
-
-
-
-
-
-
-
-
-
-
-
-
-
+    } else if (/*!database flag*/ && $scope.data.type === 'Games') {
+      for (i = 0; i < $scope.data.length; i ++) {
+        $scope.data[i].name = title;
+        $scope.data[i].image = image;
+        $scope.data[i].original_release_date = date
+      }
+    };
   }, function errorCallback(response) {
     // called asynchronously if an error occurs
     // or server returns response with an error status.
@@ -84,3 +85,13 @@ $scope.submitForm = function() {
 //     templateUrl: 'initialResults.html'
 //   }
 // })
+
+//make each image or title selectable and on click send them to that results page...
+
+
+
+
+
+
+
+
