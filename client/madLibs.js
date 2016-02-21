@@ -1,7 +1,11 @@
 angular.module('madLibs', [])
 
 .controller('TagController', function($scope, $http) {
- $scope.items = ['Tragic','Epic','Dramatic','Plodding'];
+ $scope.plots = ['Tragic','Epic','Dramatic'];
+ $scope.characters = ['Hero','Underdog','Villain'];
+ $scope.settings = ['School','Desert','Space'];
+ $scope.genres = ['Horror','Sci-fi','Fantasy'];
+
 
   // $scope.data = [];
   // $scope.types = ['Tragic', 'Epic', 'Dramatic'];

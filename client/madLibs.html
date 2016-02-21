@@ -17,39 +17,39 @@
 
   <!-- madlibs -->
 
-  <form name="getTagsForm" ng-controller="TagController" novalidate>
+  <form name="getTagsForm" ng-controller="TagController" novalidate style="text-align: center">
 
     <div class="container" ng-app="madLibs" style="text-align: center ng-controller="TagController"" ng-submit="sumbitForm()">
       <label for="plot">I like that the plot was...</label>
-      <select class="plot" name="" ng-model="userInput">
-        <option ng-repeat="item in items" value="{{item}}">{{item}}</option>
-        <!-- <option value="tragic">Tragic</option>
-        <option value="epic">Epic</option>
-        <option value="dramatic">Dramatic</option> -->
+      <select class="plot" name="" ng-model="userInput.plot">
+        <option ng-repeat="plot in plots" value="{{plot}}">{{plot}}</option>
       </select>
+      <br>
       <span>{{userInput}}</span>
       <br>
 
       <label for="character">This type of main character is appealing...</label>
-      <select class="character" name="" ng-model="character">
-        <option value="hero">Hero</option>
-        <option value="underdog">Underdog</option>
-        <option value="villain">Villain</option>
+      <select class="character" name="" ng-model="userInput.character">
+        <option ng-repeat="character in characters" value="{{character}}">{{character}}</option>
       </select>
       <br>
+      <span>{{userInput}}</span>
+      <br>
+
       <label for="setting">I enjoyed this setting...</label>
-      <select class="setting" name="" ng-model="setting">
-        <option value="school">School</option>
-        <option value="desert">Desert</option>
-        <option value="space">Space</option>
+      <select class="setting" name="" ng-model="userInput.setting">
+        <option ng-repeat="setting in settings" value="{{setting}}">{{setting}}</option>
       </select>
       <br>
+      <span>{{userInput}}</span>
+      <br>
+
       <label for="genre">This work genre is one I gravitate towards...</label>
-      <select class="genre" name="" ng-model="genre">
-        <option value="horror">Horror</option>
-        <option value="sci-fi">Sci-fi</option>
-        <option value="fantasy">Fantasy</option>
+      <select class="genre" name="" ng-model="userInput.genre">
+        <option ng-repeat="genre in genres" value="{{genre}}">{{genre}}</option>
       </select>
+      <br>
+      <span>{{userInput}}</span>
       <br>
       <button type="submit" ng-click="saveData()" name="button" class="btn btn-success">Show me recommendations, Pal!</button>
     </div>
