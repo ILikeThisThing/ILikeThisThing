@@ -9,7 +9,7 @@ exports.lookupWork = function(req){
 	var title = req.title; //or whatever that path ends up being
 	var type = req.type; //same as above
 
-	return knex.from(type).where('title', title)
+	return knex.select('*').from(type).where('title', title)
 	        .then(function(result){
             if (result.length === 0){
               throw new Error('No such work found');
@@ -95,14 +95,16 @@ exports.findWorks = function(req){
                   //not sure if the WorkTag count will be in the same object
                   console.log('these are tagIds : ', tagIds);
                   return knex('WorkTag')
-                          /*.select(['Tags.tag', 'WorkTag.count', 'Books.title', 'Books.author', 'Books.image', 'Books.data', 
-                                    'Movies.title', 'Movies.director', 'Movies.image', 'Movies.data',
-                                    'Games.title', 'Games.image', 'Games.data']) */
-                          .select('*')
-                          .leftOuterJoin('Books', 'Books.id', 'WorkTag.work_id')
-                          .leftOuterJoin('Movies', 'Movies.id', 'WorkTag.work_id')
-                          .leftOuterJoin('Games', 'Games.id', 'WorkTag.work_id')
-                          .leftOuterJoin('Tags', 'Tags.id', 'WorkTag.tag_id')
+                          .select(['Tags.tag', 'WorkTag.count', 'Works.title', 
+                                    /*'Books.author', 'Books.image', 'Books.data', 
+                                    'Movies.director', 'Movies.image', 'Movies.data',
+                                    'Games.image', 'Games.data'*/])
+                          // .select('*')
+                          .fullOuterJoin('Works', 'Works.id', 'WorkTag.work_id')
+                          // .fullOuterJoin('Books', 'Books.id', 'WorkTag.work_id')
+                          // .fullOuterJoin('Movies', 'Movies.id', 'WorkTag.work_id')
+                          // .fullOuterJoin('Games', 'Games.id', 'WorkTag.work_id')
+                          .fullOuterJoin('Tags', 'Tags.id', 'WorkTag.tag_id')
                           .whereIn('tag_id', tagIds)
                           .catch(function(err){
                             console.log('error in WorkTag ', err)
