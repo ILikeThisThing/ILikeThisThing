@@ -1,30 +1,22 @@
 angular.module('madLibs', [])
 
 .controller('TagController', function($scope, $http) {
- $scope.plots = ['Tragic','Epic','Dramatic'];
- $scope.characters = ['Hero','Underdog','Villain'];
- $scope.settings = ['School','Desert','Space'];
- $scope.genres = ['Horror','Sci-fi','Fantasy'];
-
-
-  // $scope.data = [];
-  // $scope.types = ['Tragic', 'Epic', 'Dramatic'];
-  // $scope.userInput = {
-  //   plot: '',
-  //   character: '',
-  //   setting: '',
-  //   genre: ''
-  // };
+  $scope.themes = ['Theme-Dark/macabre', 'Theme-Absurdist', 'Theme-Existential'];
+  $scope.characters = ['Characters-Quirky', 'Characters-Smart', 'Characters-Funny'];
+  $scope.settings = ['Setting-Outer Space', 'Setting-New York', 'Setting-Texas'];
+  $scope.genres = ['Genre-Action', 'Genre-Adventure', 'Genre-Comedy'];
 });
-
-$scope.saveData = function() {
-  $scope.data.push($scope.userInput);
-};
 
 $scope.submitForm = function() {
   $http({
-    method: 'POST',
-    url: '/api/tags',
-    data: $scope.userInput
-  });
+      method: 'POST',
+      url: '/api/tags',
+      data: $scope.userInput
+    })
+    .then(function successCallback(response) {
+      console.log(response);
+    }, function errorCallback(response) {
+      console.log(response);
+    });
+
 };
