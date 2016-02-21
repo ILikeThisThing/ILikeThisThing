@@ -18,5 +18,4 @@ $scope.submitForm = function() {
     }, function errorCallback(response) {
       console.log(response);
     });
-
 };
