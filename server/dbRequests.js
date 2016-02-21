@@ -96,14 +96,14 @@ exports.findWorks = function(req){
                   console.log('these are tagIds : ', tagIds);
                   return knex('WorkTag')
                           .select(['Tags.tag', 'WorkTag.count', 'Works.title', 
-                                    /*'Books.author', 'Books.image', 'Books.data', 
-                                    'Movies.director', 'Movies.image', 'Movies.data',
-                                    'Games.image', 'Games.data'*/])
+                                    'Books.author', 'Books.image as bookImage', 'Books.data as bookData', 
+                                    'Movies.director', 'Movies.image as movieImage', 'Movies.data as movieData',
+                                    'Games.image as gameImage', 'Games.data as gameData'])
                           // .select('*')
                           .fullOuterJoin('Works', 'Works.id', 'WorkTag.work_id')
-                          // .fullOuterJoin('Books', 'Books.id', 'WorkTag.work_id')
-                          // .fullOuterJoin('Movies', 'Movies.id', 'WorkTag.work_id')
-                          // .fullOuterJoin('Games', 'Games.id', 'WorkTag.work_id')
+                          .leftJoin('Books', 'Books.id', 'WorkTag.work_id')
+                          .leftJoin('Movies', 'Movies.id', 'WorkTag.work_id')
+                          .leftJoin('Games', 'Games.id', 'WorkTag.work_id')
                           .fullOuterJoin('Tags', 'Tags.id', 'WorkTag.tag_id')
                           .whereIn('tag_id', tagIds)
                           .catch(function(err){
