@@ -1,30 +1,12 @@
-angular.module('madLibs', [])
+angular.module('MyApp', [])
 
-.controller('TagController', function($scope, $http) {
- $scope.plots = ['Tragic','Epic','Dramatic'];
- $scope.characters = ['Hero','Underdog','Villain'];
- $scope.settings = ['School','Desert','Space'];
- $scope.genres = ['Horror','Sci-fi','Fantasy'];
-
-
-  // $scope.data = [];
-  // $scope.types = ['Tragic', 'Epic', 'Dramatic'];
-  // $scope.userInput = {
-  //   plot: '',
-  //   character: '',
-  //   setting: '',
-  //   genre: ''
-  // };
+.controller('TagController', function($scope, $http, ILikeThis) {
+  $scope.themes = ['Theme-Dark/macabre', 'Theme-Absurdist', 'Theme-Existential'];
+  $scope.characters = ['Characters-Quirky', 'Characters-Smart', 'Characters-Funny'];
+  $scope.settings = ['Setting-Outer Space', 'Setting-New York', 'Setting-Texas'];
+  $scope.genres = ['Genre-Action', 'Genre-Adventure', 'Genre-Comedy'];
+  $scope.submitForm = function(){
+    return ILikeThis.getMatchingTags($scope.userInput);
+  };
 });
-
-$scope.saveData = function() {
-  $scope.data.push($scope.userInput);
-};
-
-$scope.submitForm = function() {
-  $http({
-    method: 'POST',
-    url: '/api/searchworks',
-    data: $scope.userInput
-  });
 };
