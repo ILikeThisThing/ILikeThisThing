@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="madLibs">
 
 <head>
   <meta charset="utf-8">
@@ -17,38 +17,44 @@
 
   <!-- madlibs -->
 
+  <form name="getTagsForm" ng-controller="TagController" novalidate>
 
-  <div class="container" ng-controller="RecController" style="text-align: center" ng-submit="sumbitForm()">
-    <label for="plot">I like that the plot was...</label>
-    <select class="plot" name="" ng-model="plot">
-      <option value="tragic">Tragic</option>
-      <option value="epic">Epic</option>
-      <option value="dramatic">Dramatic</option>
-    </select>
-    <br>
-    <label for="character">This type of main character is appealing...</label>
-    <select class="character" name="" ng-model="character">
-      <option value="hero">Hero</option>
-      <option value="underdog">Underdog</option>
-      <option value="villain">Villain</option>
-    </select>
-    <br>
-    <label for="setting">I enjoyed this setting...</label>
-    <select class="setting" name="" ng-model="setting">
-      <option value="school">School</option>
-      <option value="desert">Desert</option>
-      <option value="space">Space</option>
-    </select>
-    <br>
-    <label for="genre">This work genre is one I gravitate towards...</label>
-    <select class="genre" name="" ng-model="genre">
-      <option value="horror">Horror</option>
-      <option value="sci-fi">Sci-fi</option>
-      <option value="fantasy">Fantasy</option>
-    </select>
-    <br>
-    <button type="submit" ng-click="saveData()" name="button" class="btn btn-success">Show me recommendations, Pal!</button>
-  </div>
+    <div class="container" ng-app="madLibs" style="text-align: center ng-controller="TagController"" ng-submit="sumbitForm()">
+      <label for="plot">I like that the plot was...</label>
+      <select class="plot" name="" ng-model="userInput">
+        <option ng-repeat="item in items" value="{{item}}">{{item}}</option>
+        <!-- <option value="tragic">Tragic</option>
+        <option value="epic">Epic</option>
+        <option value="dramatic">Dramatic</option> -->
+      </select>
+      <span>{{userInput}}</span>
+      <br>
+
+      <label for="character">This type of main character is appealing...</label>
+      <select class="character" name="" ng-model="character">
+        <option value="hero">Hero</option>
+        <option value="underdog">Underdog</option>
+        <option value="villain">Villain</option>
+      </select>
+      <br>
+      <label for="setting">I enjoyed this setting...</label>
+      <select class="setting" name="" ng-model="setting">
+        <option value="school">School</option>
+        <option value="desert">Desert</option>
+        <option value="space">Space</option>
+      </select>
+      <br>
+      <label for="genre">This work genre is one I gravitate towards...</label>
+      <select class="genre" name="" ng-model="genre">
+        <option value="horror">Horror</option>
+        <option value="sci-fi">Sci-fi</option>
+        <option value="fantasy">Fantasy</option>
+      </select>
+      <br>
+      <button type="submit" ng-click="saveData()" name="button" class="btn btn-success">Show me recommendations, Pal!</button>
+    </div>
+
+  </form>
 
 </body>
 
