@@ -104,19 +104,6 @@ routes.use(express.static(assetFolder));
       .catch(function(err){
         console.log('findTags itself is broken ', err)
       })
-      .then(function(result){
-        console.log('result right before filter ', result)
-        // var result = result || [];
-        if (result.length > 0){
-                return result.filter(function(tag){
-                  if (req.body.tags.indexOf(tag) === -1){
-                    return true;
-                  }
-                })
-              } else {
-                return req.body.tags
-              }
-      })
       .then(function(newTags){
         console.log('newTags to add', newTags);
         if (newTags.length > 0){
