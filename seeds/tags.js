@@ -12,7 +12,7 @@ exports.seed = function(knex, Promise) {
     	{tag: 'Present Day'}, {tag: 'Victorian era'}, {tag: 'Medieval times'}, {tag: 'Prehistoric times'}, {tag: 'Action'},
     	{tag: 'Adventure'}, {tag: 'Comedy'}, {tag: 'Crime'}, {tag: 'Fantasy'}, {tag: 'Horror'}, {tag: 'Musical'}, 
     	{tag: 'Mystery'}, {tag: 'Political'}, {tag: 'Romance'}, {tag: 'Satire'}, {tag: 'Science Fiction'}, 
-    	{tag: 'Thriller'}, {tag: 'Western'}, {tag: 'So-Bad-its-Good'}, {tag: "Philosophy"}])
+    	{tag: 'Thriller'}, {tag: 'Western'}, {tag: 'So-Bad-its-Good'}, {tag: "Philosophy"}, {tag: "Programming"}])
   ).catch(function(err){
   	console.error('tags have already been added ', err.message)
   })
