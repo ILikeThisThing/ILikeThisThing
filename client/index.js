@@ -12,27 +12,36 @@ $scope.userInput = {
   type: ''
 };
 
-$scope.submitForm = function() {
-  return $http({
-    method: 'POST',
-    url: '/api/searchworks',
-    data: $scope.userInput, //forms user object
-  })
-  .then(function successCallback(response) {
-    // this callback will be called asynchronously
-    // when the response is available
-    console.log(response);
-    var data = response.data;
-    return data;
-    console.log(data);
+// $scope.submitForm = function() {
+//   return $http({
+//     method: 'POST',
+//     url: '/api/searchworks',
+//     data: $scope.userInput, //forms user object
+//   })
+//   .then(function successCallback(response) {
+//     // this callback will be called asynchronously
+//     // when the response is available
+//     console.log(response);
+  
+//     //run helper function that populates new divs with response data
 
-    
+//   }, function errorCallback(response) {
+//     // called asynchronously if an error occurs
+//     // or server returns response with an error status.
+//   });
+//   return data;
+//   }
+// });
 
-    if (/*database flag*/ && $scope.data.type === 'Movies') {
+
+var helperFunction = function() {
+if ($scope.data[0].type === 'Movies') {
       for (i = 0; i < $scope.data.length; i ++) {
+        if ($scope.data[i].database) {
         $scope.data[i].title = title;
         $scope.data[i].poster = image;
         $scope.data[i].director = person;
+      }
       }
 
     } else if (/*!database flag*/ && $scope.data.type === 'Movies') {
@@ -69,22 +78,8 @@ $scope.submitForm = function() {
         $scope.data[i].image = image;
         $scope.data[i].original_release_date = date
       }
-    };
-  }, function errorCallback(response) {
-    // called asynchronously if an error occurs
-    // or server returns response with an error status.
-  });
-  return data;
-  }
-});
-
-
-// app.directive('initialResults', function() {
-//   return {
-//     restrict: 'E',
-//     templateUrl: 'initialResults.html'
-//   }
-// })
+    }
+  };
 
 //make each image or title selectable and on click send them to that results page...
 
