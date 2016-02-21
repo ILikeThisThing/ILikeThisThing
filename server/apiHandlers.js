@@ -25,7 +25,8 @@ exports.gameSearcher = function(gameName){
 				games.results.forEach(function(x){
 					x.type = 'Games';
 				})
-				return games.results;
+				var topTenResults = games.results.slice(0,9);
+				return topTenResults;
 			}
 			else{
 				return {
