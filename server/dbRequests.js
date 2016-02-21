@@ -93,20 +93,22 @@ exports.findWorks = function(req){
                    })
                    .then(function(tagIds){     
                   //not sure if the WorkTag count will be in the same object
+                  console.log('these are tagIds : ', tagIds);
                   return knex('WorkTag')
-                          .select(['Tags.tag', 'WorkTag.count', 'Books.title', 'Books.author', 'Books.image', 'Books.data', 
+                          /*.select(['Tags.tag', 'WorkTag.count', 'Books.title', 'Books.author', 'Books.image', 'Books.data', 
                                     'Movies.title', 'Movies.director', 'Movies.image', 'Movies.data',
-                                    'Games.title', 'Games.image', 'Games.data'])
-                          .leftOuterJoin('Books', 'Books.id', 'WorkTag.work_id')
-                          .leftOuterJoin('Movies', 'Movies.id', 'WorkTag.work_id')
-                          .leftOuterJoin('Games', 'Games.id', 'WorkTag.work_id')
-                          .leftOuterJoin('Tags', 'Tags.id', 'WorkTag.tag_id')
+                                    'Games.title', 'Games.image', 'Games.data']) */
+                          .select('*')
+                          .join('Books', 'Books.id', 'WorkTag.work_id')
+                          .join('Movies', 'Movies.id', 'WorkTag.work_id')
+                          .join('Games', 'Games.id', 'WorkTag.work_id')
+                          .join('Tags', 'Tags.id', 'WorkTag.tag_id')
                           .whereIn('tag_id', tagIds)
                           .catch(function(err){
                             console.log('error in WorkTag ', err)
                           })
                           .then(function(results){
-                            console.log('results ', results)
+                            console.log('results of join: ', results)
                             if (results.length <= 1){
                               throw new Error('No other matching works found')
                             }
