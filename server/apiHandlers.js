@@ -24,6 +24,15 @@ exports.gameSearcher = function(gameName){
 			if (!!games.results[0]){
 				games.results.forEach(function(x){
 					x.type = 'Games';
+					//if there are images, pull the right one out of its container object for convenience on front end
+					if (x.image !== null){
+						x.largeImage = x.image.medium_url;
+					}
+					//if there are not images, set a default image
+					else{
+						x.largeImage = 'http://businessandtech.com/wp-content/uploads/videogames-main_Full.jpg';
+					}
+					// ;
 				})
 				var topTenResults = games.results.slice(0,10);
 				return topTenResults;
