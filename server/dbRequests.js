@@ -99,10 +99,10 @@ exports.findWorks = function(req){
                                     'Movies.title', 'Movies.director', 'Movies.image', 'Movies.data',
                                     'Games.title', 'Games.image', 'Games.data']) */
                           .select('*')
-                          .join('Books', 'Books.id', 'WorkTag.work_id')
-                          .join('Movies', 'Movies.id', 'WorkTag.work_id')
-                          .join('Games', 'Games.id', 'WorkTag.work_id')
-                          .join('Tags', 'Tags.id', 'WorkTag.tag_id')
+                          .leftOuterJoin('Books', 'Books.id', 'WorkTag.work_id')
+                          .leftOuterJoin('Movies', 'Movies.id', 'WorkTag.work_id')
+                          .leftOuterJoin('Games', 'Games.id', 'WorkTag.work_id')
+                          .leftOuterJoin('Tags', 'Tags.id', 'WorkTag.tag_id')
                           .whereIn('tag_id', tagIds)
                           .catch(function(err){
                             console.log('error in WorkTag ', err)
@@ -172,11 +172,19 @@ exports.addTags = function(req){
                 .from('Tags')
                 .where('tag', tagName)
                 .then(function(row){
-                  var id = row[0].id;
+                  console.log('right before insert into WorkTag ', row[0].id)
+                  var tagId = row[0].id;
                   knex.insert({'work_id': workId, 
-                               'tag_id': id, 
+                               'tag_id': tagId, 
                                'count': 1})
+                  .returning("*")
                   .into('WorkTag')
+                  .then(function(rows){
+                    console.log('put into WorkTag ', rows)
+                  })
+                  .catch(function(err){
+                    console.error("there was an error in insert into WorkTag ", err)
+                  })
                 })
           });
         })

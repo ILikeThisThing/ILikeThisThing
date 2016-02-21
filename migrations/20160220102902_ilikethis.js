@@ -8,7 +8,7 @@ exports.up = function(knex, Promise) {
 			}),
 		
 			knex.schema.createTableIfNotExists('Books', function(table){
-				table.increments('id')//.references('id').inTable('Works').unique();
+				table.integer('id')//.references('id').inTable('Works').unique();
 				table.string('title');
 				table.string('author');
 				table.string('image');
@@ -24,14 +24,14 @@ exports.up = function(knex, Promise) {
 			}),
 		
 			knex.schema.createTableIfNotExists('Games', function(table){
-				table.increments('id')//.references('id').inTable('Works').unique();
+				table.integer('id')//.references('id').inTable('Works').unique();
 				table.string('title');
 				table.string('image');
 				table.json('data');
 			}),
 		
 			knex.schema.createTableIfNotExists('Tags', function(table){
-				table.increments('id');
+				table.increments('id').primary();
 				table.string('tag').unique();
 			}),
 		
