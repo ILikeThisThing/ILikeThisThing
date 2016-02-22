@@ -1,6 +1,6 @@
 
-var app = angular.module('ILikeThis.homepage', []);
 
+var app = angular.module('ILikeThis.homepage', []);
 
 app.controller('RequestController', function($scope, Factory, Globals) {
 
