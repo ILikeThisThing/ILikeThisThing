@@ -1,6 +1,6 @@
 angular.module('ILikeThis.MadLibs', [])
 
-.controller('TagController', function($scope, $http, Factory) {
+.controller('TagController', function($scope, $http, Factory, Globals) {
   var title = "Alice's Adventures in Wonderland"
 
 
@@ -15,7 +15,8 @@ angular.module('ILikeThis.MadLibs', [])
   	for (var prop in inputs){
   		tagsArr.push(inputs[prop])
   	}
-  	return {title: title, tags: tagsArr}
+  	var newTitle = Globals.returnTitle();
+  	return {title: newTitle, tags: tagsArr}
   }
 
  
@@ -26,6 +27,7 @@ angular.module('ILikeThis.MadLibs', [])
     return Factory.getMatchingTags(request)
     .then(function(resp){
     	console.log('response from submitForm ', resp)
+    	Globals.storeRecs(resp)
     });
   };
 });

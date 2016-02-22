@@ -2,6 +2,7 @@ angular.module('ILikeThis', [
 	'ILikeThis.MyFactories',
 	'ILikeThis.homepage',
 	'ILikeThis.MadLibs',
+	'ILikeThis.recommendations',
 	'ngRoute'
 ])
 .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
@@ -11,10 +12,10 @@ angular.module('ILikeThis', [
 			templateUrl : '/madLibs.html',
 			controller : 'TagController'
 		});
-		// .when('/recommendations', {
-		// 	templateUrl: 'recommendations.html',
-		// 	controller: 'RecController'
-		// })
+		.when('/recommendations', {
+			templateUrl: 'recommendations.html',
+			controller: 'RecController'
+		})
 }])
 
 .controller('TitleSaver', function($scope) {
