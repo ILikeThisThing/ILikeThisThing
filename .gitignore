@@ -1,3 +1,5 @@
 /node_modules/*
 /server/apiKeys.js
 /bower_components/*
+.DS_Store
+*/.DS_Store
