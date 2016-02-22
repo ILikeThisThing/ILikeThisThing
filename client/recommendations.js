@@ -4,15 +4,11 @@ angular.module('ILikeThis.recommendations', [])
   console.log("inside RecController")
   $scope.recs = Globals.returnRecs()
 
+
   $scope.seeMore = function(rec){
   	console.log('inside see more')
   	Globals.storeIndiv(rec)
 
-  	helper()
-  }
-
-  var helper = function(){
   	$location.path('/individual')
-  }
+  } 
 })
-
