@@ -2,11 +2,24 @@ angular.module('ILikeThis.MadLibs', [])
 
 .controller('TagController', function($scope, $http, $location, Factory, Globals) {
 
-  $scope.themes = ['Theme-Dark/macabre', 'Theme-Absurdist', 'Theme-Existential'];
-  $scope.characters = ['Characters-Quirky', 'Characters-Smart', 'Characters-Funny'];
-  $scope.settings = ['Setting-Outer Space', 'Setting-New York', 'Setting-Texas'];
-  $scope.genres = ['Genre-Action', 'Genre-Adventure', 'Genre-Comedy'];
-  
+  $scope.themes = ['Theme-Dark/macabre', 'Theme-Absurdist', 'Theme-Existential', 'Theme-Happy-Go-Lucky', 'Theme-Dystopian', 'Theme-Utopian', 'Theme-Beauty/Wonderment',
+  'Theme-Weird', 'Theme-Goofy', 'Theme-Philosophy', 'Theme-Programming'];
+  $scope.characters = ['Characters-Quirky', 'Characters-Smart', 'Characters-Funny', 'Characters-Hopelessly Incompetant', 'Characters-Pothead', 'Characters-Tortured',
+  'Characters-Romantic', 'Characters-Optimistic', 'Characters-Pessimistic', 'Character Diversity'];
+  $scope.settings = ['Setting-Outer Space', 'Setting-New York', 'Setting-Texas', 'Setting-Fantasy world', 'Setting-Space Station', 'Setting-Europe', 'Setting-Asia',
+  'Setting-North America', 'Setting-South America', 'Setting-Australia', 'Setting-Antarctica'];
+  $scope.genres = ['Genre-Action', 'Genre-Adventure', 'Genre-Comedy', 'Genre-Crime', 'Genre-Fantasy', 'Genre-Horror', 'Genre-Musical', 
+  'Genre-Mystery', 'Genre-Political', 'Genre-Romance', 'Genre-Satire', 'Genre-Science Fiction', 'Genre-Thriller', 'Genre-Western'];
+  $scope.writingStyle = ['Writing Style-Stream of Consciousness', 'Writing Style-Vignette'];
+  $scope.time = ['Time Period-Present Day', 'Time Period-Victorian era', 'Time Period-Medieval times', 'Time Period-Prehistoric times', 'Time Period-Time Travel'];
+  $scope.quirky = ['Cult Classic', 'Gorey', 'Campy', 'So-Bad-its-Good'];
+  $scope.other = ['Family-Friendly', 'Gay/Lesbian', 'Cinematography'];
+  $scope.artStyle = ['Art Style-Full Color', 'Art Style-Claymation', 'Art Style-Stop-Motion', 'Art Style-Pen and Ink', 'Art Style-CGI'];
+  $scope.plot = ['Plot-Fast Paced', 'Plot-Slow Paced', 'Plot-Plot Driven', 'Plot- Character driven'];
+  $scope.audio = ['Sound Design', 'Score'];
+  $scope.sets = ['Set Design-Elaborate', 'Set Design-Minimalist'];
+  $scope.costumes = ['Costuming-Period', 'Costuming-Modern', 'Costuming-Elaborate', 'Costuming-Minimalist']
+
   var tagsArr = [];
   //transforms tags to send to api
   var reqMaker = function(inputs){
@@ -33,3 +46,4 @@ angular.module('ILikeThis.MadLibs', [])
 });
 // $window.location.href('/#/recommendations');
 //    	$location.path('/#/recommendations');
+
