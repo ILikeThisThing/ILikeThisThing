@@ -23,4 +23,9 @@ angular.module('ILikeThis', [
 			templateUrl: '/individualTitle.html',
 			controller: 'IndivController'
 		})
+		//for some reason this makes it enter into an infinite loop
+		// .when('/index', {
+		// 	templateUrl: '/index.hmtl',
+		// 	controller: 'RequestController'
+		// })
 }])

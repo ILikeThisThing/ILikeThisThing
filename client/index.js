@@ -2,7 +2,7 @@
 
 var app = angular.module('ILikeThis.homepage', []);
 
-app.controller('RequestController', function($scope, Factory, Globals) {
+app.controller('RequestController', function($scope, $location, Factory, Globals) {
 
 //different types to populate the dropdown menu
 $scope.types = ['Books', 'Movies', 'Games'];
@@ -14,6 +14,7 @@ $scope.userInput = {
 };
 
 $scope.submitForm = function() {
+ 
   Factory.submitForm($scope.userInput)
     .then(function successCallback(response) {
       // this callback will be called asynchronously
@@ -25,7 +26,7 @@ $scope.submitForm = function() {
 
       $scope.results = response.data;
       console.log($scope.results);
-    });
+    })
   };
  
  $scope.alreadyExists = function(title) {
