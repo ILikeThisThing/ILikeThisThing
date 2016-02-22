@@ -67,6 +67,8 @@ See [CONTRIBUTING.md](https://github.com/unexpected-lion/ourglass/blob/master/co
 	- Deeper change (v2): A more complex algorithim to display results to the user -- you could sort by how many times a given work is returned from the database (as in how many tags it matched) -- currently the number of times a given work (say Harry Potter) has been given a certain tag (say Genre-Fantasy) is kept track of and stored in the database.
 - Allow searching by tag (action, quirky characters, etc.), not just by work and tags provided.
 - Allow searching by work without providing any information about that work - just using information already stored for it in the db.
+- Allow selecting more than one tag per category (also allow a tag to be deselected before submitting)
+- Fix initial flash on load
 - Add more media types -- we would have liked to include boardgames and, more abstractly, music (how interesting would it be to be recommended certain albums because you liked a particular book!)
 - Add user accounts/auth. Favoriting, automated recommendations based on previous search history, etc.
 
