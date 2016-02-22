@@ -6,8 +6,8 @@ var knex = require('knex')(config[env]);
 
 exports.lookupWork = function(req){
   console.log('inside lookupWork ', req)
-	var title = req.title; //or whatever that path ends up being
-	var type = req.type; //same as above
+	var title = req.title; 
+	var type = req.type; 
 
 	return knex.select('*').from(type).where('title', title)
 	        .then(function(result){
@@ -15,7 +15,7 @@ exports.lookupWork = function(req){
               throw new Error('No such work found');
             }
             console.log('result inside of lookup Work ', result)
-	          return result; // => returns an array with the object of the found work
+	          return result; // => returns an array with the object of the found work inside
 	        })
 };
 
@@ -88,7 +88,7 @@ exports.addWork = function(apiRes){
 exports.findWorks = function(req){
 	var tagsArr = req.tags // => must be array
   
-  //subquery to find the tag_ids
+  //first find the tag_ids
   return knex.select('id')
                    .from('Tags')
                    .whereIn('tag', tagsArr)
@@ -96,14 +96,12 @@ exports.findWorks = function(req){
                       return rows.id
                    })
                    .then(function(tagIds){     
-                  //not sure if the WorkTag count will be in the same object
                   console.log('these are tagIds : ', tagIds);
                   return knex('WorkTag')
                           .select(['Tags.tag', 'WorkTag.count', 'Works.title', 'Works.type', 
                                     'Books.author', 'Books.image as bookImage', 'Books.data as bookData', 
                                     'Movies.director', 'Movies.image as movieImage', 'Movies.data as movieData',
                                     'Games.image as gameImage', 'Games.data as gameData'])
-                          // .select('*')
                           .fullOuterJoin('Works', 'Works.id', 'WorkTag.work_id')
                           .leftJoin('Books', 'Books.id', 'WorkTag.work_id')
                           .leftJoin('Movies', 'Movies.id', 'WorkTag.work_id')
