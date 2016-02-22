@@ -10,7 +10,7 @@
     <p>Title: <button ng-click="seeMore(rec)">{{rec.title}}</button></p>
     <p>Author(s): {{rec.author}}</p>
     <p>Publisher: {{rec.bookData.publisher}}</p>
-    <img ng-src="{{rec.bookImage}}">
+    <img class="cover" ng-src="{{rec.bookImage}}">
     <p>Pages: {{rec.bookData.pageCount}}</p>
     </div>
 
@@ -20,7 +20,7 @@
     <p>Title: <button ng-click="seeMore(rec)">{{rec.title}}</button></p>
     <p>Director: {{rec.director}}</p>
     <p>Genre(s): {{rec.movieData.genre}}</p>
-    <img ng-src="{{rec.movieImage}}">
+    <img class="cover" ng-src="{{rec.movieImage}}">
     <p>Year: {{rec.movieData.Year}}</p>
     </div>
 
@@ -28,7 +28,7 @@
     <p>Tag: {{rec.tag}}</p>
     <br></br>
     <p>Title: <button ng-click="seeMore(rec)">{{rec.title}}</button></p>
-    <img ng-src="{{rec.gameData.largeImage}}">
+    <img class="cover" ng-src="{{rec.gameData.largeImage}}">
     <p>{{rec.gameData.deck}}</p>
     </div>
   </section>

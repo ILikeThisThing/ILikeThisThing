@@ -7,7 +7,7 @@
     <p>Title: {{work.title}}</p>
     <p>Author(s): {{work.author}}</p>
     <p>Publisher: {{work.bookData.publisher}}</p>
-    <img ng-src="{{work.bookImage}}">
+    <img class="cover" ng-src="{{work.bookImage}}">
     <p>Pages: {{work.bookData.pageCount}}</p>
     </div>
 
@@ -17,7 +17,7 @@
     <p>Title: {{work.title}}</p>
     <p>Director: {{work.director}}</p>
     <p>Genre(s): {{work.movieData.genre}}</p>
-    <img ng-src="{{work.movieImage}}">
+    <img class="cover" ng-src="{{work.movieImage}}">
     <p>Year: {{work.movieData.Year}}</p>
     </div>
 
@@ -25,7 +25,7 @@
     <p>Tag: {{work.tag}}</p>
     <br></br>
     <p>Title: {{work.title}}</p>
-    <img ng-src="{{work.gameData.largeImage}}">
+    <img class="cover" ng-src="{{work.gameData.largeImage}}">
     <p>{{work.gameData.deck}}</p>
     </div>
    
