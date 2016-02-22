@@ -1,14 +1,11 @@
   <!-- recommendations -->
   <div ng-controller="RecController">
-
   <form name="filter">
   <input placeholder="Filter" type="text" ng-model="searchRecs">
   </form>
-
-  <section id="results" class="recommendations" style="text-align: center" ng-repeat="rec in recs | filter:searchLinks">
- 
+  <section id="results" class="recommendations" style="text-align: center" ng-repeat="rec in recs | filter:searchRecs">
     <div ng-show="rec.type === 'Books'">
-      <p>Tag: {{rec.tag}}</p>
+    <p>Tag: {{rec.tag}}</p>
     <br></br>
     <p>Title: {{rec.title}}</p>
     <p>Author(s): {{rec.author}}</p>
@@ -18,7 +15,7 @@
     </div>
 
     <div ng-show="rec.type === 'Movies'">
-      <p>Tag: {{rec.tag}}</p>
+    <p>Tag: {{rec.tag}}</p>
     <br></br>
     <p>Title: {{rec.title}}</p>
     <p>Director: {{rec.director}}</p>
@@ -28,7 +25,7 @@
     </div>
 
     <div ng-show="rec.type === 'Games'">
-      <p>Tag: {{rec.tag}}</p>
+    <p>Tag: {{rec.tag}}</p>
     <br></br>
     <p>Title: {{rec.title}}</p>
     <img ng-src="{{rec.gameData}}">
