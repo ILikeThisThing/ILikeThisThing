@@ -1,9 +1,6 @@
 html {
-  /*background: url("http://i.imgur.com/OqPzJlG.jpg") no-repeat center center fixed;*/
-  /*background-repeat: no-repeat;
-  background-position: cover;*/
-  /*background-size: cover;*/
-  }
+
+}
 
 header {
   text-align: center;
@@ -12,8 +9,6 @@ header {
 
 body {
   background: url("http://i.imgur.com/oEDQZE8.jpg") no-repeat center center fixed;
-  /*background-repeat: no-repeat;
-  background-position: cover;*/
   background-size: cover;
   text-align: left;
   padding-top: 20px;
