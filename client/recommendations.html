@@ -1,73 +1,41 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="utf-8">
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
-  <script type="text/javascript" src="recommendations.js"></script>
-  <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" />
-  <link rel="stylesheet" href="recommendations.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css" media="screen" title="no title" charset="utf-8">
-
-  <title></title>
-</head>
-
-<body>
-
   <!-- recommendations -->
-  <section id="books" class="recommendations" style="text-align: center">
-    <div class="container" ng-controller="RecController">
-      <div class="row text-center">
-        <p>
-          {{book.image}}
-          <br>
-          {{book.title}}
-          <br>
-          {{book.description}}
-          <br>
-          {{book.review}}
-        </p>
-      </div>
+  <div ng-controller="RecController">
+
+  Hello world
+  <section id="results" class="recommendations" style="text-align: center" ng-repeat="rec in recs">
+    
+    <div ng-show="rec.type = 'Books'">
+      <p>{{rec.tag}}</p>
+    <br></br>
+    <p>{{rec.title}}</p>
+    <p>{{rec.author}}</p>
+    <p>{{rec.bookData.publisher}}</p>
+    <img src="rec.bookImage">
+    <p>{{rec.bookData.pageCount}}</p>
     </div>
+
+    <div ng-show="rec.type = 'Movies'">
+      <p>{{rec.tag}}</p>
+    <br></br>
+    <p>{{rec.title}}</p>
+    <p>{{rec.director}}</p>
+    <p>{{rec.movieData.genre}}</p>
+    <img src="rec.movieImage">
+    <p>{{rec.movieData.Year}}</p>
+    </div>
+
+    <div ng-show="rec.type = 'Games'">
+      <p>{{rec.tag}}</p>
+    <br></br>
+    <p>{{rec.title}}</p>
+    <img src="rec.gameData">
+    <p>{{rec.gameData.description}}</p>
+    </div>
+   
   </section>
 
   <br>
 
-  <section id="movies" class="recommendations" style="text-align: center">
-    <div class="container" ng-controller="RecController">
-      <div class="row text-center">
-        <p>
-          {{movie.image}}
-          <br>
-          {{movie.title}}
-          <br>
-          {{movie.description}}
-          <br>
-          {{movie.review}}
-        </p>
-      </div>
-    </div>
-  </section>
 
-  <br>
+  </div>
 
-  <section id="videogames" class="recommendations" style="text-align: center">
-    <div class="container" ng-controller="RecController">
-      <div class="row text-center">
-        <p>
-          {{videoGame.image}}
-          <br>
-          {{videoGame.title}}
-          <br>
-          {{videoGame.description}}
-          <br>
-          {{videoGame.review}}
-        </p>
-      </div>
-    </div>
-  </section>
-
-</body>
-
-</html>
