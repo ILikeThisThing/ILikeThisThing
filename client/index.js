@@ -31,7 +31,7 @@ $scope.submitForm = function() {
  
  $scope.alreadyExists = function(title) {
   Globals.storeTitle(title);
-  //now show button to reroute to madlibs
+  //now reroute to madlibs
   $scope.clicked = true;
  }
 
