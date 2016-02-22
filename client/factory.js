@@ -11,6 +11,19 @@ factories.factory('Factory', function ($http) {
     })
   };
 
+  var addToDatabase = function(work) {
+    return $http({
+      method: 'POST',
+      url: '/api/works',
+      data: work, //forms user object
+    })
+    .then(function (resp){
+      console.log("added to db")
+      return resp.data
+    })
+  };
+
+
   var getMatchingTags = function (tags) {
     return $http({
       method: 'POST',
@@ -25,7 +38,8 @@ factories.factory('Factory', function ($http) {
 
    return {
     submitForm: submitForm,
-    getMatchingTags: getMatchingTags
+    getMatchingTags: getMatchingTags,
+    addToDatabase: addToDatabase
   };
 });
 
@@ -36,6 +50,7 @@ factories.factory('Globals', function(){
   //takes the title and stores it
   var storeTitle = function(newTitle){
     title = newTitle;
+    console.log('title has been stored ', title)
   }
 
   //serves up the title to controllers that need it
