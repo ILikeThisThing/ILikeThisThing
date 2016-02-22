@@ -5,7 +5,7 @@ var routes = express.Router();
 
 
 //HOW TO DEAL WITH API KEYS: set them equal to environment variables in the terminal.
-	//when working with heroku: use herokuConfig (command line interface) to manually set env variables
+//when working with heroku: use herokuConfig (command line interface) to manually set env variables
 
 
 exports.gameSearcher = function(gameName){
@@ -54,7 +54,7 @@ exports.gameSearcher = function(gameName){
 }
 
 exports.bookSearcher = function(bookName){
-	//Queries the Google Books API, returns a json object for the closest matching book
+	//Queries the Google Books API and returns an array of JSON objects - the top 10 closest matching books.
 	//NOTE: we have an API key, but this query does not require it
 
 	var formattedName = bookName.split(' ').join('+');
@@ -84,15 +84,16 @@ exports.bookSearcher = function(bookName){
 					var splitURL = imageURL.split('zoom=1');
 					splitURL[0] = splitURL[0]+'zoom=0';
 					var largeImageURL = splitURL[0]+splitURL[1];
-					//pack the new url into bookObject
+					// pack the new url into bookObject
 					// bookObject.largeImage = largeImageURL;
 
-					//NOTE: not currently using the largeImage - doesn't work for a significant number of books!
-					//substituting the original imageURL instead until a better fix is devised.
+					// NOTE: not currently using the larger image - doesn't work for a significant number of books!
+					// substituting the original imageURL instead until a better fix is devised. The front end still looks
+					// for the 'largeImage' property to grab image links, so we're hooking up imageURL to that.
 					bookObject.largeImage = imageURL;
 					
 				}
-				else {
+				else { // if no image came back for a given book, substitute a default one. (JW)
 					bookObject.largeImage = "https://pbs.twimg.com/profile_images/2601029982/profile.jpg"
 				}
 				bookObject.type = 'Books';
@@ -103,11 +104,10 @@ exports.bookSearcher = function(bookName){
 		.catch(function(err){
 			console.error('The books API failed to GET: ', err);
 		})
-		//As with Giant Bomb for games, the Google Books api isn't great at saying "I don't know." 
-		//for example, the search string 'a;lsdkjf' does not throw an error. It just sends back some 
-		//random book that starts with the letter 'a' (JW)
+		// As with Giant Bomb for games, the Google Books api isn't great at saying "I don't know." 
+		// for example, the search string 'a;lsdkjf' does not throw an error. It just sends back some 
+		// random book that starts with the letter 'a' (JW)
 
-		//Not all books have an image associated with them -- in those cases we assign a placeholder book image (JB)
 }
 
 
@@ -141,7 +141,8 @@ exports.movieSearcher = function(movieName){
 			throw new Error("The movie API failed to GET. Like, it actually pooped the bed and broke.");
 		})
 
-		//OMDB only returns a single movie - no obvious workaround. Researching other options.
+		// LIMITATION: OMDB only returns a single movie - no obvious workaround to get more than one result. Just the 
+		// way its built! Researching other alternatives.
 }
 
 
