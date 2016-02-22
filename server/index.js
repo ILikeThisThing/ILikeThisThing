@@ -106,9 +106,8 @@ routes.use(express.static(assetFolder));
       })
       .then(function(newTags){
         console.log('newTags to add', newTags);
-        if (newTags.length > 0){
-          return db.addTags(req.body, newTags)
-        }
+          return db.addTags(req.body)
+        
       })
       .then(function(added){
         console.log('before findWorks ', added)
