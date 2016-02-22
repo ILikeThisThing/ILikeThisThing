@@ -1,24 +1,6 @@
-angular.module('recommendations', [])
+angular.module('ILikeThis.recommendations', [])
 
-.controller('RecController', function($scope, $http) {
-  $scope.data = {};
-  $http.get('api/works')
-    .success(function(data) {
-      $scope.recs = data;
-    })
-    .error(function(data) {
-      console.error(error);
-    });
+.controller('RecController', function($scope, ) {
+
 })
 
-.factory('Recs', function ($http) {
-  var getAll = function () {
-    return $http({
-      method: 'POST',
-      url: '/api/works'
-    })
-    .then(function (resp) {
-      return resp.data;
-    });
-  };
-});
