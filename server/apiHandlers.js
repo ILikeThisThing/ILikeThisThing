@@ -88,7 +88,7 @@ exports.bookSearcher = function(bookName){
 					bookObject.largeImage = largeImageURL;
 				}
 				else {
-					bookObject.largeImage = "http://pngimg.com/upload/book_PNG2111.png"
+					bookObject.largeImage = "https://pbs.twimg.com/profile_images/2601029982/profile.jpg"
 				}
 				bookObject.type = 'Books';
 			})
