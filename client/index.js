@@ -18,7 +18,7 @@ $scope.submitForm = function() {
       // this callback will be called asynchronously
       // when the response is available
       console.log(response);
-    
+      helperFunction
       //run helper function that populates new divs with response data
 
     }, function errorCallback(response) {
@@ -31,7 +31,7 @@ $scope.submitForm = function() {
 
 var helperFunction = function() {
   if ($scope.data[0].type === 'Movies') {
-      for (i = 0; i < $scope.data.length; i ++) {
+      for (var i = 0; i < $scope.data.length; i ++) {
         if ($scope.data[i].database) {
           var title = $scope.data[i].title;
           var image = $scope.data[i].poster;
@@ -49,7 +49,7 @@ var helperFunction = function() {
 
 
     } else if($scope.data[0].type === 'Books') {
-      for (i = 0; i < $scope.data.length; i ++) {
+      for (var i = 0; i < $scope.data.length; i ++) {
         if ($scope.data[i].database) {
           var title = $scope.data[i].title;
           var image = $scope.data[i].largeImage;
@@ -67,7 +67,7 @@ var helperFunction = function() {
 
 
     } else if ($scope.data[0].type === 'Games') {
-      for (i = 0; i < $scope.data.length; i ++) {
+      for (var i = 0; i < $scope.data.length; i ++) {
         if ($scope.data[i].database) {
           var title = $scope.data[i].name;
           var image = $scope.data[i].largeImage;
