@@ -2,7 +2,7 @@
 var app = angular.module('ILikeThis.homepage', []);
 
 
-app.controller('RequestController', function($scope, Factory) {
+app.controller('RequestController', function($scope, Factory, Globals) {
 
 //different types to populate the dropdown menu
 $scope.types = ['Books', 'Movies', 'Games'];
@@ -21,33 +21,34 @@ $scope.submitForm = function() {
       console.log(response);
       if (typeof response.data === "object") {
         response.data = [response.data];
-    .then(
-      titleGrabber(result))
-      }
+    // .then(
+    //   titleGrabber(result))
+    //   }
 
       $scope.results = response.data;
       // helperFunction();
       //run helper function that populates new divs with response data
 
-    }, function errorCallback(response) {
+    } function errorCallback(response) {
       // called asynchronously if an error occurs
       // or server returns response with an error status.
+    };
     });
-    }
 
- $scope.titleGrabber = function(result) {
-    if (result.type === 'Movies') {
-      var title = result.title;
+ // $scope.titleGrabber = function(result) {
+ //    if (result.type === 'Movies') {
+ //      var title = result.title;
 
-    } else if (result.type === 'Books') {
-      var title = result.title;
+ //    } else if (result.type === 'Books') {
+ //      var title = result.title;
 
-    } else if (result.type === 'Games') {
-      var title = result.name;
-    }
-    return title;
- }
- });
+ //    } else if (result.type === 'Games') {
+ //      var title = result.name;
+ //    }
+ //    return title;
+ // }
+ };
+});
 
 
 
@@ -78,7 +79,8 @@ $scope.submitForm = function() {
 
 
 
-
+// call Globals.storeTitle or something add pass confirmed 
+// title in when user confirms work
 
 
 

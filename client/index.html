@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html ng-app="ILikeThis">
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-route.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
-
-    
-
-
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+    <script src="app.js"></script>
+    <script src="factory.js"></script>
+    <script src="madLibs.js"></script>
+    <script src="recommendations.js"></script>
     <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css"/>
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css" media="screen" title="no title" charset="utf-8">
@@ -50,26 +50,49 @@
 
 <ul ng-class="results">
     <li ng-repeat="result in results">
-        <div>{{title}}</div>
-        <!-- <div>{{result.type}}</div> -->
-        <div ng-hide="$scope.data[0].type='Games'">{{person}}</div>
-        <div>{{date}}</div>
-<!--          <div class="procedure-details" ng-show="showDetails">
-            <p>Type: {{type}}</p>
-            <p>Title: {{title}}</p>
-            <p>Author/Director: {{person}}
-            <p>Year: {{year}}</p>
-         </div> -->
+      <!-- title for books -->
+      <div ng-hide="result.type === 'Books'">{{result.Title}}</div>
+      <div ng-hide="result.type === 'Books'">{{result.name}}</div>
+      <div ng-show="result.type === 'Books'">Title: {{result.title}}</div>
+
+      <!-- title for movies -->
+      <div ng-hide="result.type === 'Movies'">{{result.title}}</div>
+      <div ng-hide="result.type === 'Movies'">{{result.name}}</div>
+      <div ng-show="result.type === 'Movies'">Title: {{result.Title}}</div>
+
+      <!-- title for games -->
+      <div ng-hide="result.type='Games'">{{result.title}}</div>
+      <div ng-hide="result.type='Games'">{{result.Title}}</div>
+      <div ng-show="result.type='Games'">Title: {{result.name}}</div>
+
+      <!-- person for books -->
+      <div ng-hide="result.type === 'Books'">{{result.director}}</div>
+      <div ng-show="result.type === 'Books'">Author: {{result.authors[0]}}</div>
+
+      <!-- person for movies -->
+      <div ng-hide="result.type === 'Movies'">{{result.authors}}</div>
+      <div ng-show="result.type === 'Movies'">Director: {{result.director}}</div>
+
+      <!-- person for games -->
+      <div ng-hide="result.type='Games'">{{result.director}}</div>
+      <div ng-hide="result.type='Games'">{{result.authors}}</div>
+       
+      <!-- date for books -->
+      <div ng-hide="result.type === 'Books'">{{result.Year}}</div>
+      <div ng-hide="result.type === 'Books'">{{result.original_release_date}}</div>
+      <div ng-show="result.type === 'Books'"> Published: {{result.publishedDate}}</div>
+
+      <!-- date for movies -->
+      <div ng-hide="result.type === 'Movies'">{{result.publishedDate}}</div>
+      <div ng-hide="result.type === 'Movies'">{{result.original_release_date}}</div>
+      <div ng-show="result.type === 'Movies'">Released: {{result.Year}}</div>
+
+      <!-- date  for games -->
+      <div ng-hide="result.type='Games'">{{result.Year}}</div>
+      <div ng-hide="result.type='Games'">{{result.publishedDate}}</div>
+      <div ng-show="result.type='Games'">Released: {{result.original_release_date}}</div>
     </li>
 </ul>
-
-<div ng-view> </div>
-
-<script src="index.js"></script>
-<script src="app.js"></script>
-<script src="factory.js"></script>
-<script src="madLibs.js"></script>
-<script src="recommendations.js"></script>
 
 </body>
 </div>
