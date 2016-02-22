@@ -58,7 +58,14 @@ See [CONTRIBUTING.md](https://github.com/unexpected-lion/ourglass/blob/master/co
 
 ## Suggestions for Future Features
 
-- Improvement for recommendations: sort results in order of the number of tags they have in common with the user's submission. Not much more work is required for this, and it would drastically improve accuracy.
-- We would have liked to be able to search just by tag aswell -- (This would be a relatively simple database call)
-- A more complex algorithim to display results to the user -- you could sort by how many times a given work is returned from the database (as in how many tags it matched) -- currently the number of times a given work (say Harry Potter) has been given a certain tag (say Genre-Fantasy) is kept track of and stored in the database.
+- Front end needs a lot of love. (Back end, however, is already ready for a lot more functionality.)
+- have recommended works only appear once, listing the tags that matched.
+	- current behavior: works are listed once for every matching tag, resulting in multiple listings of the same work.
+- improve sorting of recommendations:
+	- quick change (v1): sort results in order of the number of tags they have in common with the user's submission. minimal work required from what already exists, but huge improvements in accuracy.
+	- deeper change (v2): A more complex algorithim to display results to the user -- you could sort by how many times a given work is returned from the database (as in how many tags it matched) -- currently the number of times a given work (say Harry Potter) has been given a certain tag (say Genre-Fantasy) is kept track of and stored in the database.
+- allow searching by tag (action, quirky characters, etc.), not just by work and tags provided.
+- allow searching by work without providing any information about that work - just using information already stored for it in the db.
 - Add more media types -- we would have liked to include boardgames and, more abstractly, music (how interesting would it be to be recommended certain albums because you liked a particular book!)
+- Add user accounts/auth. Favoriting, automated recommendations based on previous search history, etc.
+
