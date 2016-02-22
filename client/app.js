@@ -17,7 +17,3 @@ angular.module('ILikeThis', [
 			controller: 'RecController'
 		})
 }])
-
-.controller('TitleSaver', function($scope) {
-	var title = $scope.userInput.title;
-})
