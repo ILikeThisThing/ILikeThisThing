@@ -45,6 +45,7 @@
 <body>
 
 <ul ng-hide="clicked">
+    <h4 ng-show="results[0].workNotFound === true">Ruh Roh! You don't like that thing. You know why? Because it doesnt EXIST, you stupid idiot. Try searching for something else!</h4>
     <div class="question" ng-show="results.length > 1">Sweet. Just so we're sure, which of these works did you mean?</div>
     <br>
 
