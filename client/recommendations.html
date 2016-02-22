@@ -3,7 +3,7 @@
   <form name="filter">
   <input placeholder="Filter by tag" type="text" ng-model="searchRecs">
   </form>
-  <section id="results" class="recommendations" style="text-align: center" ng-repeat="rec in recs | filter:searchRecs">
+  <section id="results" class="recommendations" style="text-align: center" ng-repeat="rec in recs | filter:searchRecs | orderBy: '-count'">
     <div ng-show="rec.type === 'Books'">
     <p>Tag: {{rec.tag}}</p>
     <br></br>
