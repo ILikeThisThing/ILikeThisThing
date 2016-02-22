@@ -1,7 +1,8 @@
-var app = angular.module('myApp', []);
+
+var app = angular.module('ILikeThis.homepage', []);
 
 
-app.controller('RequestController', function($scope, $http) {
+app.controller('RequestController', function($scope, Factory) {
 
 //different types to populate the dropdown menu
 $scope.types = ['Books', 'Movies', 'Games'];
@@ -13,78 +14,65 @@ $scope.userInput = {
 };
 
 $scope.submitForm = function() {
-  return $http({
-    method: 'POST',
-    url: '/api/searchworks',
-    data: $scope.userInput, //forms user object
-  })
-  .then(function successCallback(response) {
-    // this callback will be called asynchronously
-    // when the response is available
-    console.log(response);
-    var data = response.data;
-    return data;
-    console.log(data);
-
+  Factory.submitForm($scope.userInput)
+    .then(function successCallback(response) {
+      // this callback will be called asynchronously
+      // when the response is available
+      console.log(response);
     
+      //run helper function that populates new divs with response data
 
-    if (/*database flag*/ && $scope.data.type === 'Movies') {
-      for (i = 0; i < $scope.data.length; i ++) {
-        $scope.data[i].title = title;
-        $scope.data[i].poster = image;
-        $scope.data[i].director = person;
-      }
-
-    } else if (/*!database flag*/ && $scope.data.type === 'Movies') {
-        for (i = 0; i < $scope.data.length; i ++) {
-        $scope.data[i].title = title;
-        $scope.data[i].poster = image;
-        $scope.data[i].director = person;
-      }
-
-    } else if(/*database flag*/ && $scope.data.type === 'Books') {
-      for (i = 0; i < $scope.data.length; i ++) {
-        $scope.data[i].title = title;
-        $scope.data[i].largeImage = image;
-        $scope.data[i].authors[0] = person; //need to deal with instances where multiple authors
-      }
-
-    } else if (/*!database flag*/ && $scope.data.type === 'Books') {
-      for (i = 0; i < $scope.data.length; i ++) {
-        $scope.data[i].title = title;
-        $scope.data[i].largeImage = image;
-        $scope.data[i].authors[0] = person; //need to deal with instances where multiple authors
-      }
-
-    } else if (/*database flag*/ && $scope.data.type === 'Games') {
-      for (i = 0; i < $scope.data.length; i ++) {
-        $scope.data[i].name = title;
-        $scope.data[i].largeImage = image;
-        $scope.data[i].original_release_date = date
-      }
-
-    } else if (/*!database flag*/ && $scope.data.type === 'Games') {
-      for (i = 0; i < $scope.data.length; i ++) {
-        $scope.data[i].name = title;
-        $scope.data[i].image = image;
-        $scope.data[i].original_release_date = date
-      }
-    };
-  }, function errorCallback(response) {
-    // called asynchronously if an error occurs
-    // or server returns response with an error status.
+    }, function errorCallback(response) {
+      // called asynchronously if an error occurs
+      // or server returns response with an error status.
+    });
+    }
   });
-  return data;
-  }
-});
 
 
-// app.directive('initialResults', function() {
-//   return {
-//     restrict: 'E',
-//     templateUrl: 'initialResults.html'
-//   }
-// })
+// var helperFunction = function() {
+//   if ($scope.data[0].type === 'Movies') {
+//       for (i = 0; i < $scope.data.length; i ++) {
+//         if ($scope.data[i].database) {
+//           $scope.data[i].title = title;
+//           $scope.data[i].poster = image;
+//           $scope.data[i].director = person;
+
+//         } else //if (!$scope.data[i].database) {
+//           $scope.data[i].title = title;
+//           $scope.data[i].poster = image;
+//           $scope.data[i].director = person;
+//       }}
+
+
+//     } else if($scope.data[0].type === 'Books') {
+//       for (i = 0; i < $scope.data.length; i ++) {
+//         if ($scope.data[i].database) {
+//           $scope.data[i].title = title;
+//           $scope.data[i].largeImage = image;
+//           $scope.data[i].authors[0] = person; //need to deal with instances where multiple authors
+        
+//         } else //if (!$scope.data[i].database) {
+//             $scope.data[i].title = title;
+//             $scope.data[i].largeImage = image;
+//             $scope.data[i].authors[0] = person; //need to deal with instances where multiple authors
+//           }
+
+
+//     } else if ($scope.data[0].type === 'Games') {
+//       for (i = 0; i < $scope.data.length; i ++) {
+//         if ($scope.data[i].database) {
+//           $scope.data[i].name = title;
+//           $scope.data[i].largeImage = image;
+//           $scope.data[i].original_release_date = date
+        
+//         } else //if (!$scope.data[i].database) {
+//         $scope.data[i].name = title;
+//         $scope.data[i].image = image;
+//         $scope.data[i].original_release_date = date
+//       }
+//     }
+//   };
 
 //make each image or title selectable and on click send them to that results page...
 
