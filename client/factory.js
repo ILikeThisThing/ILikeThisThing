@@ -75,7 +75,7 @@ factories.factory('Globals', function(){
     console.log('storing indiv ', clicked)
     indiv = clicked;
   }
-
+  //returns the clicked on rec
   var returnIndiv = function(){
     console.log('returning indiv ', indiv)
     return indiv;

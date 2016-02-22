@@ -10,5 +10,7 @@ angular.module('ILikeThis.recommendations', [])
   	Globals.storeIndiv(rec)
 
   	$location.path('/individual')
-  } 
+  }
+
+
 })

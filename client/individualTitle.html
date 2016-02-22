@@ -1,10 +1,10 @@
 <div ng-controller='IndivController'>
-  
+  Hello World
   <section id="results" class="individual" style="text-align: center">
     <div ng-show="work.type === 'Books'">
     <p>Tag: {{work.tag}}</p>
     <br></br>
-    <p>Title: <button ng-click="seeMore(work)">{{work.title}}</button></p>
+    <p>Title: {{work.title}}</p>
     <p>Author(s): {{work.author}}</p>
     <p>Publisher: {{work.bookData.publisher}}</p>
     <img ng-src="{{work.bookImage}}">
@@ -14,8 +14,8 @@
     <div ng-show="work.type === 'Movies'">
     <p>Tag: {{work.tag}}</p>
     <br></br>
-    <p>Title: <button ng-click="seeMore(work)">{{work.title}}</button></p>
-    <p>Director: {{work.diworktor}}</p>
+    <p>Title: {{work.title}}</p>
+    <p>Director: {{work.director}}</p>
     <p>Genre(s): {{work.movieData.genre}}</p>
     <img ng-src="{{work.movieImage}}">
     <p>Year: {{work.movieData.Year}}</p>
@@ -24,7 +24,7 @@
     <div ng-show="work.type === 'Games'">
     <p>Tag: {{work.tag}}</p>
     <br></br>
-    <p>Title: <button ng-click="seeMore(work)">{{work.title}}</button></p>
+    <p>Title: {{work.title}}</p>
     <img ng-src="{{work.gameData.largeImage}}">
     <p>{{work.gameData.deck}}</p>
     </div>

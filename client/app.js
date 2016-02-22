@@ -15,12 +15,12 @@ angular.module('ILikeThis', [
 		})
 		//for recommendations
 		.when('/recommendations', {
-			templateUrl: 'recommendations.html',
+			templateUrl: '/recommendations.html',
 			controller: 'RecController'
 		})
 		//for individual recommendation
 		.when('/individual', {
-			templateUrl: 'individualTite.html',
+			templateUrl: '/individualTitle.html',
 			controller: 'IndivController'
 		})
 }])
