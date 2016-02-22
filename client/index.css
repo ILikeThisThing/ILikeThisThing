@@ -18,6 +18,10 @@ body {
   padding-left: 20px;
 }
 
+h4 {
+  text-align: center;
+}
+
 .question {
   color: red;
   font-size: 120%;
