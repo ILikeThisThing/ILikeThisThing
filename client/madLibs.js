@@ -1,4 +1,4 @@
-angular.module('MyApp', [])
+angular.module('ILikeThis.MadLibs', [])
 
 .controller('TagController', function($scope, $http, ILikeThis) {
   $scope.themes = ['Theme-Dark/macabre', 'Theme-Absurdist', 'Theme-Existential'];
@@ -9,4 +9,3 @@ angular.module('MyApp', [])
     return ILikeThis.getMatchingTags($scope.userInput);
   };
 });
-};
