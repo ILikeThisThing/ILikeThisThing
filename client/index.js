@@ -29,11 +29,6 @@ $scope.submitForm = function() {
   };
  
  $scope.alreadyExists = function(title) {
-<<<<<<< HEAD
-  // var title = //gets the value of the clicked thing
-  console.log('Inside alreadyExists ', title)
-=======
->>>>>>> 40829652f871927d71dc5dea6fd76d345456db97
   Globals.storeTitle(title);
   //now show button to reroute to madlibs
   $scope.clicked = true;
