@@ -58,6 +58,8 @@ See [CONTRIBUTING.md](https://github.com/unexpected-lion/ourglass/blob/master/co
 ## Suggestions for Future Features
 
 - Front end needs a lot of love. (Back end, however, is relatively complete and ready for new features.)
+	- You could render D3 graphs (perhaps a word cloud of tagNames) in the individual results page
+	- Either more work could be done in raw CSS or transfer more fully into Bootstrap or another front end framework
 - Have recommended works only appear once, listing the tags that matched.
 	- Current behavior: Works are listed once for every matching tag, resulting in multiple listings of the same work.
 - Improve sorting of recommendations:
