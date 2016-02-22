@@ -77,6 +77,7 @@ factories.factory('Globals', function(){
   }
 
   var returnIndiv = function(){
+    console.log('returning indiv ', indiv)
     return indiv;
   }
 

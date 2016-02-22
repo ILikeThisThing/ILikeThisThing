@@ -28,5 +28,4 @@ exports.seed = function(knex, Promise) {
   	console.error('tags have already been added ', err.message)
   })
 };
- 
- 
+
