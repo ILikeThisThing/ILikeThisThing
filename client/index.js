@@ -6,7 +6,7 @@ app.controller('RequestController', function($scope, Factory, Globals) {
 
 //different types to populate the dropdown menu
 $scope.types = ['Books', 'Movies', 'Games'];
-
+$scope.clicked = false;
 //create an empty object to store form data
 $scope.userInput = {
   title: '',
@@ -29,8 +29,11 @@ $scope.submitForm = function() {
   };
  
  $scope.alreadyExists = function(title) {
-  console.log('Inside alreadyExists ')
+  // var title = //gets the value of the clicked thing
+  console.log('Inside alreadyExists ', title)
   Globals.storeTitle(title);
+  //now show button to reroute to madlibs
+  $scope.clicked = true;
  }
 
 
@@ -40,7 +43,12 @@ $scope.addToDb = function(apiResp) {
   Factory.addToDatabase(apiResp)
   .then(function(res){
     console.log('database response', res)
+    //now show button to reroute to madlibs
+    Globals.storeTitle(res.title)
+    $scope.clicked = true;
+
   })
+
  }
 
 

@@ -5,10 +5,7 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
     <script type="text/javascript" src="index.js"></script>
-    <script src="app.js"></script>
-    <script src="factory.js"></script>
-    <script src="madLibs.js"></script>
-    <script src="recommendations.js"></script>
+   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-route.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css"/>
     <link rel="stylesheet" href="index.css">
@@ -47,14 +44,15 @@
 
 <body>
 
-<ul>
     <div class="question" ng-show="results.length > 1">Sweet. Just so we're sure, which of these works did you mean?</div>
     <br>
+<ul ng-hide="clicked">
+
     <li ng-repeat="result in results">
     <span class="individualResult">
       <div class="inDbAlready" ng-show="result.database === 'true'">
       <!-- title for books -->
-      <div>Title: <button ng-click="alreadyExists(result.title)">{{result.title}}</button></div>
+      <div>Title: <a href="#/tags"><button ng-click="alreadyExists(result.title)">{{result.title}}</button></a></div>
 
       <!-- person for books -->
       <div ng-show="result.data.type === 'Books'">Author: {{result.author}}</div>
@@ -76,13 +74,13 @@
 
       <div class="notInDbYet" ng-hide="result.database === 'true'">
          <!-- title for books -->
-      <div ng-show="result.type === 'Books'">Title: <button ng-click="addToDb(result)"> {{result.title}}</button></div>
+      <div ng-show="result.type === 'Books'">Title: <a href="#/tags"><button ng-click="addToDb(result)"> {{result.title}}</button></a></div>
 
       <!-- title for movies -->
-      <div ng-show="result.type === 'Movies'">Title: <button ng-click="addToDb(result)">{{result.Title}}</button></div>
+      <div ng-show="result.type === 'Movies'">Title: <a href="#/tags"><button ng-click="addToDb(result)">{{result.Title}}</button></a></div>
 
       <!-- title for games -->
-      <div ng-show="result.type === 'Games'">Title: <button ng-click="addToDb(result)">{{result.name}}</button></div>
+      <div ng-show="result.type === 'Games'">Title:<a href="#/tags"><button ng-click="addToDb(result)">{{result.name}}</button></a></div>
 
       <!-- person for books -->
       <div ng-show="result.type === 'Books'">Author: {{result.authors}}</div>
@@ -103,6 +101,12 @@
     </span>
     </li>
 </ul>
+ <script src="app.js"></script>
+ <script src="factory.js"></script>
+ <script src="madLibs.js"></script>
+ <script src="recommendations.js"></script>
+
+<div ng-view></div>
 
 </body>
 </div>

@@ -1,6 +1,6 @@
 angular.module('ILikeThis.MadLibs', [])
 
-.controller('TagController', function($scope, $http, Factory, Globals) {
+.controller('TagController', function($scope, $http, $location, Factory, Globals) {
 
   $scope.themes = ['Theme-Dark/macabre', 'Theme-Absurdist', 'Theme-Existential'];
   $scope.characters = ['Characters-Quirky', 'Characters-Smart', 'Characters-Funny'];
@@ -13,6 +13,7 @@ angular.module('ILikeThis.MadLibs', [])
   	for (var prop in inputs){
   		tagsArr.push(inputs[prop])
   	}
+  	console.log('Inside reqMaker')
   	var newTitle = Globals.returnTitle();
   	return {title: newTitle, tags: tagsArr}
   }
@@ -23,7 +24,12 @@ angular.module('ILikeThis.MadLibs', [])
     return Factory.getMatchingTags(request)
     .then(function(resp){
     	console.log('response from submitForm ', resp)
-    	Globals.storeRecs(resp)
+    	return Globals.storeRecs(resp)
+    })
+    .then(function(){
+    	$location.path('/recommendations');
     });
   };
 });
+// $window.location.href('/#/recommendations');
+//    	$location.path('/#/recommendations');
