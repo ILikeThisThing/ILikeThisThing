@@ -9,7 +9,7 @@ exports.seed = function(knex, Promise) {
     knex('Tags').insert([{tag: 'Theme-Dark/macabre'}, {tag: 'Theme-Absurdist'}, {tag: 'Theme-Existential'},
     	{tag: 'Theme-Happy-Go-Lucky'}, {tag: 'Theme-Dystopian'}, {tag: 'Theme-Utopian'}, {tag: 'Theme-Beauty/Wonderment'},
     	{tag: 'Theme-Weird'}, {tag: 'Theme-Goofy'}, {tag: 'Writing Style-Stream of Consciousness'}, {tag: 'Writing Style-Vignette'},
-    	{tag: 'Time Period-Present Day'}, {tag: 'Time Period-Victorian era'}, {tag: 'Time Period-Medieval times'}, {tag: 'Time Period-Prehistoric times'}, {tag: 'Genre-Action'},
+    	{tag: 'Time Period-Present Day'}, {tag: 'Time Period-1800s'}, {tag: 'Time Period-Medieval times'}, {tag: 'Time Period-Prehistoric times'}, {tag: 'Genre-Action'},
     	{tag: 'Genre-Adventure'}, {tag: 'Genre-Comedy'}, {tag: 'Genre-Crime'}, {tag: 'Genre-Fantasy'}, {tag: 'Genre-Horror'}, {tag: 'Genre-Musical'}, 
     	{tag: 'Genre-Mystery'}, {tag: 'Genre-Political'}, {tag: 'Genre-Romance'}, {tag: 'Genre-Satire'}, {tag: 'Genre-Science Fiction'}, 
     	{tag: 'Genre-Thriller'}, {tag: 'Genre-Western'}, {tag: 'So-Bad-its-Good'}, {tag: "Theme-Philosophy"}, {tag: "Theme-Programming"}, {tag: "Time Period-Time Travel"},
@@ -20,8 +20,11 @@ exports.seed = function(knex, Promise) {
       {tag: 'Costuming-Minimalist'}, {tag: 'Cinematography'}, {tag: 'Setting-Outer Space'}, {tag: 'Setting-New York'}, {tag: 'Setting-Texas'}, {tag: 'Setting-Fantasy world'}, 
       {tag: 'Setting-Space Station'}, {tag: 'Setting-Europe'}, {tag: 'Setting-Asia'}, {tag: 'Setting-North America'}, {tag: 'Setting-South America'}, {tag: 'Setting-Australia'}, {tag: 'Setting-Antarctica'},
       {tag: 'Characters-Quirky'}, {tag: 'Characters-Smart'}, {tag: 'Characters-Funny'}, {tag: 'Characters-Hopelessly Incompetant'}, {tag: 'Characters-Pothead'}, {tag: 'Characters-Tortured'},
-      {tag: 'Characters-Romantic'}, {tag: 'Characters-Optimistic'}, {tag: 'Characters-Pessimistic'}])
+      {tag: 'Characters-Romantic'}, {tag: 'Characters-Optimistic'}, {tag: 'Characters-Pessimistic'}, {tag: 'Time Period-Antiquity'}, {tag: 'Time Period-World War I'}, {tag: 'Time Period-World War II'}, 
+      {tag: 'Time Period-The Great Depression'}, {tag: 'Time Period-Civil War'}, {tag: 'Time Period-Mid-20th-Century'}])
   ).catch(function(err){
   	console.error('tags have already been added ', err.message)
   })
 };
+
+

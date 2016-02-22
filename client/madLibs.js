@@ -11,7 +11,8 @@ angular.module('ILikeThis.MadLibs', [])
   $scope.genres = ['Genre-Action', 'Genre-Adventure', 'Genre-Comedy', 'Genre-Crime', 'Genre-Fantasy', 'Genre-Horror', 'Genre-Musical', 
   'Genre-Mystery', 'Genre-Political', 'Genre-Romance', 'Genre-Satire', 'Genre-Science Fiction', 'Genre-Thriller', 'Genre-Western'];
   $scope.writingStyle = ['Writing Style-Stream of Consciousness', 'Writing Style-Vignette'];
-  $scope.time = ['Time Period-Present Day', 'Time Period-Victorian era', 'Time Period-Medieval times', 'Time Period-Prehistoric times', 'Time Period-Time Travel'];
+  $scope.time = ['Time Period-Present Day', 'Time Period-1800s', 'Time Period-Medieval times', 'Time Period-Prehistoric times', 'Time Period-Time Travel', 'Time Period-Antiquity',
+  'Time Period-World War I', 'Time Period-World War II', 'Time Period-The Great Depression', 'Time Period-Civil War', 'Time Period-Mid-20th-Century'];
   $scope.quirky = ['Cult Classic', 'Gorey', 'Campy', 'So-Bad-its-Good'];
   $scope.other = ['Family-Friendly', 'Gay/Lesbian', 'Cinematography'];
   $scope.artStyle = ['Art Style-Full Color', 'Art Style-Claymation', 'Art Style-Stop-Motion', 'Art Style-Pen and Ink', 'Art Style-CGI'];
