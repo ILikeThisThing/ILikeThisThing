@@ -22,7 +22,6 @@ routes.use(express.static(assetFolder));
         //puts result into response
       })
       //if we don't have this work, make a call to the api:
-      //*** EVERYTHING HERE to END OF .CATCH STILL NEEDS TESTING! ***
       .catch(function(error){
         if (error.message === 'No such work found'){
           switch (workType){
@@ -55,7 +54,6 @@ routes.use(express.static(assetFolder));
                 })
               break;
             case "Books":
-              //call the book handler
               api.bookSearcher(workTitle)
                 .then(function(bookData){
                     res.status(200).send(bookData);
@@ -79,8 +77,9 @@ routes.use(express.static(assetFolder));
 //rest of flow: 
     //1) server sends response
     //2) client confirms with user.
+    //3) Client sends POST to api/works
     //3) user supplies tags
-    //4) client POSTs to api/works
+    //4) client POSTs to api/tags
 
 //POST api/works --> gets called if the work doesn't exist in database already AFTER api lookup has been done
   routes.post('/api/works', function(req, res){
@@ -152,6 +151,3 @@ if(process.env.NODE_ENV !== 'test') {
   // We're in test mode; make this file importable instead.
   module.exports = routes;
 }
-
-
-// db.addWork({'title':'Bud, Not Buddy', 'type':'Books'});
