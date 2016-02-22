@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html ng-app="ILikeThis.homepage">
+<html ng-app="ILikeThis">
 <head>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
     <script type="text/javascript" src="index.js"></script>
+    <script src="app.js"></script>
+    <script src="factory.js"></script>
+    <script src="madLibs.js"></script>
     <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css"/>
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css" media="screen" title="no title" charset="utf-8">
 </head>
 
+<div ng-app="ILikeThis.homepage">
  <header id="top" class="header" style="text-align: center">
     <h1>I LIKE THIS</h1>
     <h3>Find your new favorite book, movie, or videogame!</h3>
@@ -36,13 +40,14 @@
    <!--    <span>{{userInput}}</span> -->
     </form>
  </header>
+
 <body>
   <!-- with angular, create an "is this the title you meant?" pop-up or drop-down or something (even an alternate page if need be for now)
 
   then create the same thing but for if a work couldn't be found at all -->
 
 <ul class="results">
-    <li ng-repeat="result in results | filter:query | orderBy:orderProp">
+    <!-- <li ng-repeat="result in results | filter:query | orderBy:orderProp">
         <h4><a href="#" ng-click="showDetails = ! showDetails">{{procedure.definition}}</a></h4>
          <div class="procedure-details" ng-show="showDetails">
             <p>Type: {{type}}</p>
@@ -50,8 +55,9 @@
             <p>Author/Director: {{person}}
             <p>Year: {{year}}</p>
          </div>
-    </li>
+    </li> -->
 </ul>
 
 </body>
+</div>
 </html>

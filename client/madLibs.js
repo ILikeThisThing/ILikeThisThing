@@ -9,4 +9,3 @@ angular.module('ILikeThis.MadLibs', [])
     return ILikeThis.getMatchingTags($scope.userInput);
   };
 });
-};
