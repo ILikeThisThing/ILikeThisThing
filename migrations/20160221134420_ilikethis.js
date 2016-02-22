@@ -9,39 +9,39 @@ exports.up = function(knex, Promise) {
 			}),
 		
 			knex.schema.createTableIfNotExists('Books', function(table){
-				table.integer('id')//.references('id').inTable('Works').unique();
+				table.integer('id').references('id').inTable('Works').unique();
 				table.string('title');
 				table.string('author');
 				table.string('image');
 				table.json('data');
-				table.boolean('database');
+				table.string('database');
 			}),
 		
 			knex.schema.createTableIfNotExists('Movies', function(table){
-				table.integer('id')//.references('id').inTable('Works').unique();
+				table.integer('id').references('id').inTable('Works').unique();
 				table.string('title');
 				table.string('director');
 				table.string('image');
 				table.json('data');
-				table.boolean('database');
+				table.string('database');
 			}),
 		
 			knex.schema.createTableIfNotExists('Games', function(table){
-				table.integer('id')//.references('id').inTable('Works').unique();
+				table.integer('id').references('id').inTable('Works').unique();
 				table.string('title');
 				table.string('image');
 				table.json('data');
-				table.boolean('database');
+				table.string('database');
 			}),
 		
 			knex.schema.createTableIfNotExists('Tags', function(table){
 				table.increments('id').primary();
-				table.string('tag')//.unique();
+				table.string('tag').unique();
 			}),
 		
 			knex.schema.createTableIfNotExists('WorkTag', function(table){
-				table.integer('tag_id')//.references('id').inTable('Tags');
-				table.integer('work_id')//.references('id').inTable('Works');
+				table.integer('tag_id').references('id').inTable('Tags');
+				table.integer('work_id').references('id').inTable('Works');
 				table.integer('count');
 				table.unique(['tag_id', 'work_id']);
 			})
