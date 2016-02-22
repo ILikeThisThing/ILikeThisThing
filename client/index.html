@@ -14,12 +14,13 @@
 </head>
 
 <div ng-app="ILikeThis.homepage">
+<div ng-controller="RequestController as request">
  <header id="top" class="header" style="text-align: center">
     <h1>I LIKE THIS</h1>
     <h3>Find your new favorite book, movie, or videogame!</h3>
     <br>
 
-    <form name="titleAndTypeSubmissionForm" ng-controller="RequestController as request" novalidate>
+    <form name="titleAndTypeSubmissionForm" novalidate>
         <!-- add an ajax request that routes through the AlreadyIncludedCheck on submission -->
    <!--  <div class="form-group"> -->
       <input type="text"
@@ -49,16 +50,16 @@
 
 <ul ng-class="results">
     <li ng-repeat="result in results">
-        <div>{{title}}</div>
-        <div>{{type}}</div>
+        <div>{{result.title}}</div>
+        <!-- <div>{{result.type}}</div> -->
         <div ng-hide="$scope.data[0].type='Games'">{{person}}</div>
         <div>{{date}}</div>
-         <div class="procedure-details" ng-show="showDetails">
+<!--          <div class="procedure-details" ng-show="showDetails">
             <p>Type: {{type}}</p>
             <p>Title: {{title}}</p>
             <p>Author/Director: {{person}}
             <p>Year: {{year}}</p>
-         </div>
+         </div> -->
     </li>
 </ul>
 
@@ -71,5 +72,6 @@
 <script src="recommendations.js"></script>
 
 </body>
+</div>
 </div>
 </html>
