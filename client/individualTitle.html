@@ -1,33 +1,33 @@
 <div ng-controller='IndivController'>
   <section id="results" class="individual" style="text-align: center">
     <div ng-show="work.type === 'Books'">
-    <p class="madLabel">Tag: {{work.tag}}</p>
+    <p class="shadowText">Tag: {{work.tag}}</p>
     <br></br>
-    <p class="madLabel">Title: {{work.title}}</p>
-    <p class="madLabel">Author(s): {{work.author}}</p>
-    <p class="madLabel">Publisher: {{work.bookData.publisher}}</p>
-    <a class="madLabel" ng-href="{{work.bookData.infoLink}}"><img class="cover" ng-src="{{work.bookImage}}"></a>
-    <p class="madLabel">Pages: {{work.bookData.pageCount}}</p>
-    <p class="madLabel">Description: {{work.bookData.description}}</p>
+    <p class="shadowText">Title: {{work.title}}</p>
+    <p class="shadowText">Author(s): {{work.author}}</p>
+    <p class="shadowText">Publisher: {{work.bookData.publisher}}</p>
+    <a class="shadowText" ng-href="{{work.bookData.infoLink}}"><img class="cover" ng-src="{{work.bookImage}}"></a>
+    <p class="shadowText">Pages: {{work.bookData.pageCount}}</p>
+    <p class="shadowText">Description: {{work.bookData.description}}</p>
     </div>
 
     <div ng-show="work.type === 'Movies'">
-    <p class="madLabel">Tag: {{work.tag}}</p>
+    <p class="shadowText">Tag: {{work.tag}}</p>
     <br></br>
-    <p class="madLabel">Title: {{work.title}}</p>
-    <p class="madLabel">Director: {{work.director}}</p>
-    <p class="madLabel">Genre(s): {{work.movieData.genre}}</p>
-    <a class="madLabel" ng-href="http://www.imdb.com/title/{{work.movieData.imdbID}}"><img class="cover" ng-src="{{work.movieImage}}"></a>
-    <p class="madLabel">Year: {{work.movieData.Year}}</p>
-    <p class="madLabel">Description: {{work.movieData.plot}}</p>
+    <p class="shadowText">Title: {{work.title}}</p>
+    <p class="shadowText">Director: {{work.director}}</p>
+    <p class="shadowText">Genre(s): {{work.movieData.genre}}</p>
+    <a class="shadowText" ng-href="http://www.imdb.com/title/{{work.movieData.imdbID}}"><img class="cover" ng-src="{{work.movieImage}}"></a>
+    <p class="shadowText">Year: {{work.movieData.Year}}</p>
+    <p class="shadowText">Description: {{work.movieData.plot}}</p>
     </div>
 
     <div ng-show="work.type === 'Games'">
-    <p class="madLabel">Tag: {{work.tag}}</p>
+    <p class="shadowText">Tag: {{work.tag}}</p>
     <br></br>
-    <p class="madLabel">Title: {{work.title}}</p>
-    <a class="madLabel" ng-href="{{work.gameData.site_detail_url}}"><img class="cover" ng-src="{{work.gameData.largeImage}}"></a>
-    <p class="madLabel">Description: {{work.gameData.deck}}</p>
+    <p class="shadowText">Title: {{work.title}}</p>
+    <a class="shadowText" ng-href="{{work.gameData.site_detail_url}}"><img class="cover" ng-src="{{work.gameData.largeImage}}"></a>
+    <p class="shadowText">Description: {{work.gameData.deck}}</p>
     </div>
 
   </section>
