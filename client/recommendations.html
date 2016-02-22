@@ -5,7 +5,7 @@ HEYYY
   <input placeholder="Filter" type="text" ng-model="searchRecs">
   </form>
 HI
-  <section id="results" class="recommendations" style="text-align: center" ng-repeat="rec in recs">
+  <section id="results" class="recommendations" style="text-align: center" ng-repeat="rec in recs | filter:searchRecs">
 Hello World
     <div ng-show="rec.type === 'Books'">
     <p>Tag: {{rec.tag}}</p>
