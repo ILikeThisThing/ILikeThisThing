@@ -1,41 +1,41 @@
   <!-- recommendations -->
   <div ng-controller="RecController">
 
-  Hello world
-  <section id="results" class="recommendations" style="text-align: center" ng-repeat="rec in recs">
-    
-    <div ng-show="rec.type = 'Books'">
-      <p>{{rec.tag}}</p>
+  <form name="filter">
+  <input placeholder="Filter" type="text" ng-model="searchRecs">
+  </form>
+
+  <section id="results" class="recommendations" style="text-align: center" ng-repeat="rec in recs | filter:searchLinks">
+ 
+    <div ng-show="rec.type === 'Books'">
+      <p>Tag: {{rec.tag}}</p>
     <br></br>
-    <p>{{rec.title}}</p>
-    <p>{{rec.author}}</p>
-    <p>{{rec.bookData.publisher}}</p>
-    <img src="rec.bookImage">
-    <p>{{rec.bookData.pageCount}}</p>
+    <p>Title: {{rec.title}}</p>
+    <p>Author(s): {{rec.author}}</p>
+    <p>Publisher: {{rec.bookData.publisher}}</p>
+    <img ng-src="{{rec.bookImage}}">
+    <p>Pages: {{rec.bookData.pageCount}}</p>
     </div>
 
-    <div ng-show="rec.type = 'Movies'">
-      <p>{{rec.tag}}</p>
+    <div ng-show="rec.type === 'Movies'">
+      <p>Tag: {{rec.tag}}</p>
     <br></br>
-    <p>{{rec.title}}</p>
-    <p>{{rec.director}}</p>
-    <p>{{rec.movieData.genre}}</p>
-    <img src="rec.movieImage">
-    <p>{{rec.movieData.Year}}</p>
+    <p>Title: {{rec.title}}</p>
+    <p>Director: {{rec.director}}</p>
+    <p>Genre(s): {{rec.movieData.genre}}</p>
+    <img ng-src="{{rec.movieImage}}">
+    <p>Year: {{rec.movieData.Year}}</p>
     </div>
 
-    <div ng-show="rec.type = 'Games'">
-      <p>{{rec.tag}}</p>
+    <div ng-show="rec.type === 'Games'">
+      <p>Tag: {{rec.tag}}</p>
     <br></br>
-    <p>{{rec.title}}</p>
-    <img src="rec.gameData">
+    <p>Title: {{rec.title}}</p>
+    <img ng-src="{{rec.gameData}}">
     <p>{{rec.gameData.description}}</p>
     </div>
    
   </section>
-
-  <br>
-
 
   </div>
 
