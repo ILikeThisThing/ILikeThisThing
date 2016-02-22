@@ -1,7 +1,8 @@
 html {
-  background-image: url("http://i1074.photobucket.com/albums/w404/natalieweb/desk6_zpsvkq1uk8w.jpg");
-  background-repeat: no-repeat;
-  background-position: right bottom;
+  /*background: url("http://i.imgur.com/OqPzJlG.jpg") no-repeat center center fixed;*/
+  /*background-repeat: no-repeat;
+  background-position: cover;*/
+  /*background-size: cover;*/
   }
 
 header {
@@ -9,10 +10,11 @@ header {
   padding-top: 20px;
 }
 
-body { 
-  background-image: url("http://i1074.photobucket.com/albums/w404/natalieweb/desk6_zpsvkq1uk8w.jpg");
-  background-repeat: no-repeat;
-  background-position: right bottom;
+body {
+  background: url("http://i.imgur.com/oEDQZE8.jpg") no-repeat center center fixed;
+  /*background-repeat: no-repeat;
+  background-position: cover;*/
+  background-size: cover;
   text-align: left;
   padding-top: 20px;
   padding-left: 20px;
