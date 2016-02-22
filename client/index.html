@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="ILikeThis">
+<div class="all">
 <head>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
@@ -45,12 +46,12 @@
  </header>
 
 <body>
-  <!-- with angular, create an "is this the title you meant?" pop-up or drop-down or something (even an alternate page if need be for now)
-
-  then create the same thing but for if a work couldn't be found at all -->
 
 <ul>
+    <div class="question" ng-show="results.length > 1">Sweet. Just so we're sure, which of these works did you mean?</div>
+    <br>
     <li ng-repeat="result in results">
+    <span class="individualResult">
       <div class="inDbAlready" ng-show="result.database === 'true'">
       <!-- title for books -->
       <div>Title: <button ng-click="alreadyExists(result.title)">{{result.title}}</button></div>
@@ -64,12 +65,12 @@
       <!-- person for games is n/a -->
        
       <!-- date for books -->
-      <div ng-show="result.data.type === 'Books'"> Published: {{result.data.publishedDate}}</div>
+      <div ng-show="result.data.type === 'Books'"> Published: {{result.data.publishedDate}} <br></div>
 
       <!-- date for movies -->
       <div ng-show="result.data.type === 'Movies'">Released: {{result.data.Year}}</div>
 
-      <!-- date  for games -->
+      <!-- date for games -->
       <div ng-show="result.data.type ==='Games'">Released: {{result.data.original_release_date}}</div>
       </div>
 
@@ -99,12 +100,12 @@
 
       <!-- date  for games -->
       <div ng-show="result.type ==='Games'">Released: {{result.original_release_date}}</div>
-
-
+    </span>
     </li>
 </ul>
 
 </body>
+</div>
 </div>
 </div>
 </html>

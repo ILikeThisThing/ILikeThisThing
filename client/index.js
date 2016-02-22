@@ -22,27 +22,19 @@ $scope.submitForm = function() {
       if (!!response.data.database) {
         response.data = [response.data];
       };
-    // .then(
-    //   titleGrabber(result))
-    //   }
 
       $scope.results = response.data;
       console.log($scope.results);
-      // helperFunction();
-      //run helper function that populates new divs with response data
-
     });
   };
  
  $scope.alreadyExists = function(title) {
-  // var title = //gets the value of the clicked thing
   console.log('Inside alreadyExists ')
   Globals.storeTitle(title);
  }
 
 
 $scope.addToDb = function(apiResp) {
-  // var title = //gets the value of the clicked thing
   console.log('Inside addTodb')
 
   Factory.addToDatabase(apiResp)
@@ -53,7 +45,4 @@ $scope.addToDb = function(apiResp) {
 
 
 });
-
-// call Globals.storeTitle or something add pass confirmed 
-// title in when user confirms work
 

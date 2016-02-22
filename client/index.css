@@ -1,12 +1,28 @@
-body {
+html {
   background-image: url("http://i1074.photobucket.com/albums/w404/natalieweb/desk6_zpsvkq1uk8w.jpg");
   background-repeat: no-repeat;
   background-position: right bottom;
-  margin-right: 200px;
-  padding-left: 1 cm;
+  }
 
-/*
+header {
+  text-align: center;
+  padding-top: 20px;
+}
 
-<a href="http://s1074.photobucket.com/user/natalieweb/media/desk6_zpsvkq1uk8w.jpg.html" 
-target="_blank"><img src="http://i1074.photobucket.com/albums/w404/natalieweb/desk6_zpsvkq1uk8w.jpg" 
-border="0" alt=" photo desk6_zpsvkq1uk8w.jpg"/></a>*/
+body { 
+/*  background-image: url("http://i1074.photobucket.com/albums/w404/natalieweb/desk6_zpsvkq1uk8w.jpg");
+  background-repeat: no-repeat;
+  background-position: right bottom;*/
+  text-align: left;
+  padding-top: 20px;
+  padding-left: 20px;
+}
+
+.question {
+  color: red;
+  font-size: 120%;
+ }
+
+ .individualResult {
+ 	background-color: green;
+ }
