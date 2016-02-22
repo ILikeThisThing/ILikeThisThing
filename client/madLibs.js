@@ -13,7 +13,7 @@ angular.module('ILikeThis.MadLibs', [])
   $scope.writingStyle = ['Writing Style-Stream of Consciousness', 'Writing Style-Vignette'];
   $scope.time = ['Time Period-Present Day', 'Time Period-1800s', 'Time Period-Medieval times', 'Time Period-Prehistoric times', 'Time Period-Time Travel', 'Time Period-Antiquity',
   'Time Period-World War I', 'Time Period-World War II', 'Time Period-The Great Depression', 'Time Period-Civil War', 'Time Period-Mid-20th-Century'];
-  $scope.quirky = ['Cult Classic', 'Gorey', 'Campy', 'So-Bad-its-Good'];
+  $scope.quirky = ['Cult Classic', 'Gorey', 'Campy', "So-Bad-it's-Good"];
   $scope.other = ['Family-Friendly', 'Gay/Lesbian', 'Cinematography'];
   $scope.artStyle = ['Art Style-Full Color', 'Art Style-Claymation', 'Art Style-Stop-Motion', 'Art Style-Pen and Ink', 'Art Style-CGI', 'Art Style-Expressionist', 'Art Style-Impressionist'
 ];
