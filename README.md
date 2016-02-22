@@ -24,10 +24,9 @@
 
 ## Requirements
 
-- Node 0.10.x
+- Node 5.5.0
 - Postgresql 9.5.x
-- etc
-- etc
+- Express ^4.13.4
 
 ## Development
 
@@ -36,10 +35,10 @@
 From within the root directory:
 
 ```sh
-sudo npm install -g bower
 npm install
-bower install
 ```
+- npm install will run bower install after npm completes
+
 To install Postgresql and start up local db server: 
 ```sh
 brew install postgresql
