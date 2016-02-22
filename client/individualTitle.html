@@ -1,35 +1,35 @@
 <div ng-controller='IndivController'>
   <section id="results" class="individual" style="text-align: center">
     <div ng-show="work.type === 'Books'">
-    <p>Tag: {{work.tag}}</p>
+    <p class="madLabel">Tag: {{work.tag}}</p>
     <br></br>
-    <p>Title: {{work.title}}</p>
-    <p>Author(s): {{work.author}}</p>
-    <p>Publisher: {{work.bookData.publisher}}</p>
-    <a ng-href="{{work.bookData.infoLink}}"><img class="cover" ng-src="{{work.bookImage}}"></a>
-    <p>Pages: {{work.bookData.pageCount}}</p>
-    <p>Description: {{work.bookData.description}}</p>
+    <p class="madLabel">Title: {{work.title}}</p>
+    <p class="madLabel">Author(s): {{work.author}}</p>
+    <p class="madLabel">Publisher: {{work.bookData.publisher}}</p>
+    <a class="madLabel" ng-href="{{work.bookData.infoLink}}"><img class="cover" ng-src="{{work.bookImage}}"></a>
+    <p class="madLabel">Pages: {{work.bookData.pageCount}}</p>
+    <p class="madLabel">Description: {{work.bookData.description}}</p>
     </div>
 
     <div ng-show="work.type === 'Movies'">
-    <p>Tag: {{work.tag}}</p>
+    <p class="madLabel">Tag: {{work.tag}}</p>
     <br></br>
-    <p>Title: {{work.title}}</p>
-    <p>Director: {{work.director}}</p>
-    <p>Genre(s): {{work.movieData.genre}}</p>
-    <a ng-href="http://www.imdb.com/title/{{work.movieData.imdbID}}"><img class="cover" ng-src="{{work.movieImage}}"></a>
-    <p>Year: {{work.movieData.Year}}</p>
-    <p>Description: {{work.movieData.plot}}</p>
+    <p class="madLabel">Title: {{work.title}}</p>
+    <p class="madLabel">Director: {{work.director}}</p>
+    <p class="madLabel">Genre(s): {{work.movieData.genre}}</p>
+    <a class="madLabel" ng-href="http://www.imdb.com/title/{{work.movieData.imdbID}}"><img class="cover" ng-src="{{work.movieImage}}"></a>
+    <p class="madLabel">Year: {{work.movieData.Year}}</p>
+    <p class="madLabel">Description: {{work.movieData.plot}}</p>
     </div>
 
     <div ng-show="work.type === 'Games'">
-    <p>Tag: {{work.tag}}</p>
+    <p class="madLabel">Tag: {{work.tag}}</p>
     <br></br>
-    <p>Title: {{work.title}}</p>
-    <a ng-href="{{work.gameData.site_detail_url}}"><img class="cover" ng-src="{{work.gameData.largeImage}}"></a>
-    <p>Description: {{work.gameData.deck}}</p>
+    <p class="madLabel">Title: {{work.title}}</p>
+    <a class="madLabel" ng-href="{{work.gameData.site_detail_url}}"><img class="cover" ng-src="{{work.gameData.largeImage}}"></a>
+    <p class="madLabel">Description: {{work.gameData.deck}}</p>
     </div>
-   
+
   </section>
 
   </div>
