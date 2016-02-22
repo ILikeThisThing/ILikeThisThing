@@ -50,4 +50,11 @@ factories.factory('Globals', function(){
   var returnRecs = function(){
     return recs;
   }
+
+  return {
+    storeTitle: storeTitle,
+    returnTitle: returnTitle,
+    storeRecs: storeRecs,
+    returnRecs: returnRecs
+  }
 })
