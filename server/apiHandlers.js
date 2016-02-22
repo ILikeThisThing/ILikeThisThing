@@ -38,10 +38,10 @@ exports.gameSearcher = function(gameName){
 				return topTenResults;
 			}
 			else{
-				return {
+				return [{
 					'workNotFound': true,
 					'message': "the API came up empty for that search"
-				}
+				}]
 			}
 		})
 		.catch(function(err){
@@ -127,10 +127,10 @@ exports.movieSearcher = function(movieName){
 		.then(function(movie) {
 			if (movie.Response==='False'){
 				console.error("IMDB could not find that movie! Try searching for something else.")
-				return {
+				return [{
 					'workNotFound': true,
 					'message': "the API came up empty for that search"
-				};
+				}];
 			} else {
 				movie.type = 'Movies';
 				return [movie];
