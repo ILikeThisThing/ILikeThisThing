@@ -58,7 +58,7 @@ See [CONTRIBUTING.md](https://github.com/unexpected-lion/ourglass/blob/master/co
 
 ## Suggestions for Future Features
 
-- Front end needs a lot of love. (Back end, however, is already ready for a lot more functionality.)
+- Front end needs a lot of love. (Back end, however, is relatively complete and ready for new features.)
 - have recommended works only appear once, listing the tags that matched.
 	- current behavior: works are listed once for every matching tag, resulting in multiple listings of the same work.
 - improve sorting of recommendations:
