@@ -3,6 +3,7 @@ angular.module('ILikeThis', [
 	'ILikeThis.homepage',
 	'ILikeThis.MadLibs',
 	'ILikeThis.recommendations',
+	'ILikeThis.individualTite',
 	'ngRoute'
 ])
 .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
@@ -16,5 +17,10 @@ angular.module('ILikeThis', [
 		.when('/recommendations', {
 			templateUrl: 'recommendations.html',
 			controller: 'RecController'
+		})
+		//for individual recommendation
+		.when('/individual', {
+			templateUrl: 'individualTite.html',
+			controller: 'IndivController'
 		})
 }])
