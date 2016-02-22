@@ -7,8 +7,9 @@
     <p>Title: {{work.title}}</p>
     <p>Author(s): {{work.author}}</p>
     <p>Publisher: {{work.bookData.publisher}}</p>
-    <img class="cover" ng-src="{{work.bookImage}}">
+    <a href="work.bookData.infoLink"><img class="cover" ng-src="{{work.bookImage}}"></a>
     <p>Pages: {{work.bookData.pageCount}}</p>
+    <p>Description: {{work.bookData.description}}</p>
     </div>
 
     <div ng-show="work.type === 'Movies'">
@@ -17,16 +18,17 @@
     <p>Title: {{work.title}}</p>
     <p>Director: {{work.director}}</p>
     <p>Genre(s): {{work.movieData.genre}}</p>
-    <img class="cover" ng-src="{{work.movieImage}}">
+    <a href="http://www.imdb.com/title/work.movieData.imdbID"><img class="cover" ng-src="{{work.movieImage}}"></a>
     <p>Year: {{work.movieData.Year}}</p>
+    <p>Description: {{work.movieData.plot}}</p>
     </div>
 
     <div ng-show="work.type === 'Games'">
     <p>Tag: {{work.tag}}</p>
     <br></br>
     <p>Title: {{work.title}}</p>
-    <img class="cover" ng-src="{{work.gameData.largeImage}}">
-    <p>{{work.gameData.deck}}</p>
+    <a href="work.gameData.site_detail_url"><img class="cover" ng-src="{{work.gameData.largeImage}}"></a>
+    <p>Description: {{work.gameData.deck}}</p>
     </div>
    
   </section>
