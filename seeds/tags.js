@@ -22,13 +22,10 @@ exports.seed = function(knex, Promise) {
       {tag: 'Characters-Quirky'}, {tag: 'Characters-Smart'}, {tag: 'Characters-Funny'}, {tag: 'Characters-Hopelessly Incompetant'}, {tag: 'Characters-Pothead'}, {tag: 'Characters-Tortured'},
       {tag: 'Characters-Romantic'}, {tag: 'Characters-Optimistic'}, {tag: 'Characters-Pessimistic'}, {tag: 'Time Period-Antiquity'}, {tag: 'Time Period-World War I'}, {tag: 'Time Period-World War II'}, 
       {tag: 'Time Period-The Great Depression'}, {tag: 'Time Period-Civil War'}, {tag: 'Time Period-Mid-20th-Century'}, {tag: 'Characters-Evil'}, {tag: 'Set Design-Expressionist'}, {tag: 'Set Design-Impressionist'}, 
-      {tag: 'Set Design-Stylized'}, {tag: 'Costumes-Stylized'}, {tag: 'Sound Effects'}, {tag: 'Soundtrack'}, {tag: 'Art Style-Expressionist'}, {tag: 'Art Style-Impressionist'}])
+      {tag: 'Set Design-Stylized'}, {tag: 'Costumes-Stylized'}, {tag: 'Sound Effects'}, {tag: 'Soundtrack'}, {tag: 'Art Style-Expressionist'}, {tag: 'Art Style-Impressionist'}, {tag: 'Characters-Heroic'}, {tag: 'Characters-Great Antagonist'},
+      {tag: 'Characters-Unreliable Narrator'}, {tag: 'Characters-Morally Complex'}])
   ).catch(function(err){
   	console.error('tags have already been added ', err.message)
   })
 };
-  
-
-
-
  
