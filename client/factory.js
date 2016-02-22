@@ -47,6 +47,7 @@ factories.factory('Factory', function ($http) {
 factories.factory('Globals', function(){
   var title;
   var recs;
+  var indiv;
 
   //takes the title and stores it
   var storeTitle = function(newTitle){
@@ -58,21 +59,34 @@ factories.factory('Globals', function(){
   var returnTitle = function(){
     return title;
   }
-  //next var takes the response from api/tags and stores it
+  //takes the response from api/tags and stores it
   var storeRecs = function(newRecs){
     console.log('storing recs ', newRecs)
     recs = newRecs;
   }
-  //then another function serves the recomendations to the controllers that need it
+  //serves the recomendations to the controllers that need it
   var returnRecs = function(){
     console.log('returning recs', recs)
     return recs;
+  }
+
+  //stores the clicked on id
+  var storeIndiv = function(clicked){
+    console.log('storing indiv ', clicked)
+    indiv = clicked;
+  }
+  //returns the clicked on rec
+  var returnIndiv = function(){
+    console.log('returning indiv ', indiv)
+    return indiv;
   }
 
   return {
     storeTitle: storeTitle,
     returnTitle: returnTitle,
     storeRecs: storeRecs,
-    returnRecs: returnRecs
+    returnRecs: returnRecs,
+    storeIndiv: storeIndiv,
+    returnIndiv: returnIndiv
   }
 })
