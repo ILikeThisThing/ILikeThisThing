@@ -5,7 +5,7 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
     <script type="text/javascript" src="index.js"></script>
-   
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-route.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css"/>
     <link rel="stylesheet" href="index.css">
@@ -30,7 +30,7 @@
     <!-- </div> -->
     <!-- <div class="form-group"> -->
       <select class="form-control"
-            ng-model="userInput.type" 
+            ng-model="userInput.type"
             ng-options="o as o for o in types"
             <option value="">Category</option>
       </select>
@@ -46,7 +46,7 @@
 
 <ul ng-hide="clicked">
     <h4 ng-show="results[0].workNotFound === true">Ruh Roh! You don't like that thing. You know why? Because it doesnt EXIST, you stupid idiot. Try searching for something else!</h4>
-    <div class="question" ng-show="results.length > 1">Sweet. Just so we're sure, which of these works did you mean?</div>
+    <div class="question" ng-show="results.length > 1" style="text-align:center; background-color: darkred">Sweet. Just so we're sure, which of these works did you mean?</div>
     <br>
 
 
@@ -63,7 +63,7 @@
       <div ng-show="result.data.type === 'Movies'">Director: {{result.director}}</div>
 
       <!-- person for games is n/a -->
-       
+
       <!-- date for books -->
       <div ng-show="result.data.type === 'Books'"> Published: {{result.data.publishedDate}} <br></div>
 
@@ -91,7 +91,7 @@
       <div ng-show="result.type === 'Movies'">Director: {{result.director}}</div>
 
       <!-- person for games is n/a -->
-       
+
       <!-- date for books -->
       <div ng-show="result.type === 'Books'"> Published: {{result.publishedDate}}</div>
 
