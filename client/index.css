@@ -37,7 +37,7 @@ h4 {
    text-align: center;
  }
 
- .madLabel {
+ .shadowText {
    color: lightgreen;
    font-size: 18px;
    text-shadow: -1px 0 darkgreen, 0 1px darkgreen, 1px 0 darkgreen, 0 -1px darkgreen;

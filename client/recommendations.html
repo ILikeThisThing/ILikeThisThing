@@ -5,29 +5,29 @@
   </form>
   <section id="results" class="recommendations" style="text-align: center" ng-repeat="rec in recs | filter:searchRecs | orderBy: '-count'">
     <div ng-show="rec.type === 'Books'">
-    <p class="madLabel">Tag: {{rec.tag}}</p>
+    <p class="shadowText">Tag: {{rec.tag}}</p>
     <br></br>
-    <p class="madLabel">Title: <button ng-click="seeMore(rec)">{{rec.title}}</button></p>
-    <p class="madLabel">Author(s): {{rec.author}}</p>
-    <p class="madLabel">Publisher: {{rec.bookData.publisher}}</p>
+    <p class="shadowText">Title: <button ng-click="seeMore(rec)">{{rec.title}}</button></p>
+    <p class="shadowText">Author(s): {{rec.author}}</p>
+    <p class="shadowText">Publisher: {{rec.bookData.publisher}}</p>
     <img class="cover" ng-src="{{rec.bookImage}}">
-    <p class="madLabel">Pages: {{rec.bookData.pageCount}}</p>
+    <p class="shadowText">Pages: {{rec.bookData.pageCount}}</p>
     </div>
 
     <div ng-show="rec.type === 'Movies'">
-    <p class="madLabel">Tag: {{rec.tag}}</p>
+    <p class="shadowText">Tag: {{rec.tag}}</p>
     <br></br>
-    <p class="madLabel">Title: <button ng-click="seeMore(rec)">{{rec.title}}</button></p>
-    <p class="madLabel">Director: {{rec.director}}</p>
-    <p class="madLabel">Genre(s): {{rec.movieData.genre}}</p>
+    <p class="shadowText">Title: <button ng-click="seeMore(rec)">{{rec.title}}</button></p>
+    <p class="shadowText">Director: {{rec.director}}</p>
+    <p class="shadowText">Genre(s): {{rec.movieData.genre}}</p>
     <img class="cover" ng-src="{{rec.movieImage}}">
-    <p class="madLabel">Year: {{rec.movieData.Year}}</p>
+    <p class="shadowText">Year: {{rec.movieData.Year}}</p>
     </div>
 
     <div ng-show="rec.type === 'Games'">
-    <p class="madLabel">Tag: {{rec.tag}}</p>
+    <p class="shadowText">Tag: {{rec.tag}}</p>
     <br></br>
-    <p class="madLabel">Title: <button ng-click="seeMore(rec)">{{rec.title}}</button></p>
+    <p class="shadowText">Title: <button ng-click="seeMore(rec)">{{rec.title}}</button></p>
     <img class="cover" ng-src="{{rec.gameData.largeImage}}">
     </div>
   </section>
