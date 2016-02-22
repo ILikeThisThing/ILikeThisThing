@@ -1,8 +1,6 @@
 angular.module('ILikeThis.MadLibs', [])
 
 .controller('TagController', function($scope, $http, Factory, Globals) {
-  var title = "Alice's Adventures in Wonderland"
-
 
   $scope.themes = ['Theme-Dark/macabre', 'Theme-Absurdist', 'Theme-Existential'];
   $scope.characters = ['Characters-Quirky', 'Characters-Smart', 'Characters-Funny'];
@@ -18,8 +16,6 @@ angular.module('ILikeThis.MadLibs', [])
   	var newTitle = Globals.returnTitle();
   	return {title: newTitle, tags: tagsArr}
   }
-
- 
 
   $scope.submitForm = function(){
   	var request = reqMaker($scope.userInput)
