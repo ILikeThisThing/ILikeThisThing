@@ -26,7 +26,52 @@
         <option ng-repeat="genre in genres" value="{{genre}}">{{genre}}</option>
       </select>
       <br>
-      <span>{{userInput}}</span>
+      <label for="writingStyle">The writing style is nice because...</label>
+      <select class="writing" name="" ng-model="userInput.writingStyle">
+        <option ng-repeat="writing in writingStyles" value="{{writing}}">{{writing}}</option>
+      </select>
+      <br>
+      <label for="timePeriod">I like this time period because it is in...</label>
+      <select class="timePeriod" name="" ng-model="userInput.time">
+        <option ng-repeat="tag in time" value="{{tag}}">{{tag}}</option>
+      </select>
+      <br>
+      <label for="artStyle">I like the art style because it is...</label>
+      <select class="artStyle" name="" ng-model="userInput.artStyle">
+        <option ng-repeat="tag in artStyle" value="{{tag}}">{{tag}}</option>
+      </select>
+      <br>
+      <label for="plot">I like the Plot because of its..</label>
+      <select class="plot" name="" ng-model="userInput.plot">
+        <option ng-repeat="tag in plot" value="{{tag}}">{{tag}}</option>
+      </select>
+      <br>
+      <label for="audio">I like the audio because it has a good...</label>
+      <select class="audio" name="" ng-model="userInput.audio">
+        <option ng-repeat="tag in audio" value="{{tag}}">{{tag}}</option>
+      </select>
+      <br>
+      <label for="setDesign">I like the set design because it is...</label>
+      <select class="setDesign" name="" ng-model="userInput.sets">
+        <option ng-repeat="tag in sets" value="{{tag}}">{{tag}}</option>
+      </select>
+      <br>
+      <label for="costumes">I like the costumes because they are...</label>
+      <select class="costumes" name="" ng-model="userInput.costumes">
+        <option ng-repeat="tag in costumes" value="{{tag}}">{{tag}}</option>
+      </select>
+      <br>
+      <label for="quirkMetrics">I like this Quirky thing...</label>
+      <select class="quirkMetrics" name="" ng-model="userInput.quirky">
+        <option ng-repeat="tag in quirky" value="{{tag}}">{{tag}}</option>
+      </select>
+      <br>
+      <label for="other">I like it because of this other thing...</label>
+      <select class="other" name="" ng-model="userInput.other">
+        <option ng-repeat="tag in other" value="{{tag}}">{{tag}}</option>
+      </select>
+      <br>
+      <!-- <span>{{userInput}}</span> -->
       <br>
       <button type="submit" ng-click="submitForm()" name="button" class="btn btn-success">Show me recommendations</button>
     </div>
