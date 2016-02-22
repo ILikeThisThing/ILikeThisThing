@@ -75,7 +75,7 @@ exports.addWork = function(apiRes){
                         .into('Games')
                         .then(function(result){
                           console.log('result from adding a game', result)
-                          return result;
+                          return result[0];
                         })
             }
         })

@@ -44,10 +44,10 @@
 
 <body>
 
-
+<ul ng-hide="clicked">
     <div class="question" ng-show="results.length > 1">Sweet. Just so we're sure, which of these works did you mean?</div>
     <br>
-<ul ng-hide="clicked">
+
 
     <li ng-repeat="result in results">
     <span class="individualResult">
