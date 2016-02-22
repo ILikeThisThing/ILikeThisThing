@@ -46,16 +46,19 @@
 
   then create the same thing but for if a work couldn't be found at all -->
 
-<ul class="results">
-    <!-- <li ng-repeat="result in results | filter:query | orderBy:orderProp">
-        <h4><a href="#" ng-click="showDetails = ! showDetails">{{procedure.definition}}</a></h4>
+<ul ng-class="results">
+    <li ng-repeat="result in results">
+        <div>{{title}}</div>
+        <div>{{type}}</div>
+        <div ng-hide="$scope.data[0].type='Games'">{{person}}</div>
+        <div>{{date}}</div>
          <div class="procedure-details" ng-show="showDetails">
             <p>Type: {{type}}</p>
             <p>Title: {{title}}</p>
             <p>Author/Director: {{person}}
             <p>Year: {{year}}</p>
          </div>
-    </li> -->
+    </li>
 </ul>
 
 </body>
