@@ -85,7 +85,12 @@ exports.bookSearcher = function(bookName){
 					splitURL[0] = splitURL[0]+'zoom=0';
 					var largeImageURL = splitURL[0]+splitURL[1];
 					//pack the new url into bookObject
-					bookObject.largeImage = largeImageURL;
+					// bookObject.largeImage = largeImageURL;
+
+					//NOTE: not currently using the largeImage - doesn't work for a significant number of books!
+					//substituting the original imageURL instead until a better fix is devised.
+					bookObject.largeImage = imageURL;
+					
 				}
 				else {
 					bookObject.largeImage = "https://pbs.twimg.com/profile_images/2601029982/profile.jpg"
