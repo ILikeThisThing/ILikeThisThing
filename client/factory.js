@@ -25,13 +25,14 @@ factories.factory('Factory', function ($http) {
 
 
   var getMatchingTags = function (tags) {
+    console.log("Inside getMatchingTags" , tags)
     return $http({
       method: 'POST',
       url: '/api/tags',
       data: tags
     })
     .then(function (resp) {
-      console.log('.then after POST to api/tags ', resp.data)
+      console.log('response from api/tags ', resp.data)
       return resp.data;
     });
   };
@@ -59,10 +60,12 @@ factories.factory('Globals', function(){
   }
   //next var takes the response from api/tags and stores it
   var storeRecs = function(newRecs){
+    console.log('storing recs ', newRecs)
     recs = newRecs;
   }
   //then another function serves the recomendations to the controllers that need it
   var returnRecs = function(){
+    console.log('returning recs', recs)
     return recs;
   }
 

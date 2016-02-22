@@ -12,6 +12,7 @@ angular.module('ILikeThis', [
 			templateUrl : '/madLibs.html',
 			controller : 'TagController'
 		})
+		//for recommendations
 		.when('/recommendations', {
 			templateUrl: 'recommendations.html',
 			controller: 'RecController'
