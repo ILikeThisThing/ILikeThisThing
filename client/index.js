@@ -19,6 +19,12 @@ $scope.submitForm = function() {
       // this callback will be called asynchronously
       // when the response is available
       console.log(response);
+      if (typeof response.data === "object") {
+        response.data = [response.data];
+    .then(
+      titleGrabber(result))
+      }
+
       $scope.results = response.data;
       // helperFunction();
       //run helper function that populates new divs with response data
@@ -28,16 +34,68 @@ $scope.submitForm = function() {
       // or server returns response with an error status.
     });
     }
-  });
+
+ $scope.titleGrabber = function(result) {
+    if (result.type === 'Movies') {
+      var title = result.title;
+
+    } else if (result.type === 'Books') {
+      var title = result.title;
+
+    } else if (result.type === 'Games') {
+      var title = result.name;
+    }
+    return title;
+ }
+ });
 
 
-$scope.titleGrabber = function(result) {
-if ($scope.data[0].type === 'Movies') {
-  var title = $scope.data[i].title;
-//           var image = $scope.data[i].poster;
-//           var person = $scope.data[i].director;
-//           var date = $scope.data[i].Released
-}
+
+// var dataGrabber = function() {
+//   if (typeof response.data === "object") {
+//     $scope.dbDataGrabber = function() {
+//     // check to see if data pulled from database
+
+
+//     $scope.apiDataGrabber = function() {
+//       if (results[0].type === 'Movies') {
+//         $scope.title = results.title;
+//         $scope.image = results.poster;
+//         $scope.person = results.director;
+//         $scope.date = resuts.Released
+//       } else if (results[0].type === 'Books') {
+//           $scope.title = results.title;
+//           $scope.image = results.largeImage;
+//           $scope.person = results.authors[0]; //need to deal with instances where multiple authors
+//           $scope.date = results.publishedDate
+//       } } else if (results[0].type === 'Games') {
+//           $scope.title = results.name;
+//           $scope.image = results.largeImage;
+//           $scope.date = results.original_release_date
+//        } 
+//   }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // var helperFunction = function() {
