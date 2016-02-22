@@ -10,17 +10,17 @@ angular.module('ILikeThis', [
 	$routeProvider
 	//for madlibs tag selection
 		.when('/tags', {
-			templateUrl : '/madLibs.html',
+			templateUrl : '/madlibs/madLibs.html',
 			controller : 'TagController'
 		})
 		//for recommendations from tags
 		.when('/recommendations', {
-			templateUrl: '/recommendations.html',
+			templateUrl: '/recommendations/recommendations.html',
 			controller: 'RecController'
 		})
 		//for individual recommendation
 		.when('/individual', {
-			templateUrl: '/individualTitle.html',
+			templateUrl: '/individualTitle/individualTitle.html',
 			controller: 'IndivController'
 		})
 		//for some reason this makes it enter into an infinite loop
