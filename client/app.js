@@ -3,7 +3,7 @@ angular.module('ILikeThis', [
 	'ILikeThis.homepage',
 	'ILikeThis.MadLibs',
 	'ILikeThis.recommendations',
-	'ILikeThis.individualTite',
+	'ILikeThis.individualTitle',
 	'ngRoute'
 ])
 .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){

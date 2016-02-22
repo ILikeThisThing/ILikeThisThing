@@ -1,5 +1,5 @@
-var app = angular.module('ILikeThis.individualTitle', [ ]);
+var app = angular.module('ILikeThis.individualTitle', []);
 
-app.controller('IndivController', {
-	
+app.controller('IndivController', function($scope, Globals, Factory){
+	$scope.work = Globals.returnIndiv()
 })

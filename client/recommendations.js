@@ -6,9 +6,8 @@ angular.module('ILikeThis.recommendations', [])
 
   $scope.seeMore = function(rec){
   	Globals.storeIndiv(rec)
-  		.then(function(){
-  			$location.path('/individual')
-  		})
+  	
+  	$location.path('/individual')
   }
 })
 

@@ -1,25 +1,34 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
-    <script type="text/javascript" src="individualTitle.js"></script>
-    <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css"/>
-    <link rel="stylesheet" href="individualTitle.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css" media="screen" title="no title" charset="utf-8">
-</head>
+<div ng-controller='IndivController'>
+  
+  <section id="results" class="individual" style="text-align: center">
+    <div ng-show="work.type === 'Books'">
+    <p>Tag: {{work.tag}}</p>
+    <br></br>
+    <p>Title: <button ng-click="seeMore(work)">{{work.title}}</button></p>
+    <p>Author(s): {{work.author}}</p>
+    <p>Publisher: {{work.bookData.publisher}}</p>
+    <img ng-src="{{work.bookImage}}">
+    <p>Pages: {{work.bookData.pageCount}}</p>
+    </div>
 
- <header id="top" class="header" style="text-align: center">
-    <h1>{{title}}</h1>
-    <br>
+    <div ng-show="work.type === 'Movies'">
+    <p>Tag: {{work.tag}}</p>
+    <br></br>
+    <p>Title: <button ng-click="seeMore(work)">{{work.title}}</button></p>
+    <p>Director: {{work.diworktor}}</p>
+    <p>Genre(s): {{work.movieData.genre}}</p>
+    <img ng-src="{{work.movieImage}}">
+    <p>Year: {{work.movieData.Year}}</p>
+    </div>
 
- </header>
-<body>
-    <!-- this is just a test to see that angular is working on this page. to be deleted. -->
-    <p>{{ "hello" + " world" }}</p>
+    <div ng-show="work.type === 'Games'">
+    <p>Tag: {{work.tag}}</p>
+    <br></br>
+    <p>Title: <button ng-click="seeMore(work)">{{work.title}}</button></p>
+    <img ng-src="{{work.gameData.largeImage}}">
+    <p>{{work.gameData.deck}}</p>
+    </div>
+   
+  </section>
 
-    picture, tags, etc...
-
-
-</body>
-</html>
+  </div>
