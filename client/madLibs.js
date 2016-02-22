@@ -5,7 +5,7 @@ angular.module('ILikeThis.MadLibs', [])
   $scope.themes = ['Theme-Dark/macabre', 'Theme-Absurdist', 'Theme-Existential', 'Theme-Happy-Go-Lucky', 'Theme-Dystopian', 'Theme-Utopian', 'Theme-Beauty/Wonderment',
   'Theme-Weird', 'Theme-Goofy', 'Theme-Philosophy', 'Theme-Programming'];
   $scope.characters = ['Characters-Quirky', 'Characters-Smart', 'Characters-Funny', 'Characters-Hopelessly Incompetant', 'Characters-Pothead', 'Characters-Tortured',
-  'Characters-Romantic', 'Characters-Optimistic', 'Characters-Pessimistic', 'Character Diversity'];
+  'Characters-Romantic', 'Characters-Optimistic', 'Characters-Pessimistic', 'Characters-Evil', 'Character Diversity'];
   $scope.settings = ['Setting-Outer Space', 'Setting-New York', 'Setting-Texas', 'Setting-Fantasy world', 'Setting-Space Station', 'Setting-Europe', 'Setting-Asia',
   'Setting-North America', 'Setting-South America', 'Setting-Australia', 'Setting-Antarctica'];
   $scope.genres = ['Genre-Action', 'Genre-Adventure', 'Genre-Comedy', 'Genre-Crime', 'Genre-Fantasy', 'Genre-Horror', 'Genre-Musical', 
