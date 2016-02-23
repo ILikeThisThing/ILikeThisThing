@@ -1,6 +1,7 @@
 # ILikeThisThing
 
 > This is a thing. And I like it!
+https://ilikethis.herokuapp.com/
 
 ## Team
 
@@ -45,6 +46,9 @@ brew install postgresql
 postgres -D /usr/local/var/postgres
 ```
 See this [blog post](http://www.dancorman.com/knex-your-sql-best-friend/) for more information on setting up postgresql.
+
+You will need an API key for GiantBomb (game api)
+Google Books and OMBD (IMDB's api) are the other two apis
 
 ### Roadmap
 
