@@ -1,3 +1,7 @@
+//db does entirely work -- these tests should pass if the information being passed through in the objects
+//is updated to follow what the dbRequest handlers are actually currently expecting
+//for confirmation of db enquires psql is a good place to look
+
 var chai = require('chai');
 var request = require('supertest');
 // var should = chai.should();
