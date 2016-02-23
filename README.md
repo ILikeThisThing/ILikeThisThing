@@ -44,6 +44,7 @@ To install Postgresql and start up local db server:
 ```sh
 brew install postgresql
 postgres -D /usr/local/var/postgres
+createdb ilikethis_dev
 ```
 See this [blog post](http://www.dancorman.com/knex-your-sql-best-friend/) for more information on setting up postgresql.
 
