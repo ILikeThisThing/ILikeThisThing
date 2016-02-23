@@ -33,17 +33,11 @@ h4 {
   font-size: 120%;
  }
 
- .individualResult {
-   color: lightgreen;
-   font-size: 18px;
-   text-shadow: -1px 0 darkgreen, 0 1px darkgreen, 1px 0 darkgreen, 0 -1px darkgreen;
-   text-align: center;
- }
-
  .shadowText {
-   color: lightgreen;
+   color: lightgray;
    font-size: 18px;
-   text-shadow: -1px 0 darkgreen, 0 1px darkgreen, 1px 0 darkgreen, 0 -1px darkgreen;
+   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+   text-align: center;
  }
 
  .cover {

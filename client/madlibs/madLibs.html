@@ -2,7 +2,7 @@
 <div class='madlibs'>
   <form name="getTagsForm" ng-controller="TagController" novalidate style="text-align: center">
 
-    <div class="container" style="text-align: center ng-controller=" TagController "" ng-submit="sumbitForm()">
+    <div class="container" ng-controller=" TagController "" ng-submit="sumbitForm()" style="background-color:maroon; width: 500px; margin: 0 auto; border-radius: 2em; opacity:0.75;">
       <label class="shadowText" for="theme">I like that the theme was...</label>
       <select class="theme" name="" ng-model="userInput.theme">
         <option ng-repeat="theme in themes" value="{{theme}}">{{theme}}</option>
