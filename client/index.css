@@ -34,19 +34,27 @@ h4 {
  }
 
  .individualResult {
-   color: lightgreen;
+   color: lightgray;
    font-size: 18px;
-   text-shadow: -1px 0 darkgreen, 0 1px darkgreen, 1px 0 darkgreen, 0 -1px darkgreen;
+   /*text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;*/
    text-align: center;
  }
 
  .shadowText {
-   color: lightgreen;
+   color: lightgray;
    font-size: 18px;
-   text-shadow: -1px 0 darkgreen, 0 1px darkgreen, 1px 0 darkgreen, 0 -1px darkgreen;
+   /*text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;*/
  }
 
  .cover {
   height: 402px;
   width: 279px;
 }
+
+/*.roundRectangle {
+  background-color:maroon;
+  width: 500px;
+  margin: 0 auto;
+  border-radius: 2em;
+  opacity:0.75;
+}*/

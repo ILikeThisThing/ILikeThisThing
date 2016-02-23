@@ -46,61 +46,67 @@
 
 <ul ng-hide="clicked">
     <h4 ng-show="results[0].workNotFound === true">Ruh Roh! You don't like that thing. You know why? Because it doesnt EXIST, you stupid idiot. Try searching for something else!</h4>
-    <div class="question" ng-show="results.length > 1" style="text-align:center; background-color: darkred">Sweet. Just so we're sure, which of these works did you mean?</div>
+    <div class="question" ng-show="results.length > 1" style="text-align:center; margin: 0 auto; width: 500px; background-color: darkred">Sweet. Just so we're sure, which of these works did you mean?</div>
     <br>
 
 
-    <li ng-repeat="result in results">
-    <span class="individualResult">
-      <div class="inDbAlready" ng-show="result.database === 'true'">
-      <!-- title for books -->
-      <div>Title: <a href="#/tags"><button ng-click="alreadyExists(result.title)">{{result.title}}</button></a></div>
+<!-- style="background-color:maroon; width: 500px; margin: 0 auto; border-radius: 2em; opacity:0.75;" -->
 
-      <!-- person for books -->
-      <div ng-show="result.data.type === 'Books'">Author: {{result.author}}</div>
+<div class="" style="background-color:maroon; width: 500px; margin: 0 auto; border-radius: 2em; opacity:0.75;">
+  <li ng-repeat="result in results">
+  <span class="individualResult">
+    <div class="inDbAlready" ng-show="result.database === 'true'">
+    <!-- title for books -->
+    <div>Title: <a href="#/tags"><button ng-click="alreadyExists(result.title)">{{result.title}}</button></a></div>
 
-      <!-- person for movies -->
-      <div ng-show="result.data.type === 'Movies'">Director: {{result.director}}</div>
+    <!-- person for books -->
+    <div ng-show="result.data.type === 'Books'">Author: {{result.author}}</div>
 
-      <!-- person for games is n/a -->
+    <!-- person for movies -->
+    <div ng-show="result.data.type === 'Movies'">Director: {{result.director}}</div>
 
-      <!-- date for books -->
-      <div ng-show="result.data.type === 'Books'"> Published: {{result.data.publishedDate}} <br></div>
+    <!-- person for games is n/a -->
 
-      <!-- date for movies -->
-      <div ng-show="result.data.type === 'Movies'">Released: {{result.data.Year}}</div>
+    <!-- date for books -->
+    <div ng-show="result.data.type === 'Books'"> Published: {{result.data.publishedDate}} <br></div>
 
-      <!-- date for games -->
-      <div ng-show="result.data.type ==='Games'">Released: {{result.data.original_release_date}}</div>
-      </div>
+    <!-- date for movies -->
+    <div ng-show="result.data.type === 'Movies'">Released: {{result.data.Year}}</div>
 
-      <div class="notInDbYet" ng-hide="result.database === 'true'">
-         <!-- title for books -->
-      <div ng-show="result.type === 'Books'">Title: <a href="#/tags"><button ng-click="addToDb(result)"> {{result.title}}</button></a></div>
+    <!-- date for games -->
+    <div ng-show="result.data.type ==='Games'">Released: {{result.data.original_release_date}}</div>
+    </div>
 
-      <!-- title for movies -->
-      <div ng-show="result.type === 'Movies'">Title: <a href="#/tags"><button ng-click="addToDb(result)">{{result.Title}}</button></a></div>
+    <div class="notInDbYet" ng-hide="result.database === 'true'">
+       <!-- title for books -->
+    <div ng-show="result.type === 'Books'">Title: <a href="#/tags"><button ng-click="addToDb(result)"> {{result.title}}</button></a></div>
 
-      <!-- title for games -->
-      <div ng-show="result.type === 'Games'">Title:<a href="#/tags"><button ng-click="addToDb(result)">{{result.name}}</button></a></div>
+    <!-- title for movies -->
+    <div ng-show="result.type === 'Movies'">Title: <a href="#/tags"><button ng-click="addToDb(result)">{{result.Title}}</button></a></div>
 
-      <!-- person for books -->
-      <div ng-show="result.type === 'Books'">Author: {{result.authors}}</div>
+    <!-- title for games -->
+    <div ng-show="result.type === 'Games'">Title:<a href="#/tags"><button ng-click="addToDb(result)">{{result.name}}</button></a></div>
 
-      <!-- person for movies -->
-      <div ng-show="result.type === 'Movies'">Director: {{result.director}}</div>
+    <!-- person for books -->
+    <div ng-show="result.type === 'Books'">Author: {{result.authors}}</div>
 
-      <!-- person for games is n/a -->
+    <!-- person for movies -->
+    <div ng-show="result.type === 'Movies'">Director: {{result.director}}</div>
 
-      <!-- date for books -->
-      <div ng-show="result.type === 'Books'"> Published: {{result.publishedDate}}</div>
+    <!-- person for games is n/a -->
 
-      <!-- date for movies -->
-      <div ng-show="result.type === 'Movies'">Released: {{result.Year}}</div>
+    <!-- date for books -->
+    <div ng-show="result.type === 'Books'"> Published: {{result.publishedDate}}</div>
 
-      <!-- date  for games -->
-      <div ng-show="result.type ==='Games'">Released: {{result.original_release_date}}</div>
-    </span>
+    <!-- date for movies -->
+    <div ng-show="result.type === 'Movies'">Released: {{result.Year}}</div>
+
+    <!-- date  for games -->
+    <div ng-show="result.type ==='Games'">Released: {{result.original_release_date}}</div>
+  </span>
+
+</div>
+
     </li>
 </ul>
  <script src="app.js"></script>
