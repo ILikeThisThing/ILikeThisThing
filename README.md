@@ -53,14 +53,6 @@ You will need an API key for GiantBomb (game api).
 
 Google Books and OMBD (IMDB's api) are the other two apis and do not require apiKeys
 
-### Roadmap
-
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
-
-
-## Contributing
-
-See [CONTRIBUTING.md](https://github.com/unexpected-lion/ourglass/blob/master/contributing.md) for contribution guidelines.
 
 ## Suggestions for Future Features
 
