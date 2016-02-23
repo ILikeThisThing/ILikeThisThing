@@ -49,8 +49,9 @@ createdb ilikethis_dev
 See this [blog post](http://www.dancorman.com/knex-your-sql-best-friend/) for more information on setting up postgresql.
 If the database needs to be dropped run dropdb ilikethis_dev and then recreate
 
-You will need an API key for GiantBomb (game api)
-Google Books and OMBD (IMDB's api) are the other two apis
+You will need an API key for GiantBomb (game api).
+
+Google Books and OMBD (IMDB's api) are the other two apis and do not require apiKeys
 
 ### Roadmap
 
