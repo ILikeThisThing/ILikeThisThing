@@ -1,8 +1,8 @@
 {
-  "name": "MyApp",
+  "name": "ILikeThis",
   "version": "1.0.0",
   "main": "server/index.js",
-  "description": "A rapid project starter for Node, Express and Angular.",
+  "description": "Find your next favorite Book, Movie, or Game",
   "engines": {
     "node": "5.5.0"
   },
@@ -23,7 +23,7 @@
     "supertest": "^1.1.0",
     "supertest-as-promised": "^2.0.2"
   },
-  "author": "Dan <dan.corman@gmail.com>",
+  "author": "",
   "license": "MIT",
   "scripts": {
     "start": "./node_modules/.bin/nodemon server/index.js --ignore client/ --ignore node_modules/",
